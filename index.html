@@ -3,9 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Sensor v2</title>
+    <title>Sensor v3</title>
     <style>
-      
+      html, body {
+background-color: #000;
+      }
+      #result { font-size: 200px; transform: rotate(90deg); color: #FFF; position: absolute; left: 50vh; top: 50vh; margin-left: -50%; margin-top: -50%; }
     </style>
 </head>
 <body>
@@ -13,12 +16,9 @@
 
 <div id="demo-div">
   <a id="start_demo"  href="#" role="button">Start the demo</a>
-  <ul>
-    <li>X-axis (&beta;): <span id="Orientation_b">0</span><span>&deg;</span></li>
-    <li>Result <span id="result">0</span><span>seconds</span></li>
-  </ul>
 </div>
 </main>
+  <div id="result">0</div>
   
 <script>
 var seconds = 0.0;
@@ -58,7 +58,7 @@ demo_button.onclick = function(e) {
           seconds += 0.25;
        }
 
-      document.getElementById('result').innerHTML = seconds;
+      document.getElementById('result').innerHTML = Math.floor(seconds);
     }, 250);
   }
 };
