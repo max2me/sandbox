@@ -15,18 +15,20 @@
   <a id="start_demo"  href="#" role="button">Start the demo</a>
   <ul>
     <li>X-axis (&beta;): <span id="Orientation_b">0</span><span>&deg;</span></li>
+    <li>Result <span id="result">0</span><span>seconds</span></li>
   </ul>
 </div>
 </main>
   
 <script>
+var seconds = 0.0;
+var int = null;
+var beta = -100;
+  
 function handleOrientation(event) {
-  updateFieldIfNotNull('Orientation_b', event.beta);
-}
-
-function updateFieldIfNotNull(fieldName, value, precision=10){
-  if (value != null)
-    document.getElementById(fieldName).innerHTML = value.toFixed(precision);
+  if (event.beta != null) {
+    beta = event.beta.toFixed(precision);
+  }
 }
 
 let is_running = false;
@@ -46,10 +48,18 @@ demo_button.onclick = function(e) {
     window.removeEventListener("deviceorientation", handleOrientation);
     demo_button.innerHTML = "Start demo";
     is_running = false;
+    clearInterval(int);
   }else{
     window.addEventListener("deviceorientation", handleOrientation);
     document.getElementById("start_demo").innerHTML = "Stop demo";
     is_running = true;
+    int = setInterval(function() {
+       if (Math.abs(beta) < 12) {
+          seconds += 0.25;
+       }
+
+      document.getElementById('result').innerHTML = seconds;
+    }, 250);
   }
 };
 </script>
