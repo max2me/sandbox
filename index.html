@@ -1,77 +1,97 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Sensor v6</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,800&display=swap" rel="stylesheet">
     <style>
-      html, body {
-background-color: #000;
-      }
+        * {
+            font-family: 'Exo 2', sans-serif;
+        }
 
-      html.on {
- background-color: blue;
-      }
-      #result { font-size: 200px; ; color: #FFF; position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(90deg);  }
+        html,
+        body {
+            background-color:  rgb(3, 49, 113);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            
+        }
+
+        body.on {
+            background-color: rgb(3, 113, 100);
+            transition: 0.2s ease-in-out;
+        }
+
+        body {
+            transition: 0.2s ease-in-out;
+        }
+
+        #result {
+            font-size: 200px;
+            color: #FFF;
+            position: absolute;
+            text-decoration: none;
+            font-weight: 800;
+            font-style: italic;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     </style>
 </head>
+
 <body>
-<main role="main" class="container">
+    <a id="result" href="#" role="button">Start</a>
 
-<div id="demo-div">
-  <a id="start_demo"  href="#" role="button">Start the demo</a>
-</div>
-</main>
-  <div id="result">0</div>
-  
-<script>
-var seconds = 0.0;
-var int = null;
-var beta = -100;
-  
-function handleOrientation(event) {
-  if (event.beta != null) {
-    beta = event.beta.toFixed(2);
-  }
-}
+    <script>
+        var seconds = 0.0;
+        var int = null;
+        var beta = -100;
 
-let is_running = false;
-let demo_button = document.getElementById("start_demo");
-demo_button.onclick = function(e) {
-  e.preventDefault();
-  
-  // Request permission for iOS 13+ devices
-  if (
-    DeviceMotionEvent &&
-    typeof DeviceMotionEvent.requestPermission === "function"
-  ) {
-    DeviceMotionEvent.requestPermission();
-  }
-  
-  if (is_running){
-    window.removeEventListener("deviceorientation", handleOrientation);
-    demo_button.innerHTML = "Start demo";
-    is_running = false;
-    clearInterval(int);
-  }else{
-    window.addEventListener("deviceorientation", handleOrientation);
-    document.getElementById("start_demo").innerHTML = "Stop demo";
-    is_running = true;
-    int = setInterval(function() {
-       if (Math.abs(beta) < 12) {
-          seconds += 0.25;
-         document.className = 'on';
-       } else {
-         document.className = '';
-       }
+        function handleOrientation(event) {
+            if (event.beta != null) {
+                beta = event.beta.toFixed(2);
+            }
+        }
 
-      document.getElementById('result').innerHTML = Math.floor(seconds);
-    }, 250);
-  }
-};
-</script>
+        let is_running = false;
+        let demo_button = document.getElementById("result");
+        demo_button.onclick = function (e) {
+            e.preventDefault();
+
+            // Request permission for iOS 13+ devices
+            if (
+                DeviceMotionEvent &&
+                typeof DeviceMotionEvent.requestPermission === "function"
+            ) {
+                DeviceMotionEvent.requestPermission();
+            }
+
+            if (is_running) {
+                window.removeEventListener("deviceorientation", handleOrientation);
+                is_running = false;
+                clearInterval(int);
+            } else {
+                window.addEventListener("deviceorientation", handleOrientation);
+                is_running = true;
+                int = setInterval(function () {
+                    if (Math.abs(beta) < 12) {
+                        seconds += 0.1;
+                        document.body.className = 'on';
+                    } else {
+                        document.body.className = '';
+                    }
+
+                    document.getElementById('result').innerHTML = seconds.toFixed(1);
+                }, 100);
+            }
+        };
+    </script>
 </body>
+
 </html>
