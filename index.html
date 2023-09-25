@@ -16,7 +16,7 @@
 
         html,
         body {
-            background-color:  rgb(3, 49, 113);
+            background-color:  #000;
             min-height: 100vh;
             margin: 0;
             padding: 0;
@@ -29,7 +29,7 @@
         }
 
         body {
-            transition: 0.2s ease-in-out;
+            transition: 0.2s ease-out-in;
         }
 
         #result {
@@ -88,7 +88,7 @@
                         document.body.className = '';
                     }
 
-                    document.getElementById('result').innerHTML = seconds.toFixed(1);
+                    document.getElementById('result').innerHTML = seconds.toFixed(0);
                 }, 100);
             }
         };
