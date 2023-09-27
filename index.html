@@ -59,7 +59,7 @@
 
         .star {
             opacity: 0;
-            transition: opacity 0.2s ease-in, font-size 1s cubic-bezier(.81,0,.32,2);
+            transition: opacity 0.2s ease-in, font-size 1s cubic-bezier(.81, 0, .32, 2);
             vertical-align: middle;
         }
 
@@ -79,14 +79,16 @@
         <span class="star star-4">⭐️</span>
         <span class="star star-5">⭐️</span>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
         var seconds = 0.0;
         var int = null;
         var beta = [];
+        var b = -100;
         var milliseconds = 50;
         var target = 500;
-        
+        var confettiLaunched = false;
+
         if (window.location.hash != '#') {
             var h = parseInt(window.location.hash.replace('#', ''));
             if (h > 0) {
@@ -96,7 +98,7 @@
 
         function handleOrientation(event) {
             if (event.beta != null) {
-                beta.push(event.beta.toFixed(2));
+                b = event.beta.toFixed(2);
             }
         }
 
@@ -104,10 +106,12 @@
             var triggerStar = seconds / target >= (n * 20 / 100);
             if (triggerStar) {
                 document.querySelector('.star-' + n).classList.add('show');
-            }
+            }            
         }
 
         function onTick() {
+            beta.push(b);
+
             var recentResults = beta.slice(-10);
             if (recentResults.length === 0) {
                 return;
@@ -118,13 +122,24 @@
 
             // Update count
             if (isOkay) {
-                seconds += milliseconds/1000;
+                seconds += milliseconds / 1000;
             }
-
-            // Update display
-            updateDisplay(isOkay);
+           
+            if (seconds >= target && ! confettiLaunched) {
+                confetti({
+                    particleCount: 150,
+                    spread: 120,
+                    ticks: 300
+                });
+                confettiLaunched = true;
+                clearInterval(int);
+                document.getElementById('result').innerHTML = 'Done!';
+            } else {
+                // Update display
+                updateDisplay(isOkay);
+            }
         }
-        
+
         function updateDisplay(isOkay) {
             if (isOkay) {
                 document.body.className = 'on';
