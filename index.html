@@ -16,11 +16,11 @@
 
         html,
         body {
-            background-color:  #000;
+            background-color: #000;
             min-height: 100vh;
             margin: 0;
             padding: 0;
-            
+
         }
 
         body.on {
@@ -52,44 +52,58 @@
     <script>
         var seconds = 0.0;
         var int = null;
-        var beta = -100;
+        var beta = [];
+        var milliseconds = 50;
 
         function handleOrientation(event) {
             if (event.beta != null) {
-                beta = event.beta.toFixed(2);
+                beta.push(event.beta.toFixed(2));
             }
         }
 
-        let is_running = false;
+        function onTick() {
+            var recentResults = beta.slice(-10);
+            if (recentResults.length === 0) {
+                return;
+            }
+
+            var goodResults = recentResults.filter(r => Math.abs(r) < 12);
+            var isOkay = (goodResults.length / recentResults.length) >= 0.6;
+
+            // Update count
+            if (isOkay) {
+                seconds += milliseconds/1000;
+            }
+
+            // Update display
+            if (isOkay) {
+                document.body.className = 'on';
+            } else {
+                document.body.className = '';
+            }
+
+            document.getElementById('result').innerHTML = seconds.toFixed(0);
+        }
+
+        let isRunning = false;
         let demo_button = document.getElementById("result");
         demo_button.onclick = function (e) {
             e.preventDefault();
 
             // Request permission for iOS 13+ devices
-            if (
-                DeviceMotionEvent &&
-                typeof DeviceMotionEvent.requestPermission === "function"
+            if (DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === "function"
             ) {
                 DeviceMotionEvent.requestPermission();
             }
 
-            if (is_running) {
+            if (isRunning) {
                 window.removeEventListener("deviceorientation", handleOrientation);
-                is_running = false;
+                isRunning = false;
                 clearInterval(int);
             } else {
                 window.addEventListener("deviceorientation", handleOrientation);
-                is_running = true;
-                int = setInterval(function () {
-                    if (Math.abs(beta) < 12) {
-                        seconds += 0.1;
-                        document.body.className = 'on';
-                    } else {
-                        document.body.className = '';
-                    }
-
-                    document.getElementById('result').innerHTML = seconds.toFixed(0);
-                }, 100);
+                isRunning = true;
+                int = setInterval(onTick, milliseconds);
             }
         };
     </script>
