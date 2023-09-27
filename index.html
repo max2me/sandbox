@@ -33,14 +33,14 @@
         }
 
         #result {
-            font-size: 200px;
+            font-size: 160px;
             line-height: 1;
             color: #FFF;
             position: absolute;
             text-decoration: none;
             font-weight: 800;
             font-style: italic;
-            top: 50vh;
+            top: 40vh;
             left: 50%;
             transform: translate(-50%, -50%);
         }
@@ -59,7 +59,7 @@
 
         .star {
             opacity: 0;
-            transition: opacity 0.2s ease-in, font-size 1s cubic-bezier(.81, 0, .32, 2);
+            transition: opacity 0.2s ease-in, font-size 0.5s cubic-bezier(.81, 0, .32, 1.5);
             vertical-align: middle;
         }
 
@@ -80,6 +80,7 @@
         <span class="star star-5">⭐️</span>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nosleep/0.12.0/NoSleep.js"></script>
     <script>
         var seconds = 0.0;
         var int = null;
@@ -88,6 +89,7 @@
         var milliseconds = 50;
         var target = 500;
         var confettiLaunched = false;
+        var noSleep = new NoSleep();
 
         if (window.location.hash != '#') {
             var h = parseInt(window.location.hash.replace('#', ''));
@@ -171,11 +173,13 @@
                 window.removeEventListener("deviceorientation", handleOrientation);
                 isRunning = false;
                 clearInterval(int);
+                noSleep.disable();
             } else {
                 window.addEventListener("deviceorientation", handleOrientation);
                 isRunning = true;
                 int = setInterval(onTick, milliseconds);
                 updateDisplay(false);
+                noSleep.enable();
             }
         };
     </script>
