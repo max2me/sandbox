@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Sensor v8</title>
+    <title>Sensor v9</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,800&display=swap" rel="stylesheet">
@@ -135,6 +135,7 @@
                 });
                 confettiLaunched = true;
                 clearInterval(int);
+                updateStar(5);
                 document.getElementById('result').innerHTML = 'Done!';
             } else {
                 // Update display
