@@ -34,30 +34,76 @@
 
         #result {
             font-size: 200px;
+            line-height: 1;
             color: #FFF;
             position: absolute;
             text-decoration: none;
             font-weight: 800;
             font-style: italic;
-            top: 50%;
+            top: 50vh;
             left: 50%;
             transform: translate(-50%, -50%);
+        }
+
+        .stars {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 0px;
+            position: absolute;
+            top: calc(50vh + 160px);
+            text-align: center;
+            width: 100%;
+            display: block;
+            transform: translate(0%, -50%);
+            line-height: 140px;
+        }
+
+        .star {
+            opacity: 0;
+            transition: opacity 0.2s ease-in, font-size 1s cubic-bezier(.81,0,.32,2);
+            vertical-align: middle;
+        }
+
+        .star.show {
+            opacity: 1;
+            font-size: 140px;
         }
     </style>
 </head>
 
 <body>
     <a id="result" href="#" role="button">Start</a>
+    <div class="stars">
+        <span class="star star-1">⭐️</span>
+        <span class="star star-2">⭐️</span>
+        <span class="star star-3">⭐️</span>
+        <span class="star star-4">⭐️</span>
+        <span class="star star-5">⭐️</span>
+    </div>
 
     <script>
         var seconds = 0.0;
         var int = null;
         var beta = [];
         var milliseconds = 50;
+        var target = 500;
+        
+        if (window.location.hash != '#') {
+            var h = parseInt(window.location.hash.replace('#', ''));
+            if (h > 0) {
+                target = h;
+            }
+        }
 
         function handleOrientation(event) {
             if (event.beta != null) {
                 beta.push(event.beta.toFixed(2));
+            }
+        }
+
+        function updateStar(n) {
+            var triggerStar = seconds / target >= (n * 20 / 100);
+            if (triggerStar) {
+                document.querySelector('.star-' + n).classList.add('show');
             }
         }
 
@@ -76,11 +122,21 @@
             }
 
             // Update display
+            updateDisplay(isOkay);
+        }
+        
+        function updateDisplay(isOkay) {
             if (isOkay) {
                 document.body.className = 'on';
             } else {
                 document.body.className = '';
             }
+
+            updateStar(1);
+            updateStar(2);
+            updateStar(3);
+            updateStar(4);
+            updateStar(5);
 
             document.getElementById('result').innerHTML = seconds.toFixed(0);
         }
@@ -104,6 +160,7 @@
                 window.addEventListener("deviceorientation", handleOrientation);
                 isRunning = true;
                 int = setInterval(onTick, milliseconds);
+                updateDisplay(false);
             }
         };
     </script>
