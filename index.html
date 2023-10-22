@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Sensor v9</title>
+    <title>Sensor v10</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,800&display=swap" rel="stylesheet">
@@ -67,29 +67,11 @@
             opacity: 1;
             font-size: 100px;
         }
-
-        svg {
-            transform: rotate(-90deg);
-        }
-
-        #circle {
-            stroke-dasharray: 440;
-        }
     </style>
 </head>
 
 <body>
-    <a id="result" href="#" role="button">
-        <span id="text">Start</span>
-        <svg id="svg" width="160" height="160" style="display: none;" xmlns="http://www.w3.org/2000/svg">
-            <g>
-                <circle id="circle" style="stroke-dashoffset: 110;" class="donut" r="69.85699" cy="81"
-                    cx="81" stroke-width="20" stroke="#FFF" fill="none" />
-            </g>
-        </svg>
-    </a>
-    
-
+    <a id="result" href="#" role="button">Start</a>
     <div class="stars">
         <span class="star star-1">⭐️</span>
         <span class="star star-2">⭐️</span>
@@ -105,7 +87,7 @@
         var beta = [];
         var b = -100;
         var milliseconds = 50;
-        var target = 500;
+        var target = 750;
         var confettiLaunched = false;
         var noSleep = new NoSleep();
 
@@ -126,7 +108,7 @@
             var triggerStar = seconds / target >= (n * 20 / 100);
             if (triggerStar) {
                 document.querySelector('.star-' + n).classList.add('show');
-            }
+            }            
         }
 
         function onTick() {
@@ -144,8 +126,8 @@
             if (isOkay) {
                 seconds += milliseconds / 1000;
             }
-
-            if (seconds >= target && !confettiLaunched) {
+           
+            if (seconds >= target && ! confettiLaunched) {
                 confetti({
                     particleCount: 150,
                     spread: 120,
@@ -174,14 +156,7 @@
             updateStar(4);
             updateStar(5);
 
-            document.getElementById('text').innerHTML = '';
-            
-            var targetPerStar = (target / 5);
-            var progressPerStar = ((seconds.toFixed(2) + targetPerStar) % targetPerStar) / targetPerStar;
-
-            document.getElementById('svg').style.display = 'block';
-            document.getElementById('circle').style.strokeDashoffset = 440 - 440 * progressPerStar;
-            
+            document.getElementById('result').innerHTML = seconds.toFixed(0);
         }
 
         let isRunning = false;
