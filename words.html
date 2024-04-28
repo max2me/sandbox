@@ -44,6 +44,32 @@
             background: rgb(0, 71, 142);
         }
 
+        .wrong {
+            animation: tilt-n-move-shaking 0.1s infinite;
+        }
+
+        @keyframes tilt-n-move-shaking {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(5px, 5px) rotate(5deg);
+            }
+
+            50% {
+                transform: translate(0, 0) rotate(0eg);
+            }
+
+            75% {
+                transform: translate(-5px, 5px) rotate(-5deg);
+            }
+
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+        }
+
         body {
             display: grid;
             place-items: center;
@@ -453,6 +479,16 @@
             $('#word-1').text(options[0]);
             $('#word-2').text(options[1]);
             $('#word-3').text(options[2]);
+
+            $('.word').click((e) => {
+                var t = $(e.srcElement).text();
+                if (t != chosen.word) {
+                    $('body').addClass('wrong');
+                    setTimeout(() => {
+                        $('body').removeClass('wrong');
+                    }, 250);
+                }
+            });
         });
     </script>
 </body>
