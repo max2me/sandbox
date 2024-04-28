@@ -1190,7 +1190,7 @@
 					}, 250);
 				} else {
 					$('#front').addClass('hidden');
-					$('#back').html('<div>Correct!<br/><br/><span>&quot;' + chosen.example.replace('___', '<em>' + chosen.word + '</em>') + '&quot;</span></div>').removeClass('hidden');
+					$('#back').html('<div>Correct!<br/><br/><span>&quot;' + chosen.example.replace('___', '<em>' + chosen.word.toLowerCase() + '</em>') + '&quot;</span></div>').removeClass('hidden');
 					confetti({
 						spread: 400,
 						particleCount: 200,
