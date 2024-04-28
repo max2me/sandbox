@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-	<title>3</title>
 	<meta charset="UTF-8">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +11,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Words game</title>
+	<title>Words for Emma</title>
 	<style>
 		* {
 			font-size: 70px;
@@ -146,1150 +145,1005 @@
 	<script>
 		var words = [
 			{
-				"word": "adorable",
+				"word": "Abandoned",
+				"definition": "Left all alone and no longer cared for",
+				"example": "The ___ building had been vacant for years."
+			},
+			{
+				"word": "Abundant",
+				"definition": "Having a large quantity or plentiful supply",
+				"example": "The ___ harvest yielded a bountiful crop."
+			},
+			{
+				"word": "Adorable",
 				"definition": "Inspiring feelings of affection and delight",
 				"example": "The ___ puppy was so cute, everyone wanted to pet it."
 			},
 			{
-				"word": "adventurous",
+				"word": "Adventurous",
 				"definition": "Willing to take risks and try new things",
 				"example": "She was an ___ traveler who loved exploring new destinations."
 			},
 			{
-				"word": "aggressive",
+				"word": "Aggressive",
 				"definition": "Ready to attack or engage in hostile behavior",
 				"example": "The ___ dog barked ferociously at the strangers."
 			},
 			{
-				"word": "agreeable",
-				"definition": "Pleasing and acceptable",
-				"example": "The ___ weather made it a perfect day for a picnic."
+				"word": "Ambitious",
+				"definition": "Having a strong desire for success or achievement",
+				"example": "The ___ student aimed for top grades and prestigious colleges."
 			},
 			{
-				"word": "alert",
-				"definition": "Watchful and ready to respond quickly",
-				"example": "The ___ security guard noticed any suspicious activity."
+				"word": "Ancient",
+				"definition": "Existing or occurring a very long time ago",
+				"example": "The ___ ruins were over 2,000 years old."
 			},
 			{
-				"word": "alive",
-				"definition": "Having life and being active",
-				"example": "The forest was ___ with the sounds of birds and animals."
-			},
-			{
-				"word": "amused",
-				"definition": "Feeling entertained and finding something funny",
-				"example": "The audience was ___ by the comedian's jokes."
-			},
-			{
-				"word": "angry",
-				"definition": "Feeling strong displeasure or hostility",
-				"example": "The ___ customer demanded to speak to the manager."
-			},
-			{
-				"word": "annoyed",
-				"definition": "Feeling irritated or bothered",
-				"example": "She was ___ by the constant noise from the construction site."
-			},
-			{
-				"word": "annoying",
-				"definition": "Causing irritation or bothering someone",
-				"example": "The ___ buzzing of the flies made it hard to concentrate."
-			},
-			{
-				"word": "anxious",
+				"word": "Anxious",
 				"definition": "Feeling worried or nervous",
 				"example": "She felt ___ before her job interview."
 			},
 			{
-				"word": "arrogant",
+				"word": "Arrogant",
 				"definition": "Having an exaggerated sense of one's own importance",
 				"example": "The ___ boss treated his employees with disrespect."
 			},
 			{
-				"word": "ashamed",
-				"definition": "Feeling embarrassed or guilty",
-				"example": "He felt ___ after being caught in a lie."
+				"word": "Artful",
+				"definition": "Showing skill and creativity",
+				"example": "The ___ painter created beautiful works of art."
 			},
 			{
-				"word": "attractive",
+				"word": "Attractive",
 				"definition": "Pleasing to the eye or mind",
 				"example": "The ___ model graced the cover of the magazine."
 			},
 			{
-				"word": "average",
-				"definition": "Typical or ordinary, not exceptional",
-				"example": "She received an ___ score on the test."
+				"word": "Authentic",
+				"definition": "Genuine and not an imitation",
+				"example": "The restaurant served ___ Italian cuisine made with fresh ingredients."
 			},
 			{
-				"word": "awful",
-				"definition": "Extremely unpleasant or bad",
-				"example": "The ___ traffic made us late for the appointment."
+				"word": "Awkward",
+				"definition": "Causing embarrassment or discomfort",
+				"example": "The ___ silence after the joke fell flat was uncomfortable."
 			},
 			{
-				"word": "bad",
-				"definition": "Not good or satisfactory",
-				"example": "The ___ weather forced us to cancel our plans."
+				"word": "Balanced",
+				"definition": "Evenly distributed and stable",
+				"example": "A ___ diet includes a variety of nutritious foods."
 			},
 			{
-				"word": "beautiful",
-				"definition": "Pleasing to the eye and attractive",
-				"example": "The ___ sunset painted the sky with vibrant colors."
+				"word": "Beloved",
+				"definition": "Greatly loved and cherished",
+				"example": "The ___ teacher was highly respected by her students."
 			},
 			{
-				"word": "better",
-				"definition": "Of a higher quality or more desirable",
-				"example": "The ___ option is to take the train instead of driving."
+				"word": "Bizarre",
+				"definition": "Strikingly odd or eccentric",
+				"example": "The ___ sculpture was a strange and puzzling sight."
 			},
 			{
-				"word": "bewildered",
-				"definition": "Feeling confused and unable to understand something",
-				"example": "The ___ student struggled to grasp the complex concept."
-			},
-			{
-				"word": "black",
-				"definition": "Having the darkest color, like coal or night",
-				"example": "She wore a ___ dress to the formal event."
-			},
-			{
-				"word": "bloody",
-				"definition": "Having or covered with blood",
-				"example": "The ___ wound required immediate medical attention."
-			},
-			{
-				"word": "blue",
-				"definition": "Having the color of the sky on a clear day",
-				"example": "The ___ ocean stretched as far as the eye could see."
-			},
-			{
-				"word": "blue-eyed",
-				"definition": "Having eyes with the color of the sky",
-				"example": "The ___ baby gazed innocently at her parents."
-			},
-			{
-				"word": "blushing",
-				"definition": "Turning red in the face, often from embarrassment",
-				"example": "The ___ bride looked radiant as she walked down the aisle."
-			},
-			{
-				"word": "bored",
-				"definition": "Feeling weary and uninterested due to lack of activity",
-				"example": "The ___ students fidgeted in their seats during the lecture."
-			},
-			{
-				"word": "brainy",
-				"definition": "Highly intelligent and knowledgeable",
-				"example": "The ___ student excelled in all her classes."
-			},
-			{
-				"word": "brave",
+				"word": "Brave",
 				"definition": "Showing courage and determination",
 				"example": "The ___ firefighters rushed into the burning building."
 			},
 			{
-				"word": "breakable",
-				"definition": "Easily broken or damaged",
-				"example": "The fragile vase was handled with care as it was ___."
+				"word": "Brilliant",
+				"definition": "Exceptionally clever or talented",
+				"example": "The ___ scientist made groundbreaking discoveries."
 			},
 			{
-				"word": "bright",
-				"definition": "Giving off or reflecting a lot of light",
-				"example": "The ___ sun shone brightly in the clear sky."
+				"word": "Candid",
+				"definition": "Truthful and straightforward",
+				"example": "Her ___ response surprised the interviewer."
 			},
 			{
-				"word": "busy",
-				"definition": "Having a lot of activity or work to do",
-				"example": "The ___ shopping mall was crowded with people."
-			},
-			{
-				"word": "calm",
-				"definition": "Peaceful and free from agitation",
-				"example": "The ___ lake reflected the surrounding mountains."
-			},
-			{
-				"word": "careful",
-				"definition": "Paying close attention and being cautious",
-				"example": "The ___ driver checked for pedestrians before proceeding."
-			},
-			{
-				"word": "cautious",
+				"word": "Cautious",
 				"definition": "Being careful and avoiding risks",
 				"example": "The ___ hikers checked the weather before starting their trek."
 			},
 			{
-				"word": "charming",
+				"word": "Charming",
 				"definition": "Attractively pleasing and delightful",
 				"example": "The ___ cottage had a cozy and inviting atmosphere."
 			},
 			{
-				"word": "cheerful",
+				"word": "Cheerful",
 				"definition": "Feeling or expressing happiness and optimism",
 				"example": "Her ___ smile brightened everyone's day."
 			},
 			{
-				"word": "clean",
-				"definition": "Free from dirt or impurities",
-				"example": "The ___ room had been freshly tidied."
-			},
-			{
-				"word": "clear",
-				"definition": "Easy to understand or perceive",
-				"example": "The ___ instructions made assembling the furniture simple."
-			},
-			{
-				"word": "clever",
+				"word": "Clever",
 				"definition": "Intelligent and quick-witted",
 				"example": "The ___ student always had insightful questions for the teacher."
 			},
 			{
-				"word": "cloudy",
-				"definition": "Filled with or obscured by clouds",
-				"example": "The ___ sky threatened rain, so we brought umbrellas."
-			},
-			{
-				"word": "clumsy",
-				"definition": "Awkward and lacking dexterity",
-				"example": "The ___ waiter spilled water all over the table."
-			},
-			{
-				"word": "colorful",
+				"word": "Colorful",
 				"definition": "Having a variety of bright and vivid colors",
 				"example": "The ___ parade featured vibrant costumes and floats."
 			},
 			{
-				"word": "combative",
-				"definition": "Ready and eager to fight or argue",
-				"example": "The ___ team was determined to win the championship."
+				"word": "Compassionate",
+				"definition": "Feeling or showing concern for others' suffering",
+				"example": "The ___ volunteer worked tirelessly to help those in need."
 			},
 			{
-				"word": "comfortable",
-				"definition": "Feeling relaxed and without discomfort",
-				"example": "The ___ sofa was perfect for lounging and reading."
+				"word": "Confident",
+				"definition": "Feeling sure and certain of oneself",
+				"example": "The ___ public speaker commanded the audience's attention."
 			},
 			{
-				"word": "concerned",
-				"definition": "Feeling worried or troubled",
-				"example": "The ___ parents were hoping their child would be safe."
-			},
-			{
-				"word": "condemned",
-				"definition": "Declared as deserving punishment or criticism",
-				"example": "The ___ building was deemed unsafe and scheduled for demolition."
-			},
-			{
-				"word": "confused",
-				"definition": "Lacking understanding or feeling bewildered",
-				"example": "The ___ student raised their hand to ask for clarification."
-			},
-			{
-				"word": "cooperative",
-				"definition": "Willing to work together and assist others",
-				"example": "The ___ team members collaborated well on the project."
-			},
-			{
-				"word": "courageous",
+				"word": "Courageous",
 				"definition": "Showing bravery and determination",
 				"example": "The ___ firefighters rushed into the burning building."
 			},
 			{
-				"word": "crazy",
-				"definition": "Behaving in an erratic or irrational manner",
-				"example": "The ___ driver swerved recklessly through traffic."
+				"word": "Courteous",
+				"definition": "Polite and respectful",
+				"example": "The ___ waiter greeted us with a warm smile."
 			},
 			{
-				"word": "creepy",
-				"definition": "Causing a feeling of fear or uneasiness",
-				"example": "The ___ abandoned house looked haunted."
+				"word": "Creative",
+				"definition": "Having the ability to produce original and imaginative ideas",
+				"example": "The ___ artist painted vibrant abstract canvases."
 			},
 			{
-				"word": "crowded",
-				"definition": "Filled with too many people or things",
-				"example": "The ___ subway car made it difficult to move."
-			},
-			{
-				"word": "cruel",
-				"definition": "Causing pain or suffering, often intentionally",
-				"example": "The ___ bully tormented the other students."
-			},
-			{
-				"word": "curious",
+				"word": "Curious",
 				"definition": "Having a desire to learn or know more",
 				"example": "The ___ child asked endless questions about the world."
 			},
 			{
-				"word": "cute",
-				"definition": "Attractive and appealing in a delightful way",
-				"example": "The ___ puppy with floppy ears melted everyone's hearts."
+				"word": "Daring",
+				"definition": "Bold and adventurous, willing to take risks",
+				"example": "The ___ skydiver jumped from the plane without hesitation."
 			},
 			{
-				"word": "dangerous",
-				"definition": "Capable of causing harm or injury",
-				"example": "The ___ cliffs were fenced off for safety."
-			},
-			{
-				"word": "dark",
-				"definition": "Having little or no light",
-				"example": "The ___ alley was poorly lit and ominous."
-			},
-			{
-				"word": "dead",
-				"definition": "No longer alive or active",
-				"example": "The ___ plant had withered from lack of water."
-			},
-			{
-				"word": "defeated",
-				"definition": "Having lost or failed, feeling discouraged",
-				"example": "The ___ team left the field with their heads hung low."
-			},
-			{
-				"word": "defiant",
-				"definition": "Boldly resisting authority or refusing to obey",
-				"example": "The ___ teenager ignored their parents' curfew."
-			},
-			{
-				"word": "delightful",
+				"word": "Delightful",
 				"definition": "Causing great pleasure and joy",
 				"example": "The ___ picnic in the park was a perfect summer day."
 			},
 			{
-				"word": "depressed",
-				"definition": "Feeling sadness and hopelessness",
-				"example": "The ___ mood made it difficult to find motivation."
-			},
-			{
-				"word": "determined",
+				"word": "Determined",
 				"definition": "Having a strong resolve and perseverance",
 				"example": "The ___ athlete trained tirelessly for the competition."
 			},
 			{
-				"word": "different",
-				"definition": "Not the same as something else",
-				"example": "She chose a ___ path than the one her friends took."
+				"word": "Diligent",
+				"definition": "Hardworking and attentive to responsibilities",
+				"example": "The ___ student studied diligently for the exam."
 			},
 			{
-				"word": "difficult",
-				"definition": "Not easy and requiring effort or skill",
-				"example": "The ___ math problem stumped the entire class."
+				"word": "Eccentric",
+				"definition": "Unconventional and slightly strange",
+				"example": "The ___ artist had a unique and quirky style."
 			},
 			{
-				"word": "disgusted",
-				"definition": "Feeling revulsion or strong disapproval",
-				"example": "He was ___ by the rude behavior of the crowd."
-			},
-			{
-				"word": "distinct",
-				"definition": "Clearly different or separate from others",
-				"example": "Each bird species had a ___ call that set it apart."
-			},
-			{
-				"word": "disturbed",
-				"definition": "Feeling troubled or unsettled",
-				"example": "The ___ patient struggled with mental health issues."
-			},
-			{
-				"word": "dizzy",
-				"definition": "Feeling unsteady and having a spinning sensation",
-				"example": "The ___ skater stumbled after spinning too quickly."
-			},
-			{
-				"word": "doubtful",
-				"definition": "Feeling uncertain or lacking confidence",
-				"example": "She was ___ about her chances of getting the job."
-			},
-			{
-				"word": "drab",
-				"definition": "Lacking brightness or vibrancy",
-				"example": "The ___ office walls made the space feel dull and uninviting."
-			},
-			{
-				"word": "dull",
-				"definition": "Lacking excitement or interest",
-				"example": "The ___ lecture put many students to sleep."
-			},
-			{
-				"word": "eager",
-				"definition": "Showing great interest and enthusiasm",
-				"example": "The ___ students raised their hands to answer the teacher's question."
-			},
-			{
-				"word": "easy",
-				"definition": "Requiring little effort or difficulty",
-				"example": "The ___ test was a breeze for the well-prepared students."
-			},
-			{
-				"word": "elated",
-				"definition": "Feeling great joy and excitement",
-				"example": "The ___ team celebrated their hard-earned victory."
-			},
-			{
-				"word": "elegant",
+				"word": "Elegant",
 				"definition": "Graceful and stylishly attractive",
 				"example": "The ___ ballroom was decorated with chandeliers and marble floors."
 			},
 			{
-				"word": "embarrassed",
-				"definition": "Feeling self-conscious and awkward",
-				"example": "She felt ___ when she tripped and fell in front of the class."
-			},
-			{
-				"word": "enchanting",
-				"definition": "Delightfully charming and captivating",
-				"example": "The ___ fairy tale transported readers to a magical world."
-			},
-			{
-				"word": "encouraging",
-				"definition": "Giving support and confidence",
-				"example": "The ___ coach motivated the team to do their best."
-			},
-			{
-				"word": "energetic",
+				"word": "Energetic",
 				"definition": "Having or showing great enthusiasm and liveliness",
 				"example": "The ___ puppy bounded around the yard with boundless energy."
 			},
 			{
-				"word": "enthusiastic",
+				"word": "Enthusiastic",
 				"definition": "Showing great interest and eagerness",
 				"example": "The ___ student was always the first to raise their hand."
 			},
 			{
-				"word": "envious",
+				"word": "Envious",
 				"definition": "Feeling jealous or resentful of someone",
 				"example": "She felt ___ of her friend's success."
 			},
 			{
-				"word": "evil",
-				"definition": "Profoundly immoral and wicked",
-				"example": "The ___ villain's schemes threatened the entire kingdom."
+				"word": "Exquisite",
+				"definition": "Extremely beautiful and delicate",
+				"example": "The ___ painting was a true masterpiece."
 			},
 			{
-				"word": "excited",
-				"definition": "Feeling great enthusiasm and eagerness",
-				"example": "The ___ children could hardly wait for their birthday party."
+				"word": "Extraordinary",
+				"definition": "Remarkable and exceptional",
+				"example": "The ___ athlete achieved record-breaking feats."
 			},
 			{
-				"word": "expensive",
-				"definition": "Costing a large amount of money",
-				"example": "The ___ sports car was out of our budget."
-			},
-			{
-				"word": "expensive",
-				"definition": "Costing a large amount of money",
-				"example": "The ___ sports car was out of our budget."
-			},
-			{
-				"word": "exuberant",
-				"definition": "Filled with energy and excitement",
-				"example": "The ___ children were jumping and shouting with joy."
-			},
-			{
-				"word": "fair",
-				"definition": "Treating people equally and justly",
-				"example": "The ___ judge made an impartial decision."
-			},
-			{
-				"word": "faithful",
+				"word": "Faithful",
 				"definition": "Loyal and consistently reliable",
 				"example": "The ___ dog was always by its owner's side."
 			},
 			{
-				"word": "famous",
-				"definition": "Well-known and celebrated",
-				"example": "The ___ actor was mobbed by fans on the red carpet."
-			},
-			{
-				"word": "fancy",
-				"definition": "Elaborate and ornate",
-				"example": "The ___ dress was embellished with sequins and beads."
-			},
-			{
-				"word": "fantastic",
+				"word": "Fantastic",
 				"definition": "Extraordinarily good or impressive",
 				"example": "The ___ magician left the audience in awe."
 			},
 			{
-				"word": "fierce",
-				"definition": "Aggressive and intense",
-				"example": "The ___ lion roared fiercely at the intruders."
+				"word": "Fascinating",
+				"definition": "Extremely interesting and captivating",
+				"example": "The ___ documentary explored the mysteries of the deep ocean."
 			},
 			{
-				"word": "filthy",
-				"definition": "Extremely dirty or unclean",
-				"example": "The ___ bathroom needed a thorough cleaning."
+				"word": "Fearless",
+				"definition": "Completely without fear or hesitation",
+				"example": "The ___ explorer ventured into the unknown wilderness."
 			},
 			{
-				"word": "fine",
-				"definition": "Of high quality or excellent",
-				"example": "The ___ restaurant served delicious gourmet dishes."
+				"word": "Flawless",
+				"definition": "Having no defects or imperfections",
+				"example": "The ___ diamond was a rare and valuable gem."
 			},
 			{
-				"word": "foolish",
-				"definition": "Lacking good sense or judgment",
-				"example": "It was ___ of him to ignore the warning signs."
+				"word": "Fortunate",
+				"definition": "Having good luck or favorable circumstances",
+				"example": "We were ___ to have beautiful weather for our outdoor event."
 			},
 			{
-				"word": "fragile",
+				"word": "Fragile",
 				"definition": "Easily broken or damaged",
 				"example": "The ___ vase was handled with care during the move."
 			},
 			{
-				"word": "frail",
-				"definition": "Weak and delicate in physical condition",
-				"example": "The ___ elderly woman required assistance with daily tasks."
-			},
-			{
-				"word": "frantic",
-				"definition": "Panic-stricken and wildly emotional",
-				"example": "The ___ mother searched everywhere for her lost child."
-			},
-			{
-				"word": "friendly",
+				"word": "Friendly",
 				"definition": "Warm and kind in manner",
 				"example": "The ___ neighbor always greeted us with a smile."
 			},
 			{
-				"word": "frightened",
-				"definition": "Feeling fear or anxiety",
-				"example": "The ___ child cried during the thunderstorm."
+				"word": "Generous",
+				"definition": "Willing to give freely and unselfishly",
+				"example": "The ___ donor made a substantial contribution to the charity."
 			},
 			{
-				"word": "funny",
-				"definition": "Causing laughter or amusement",
-				"example": "The ___ comedian had the audience roaring with laughter."
+				"word": "Gallant",
+				"definition": "Brave and showing courage",
+				"example": "The ___ knight fought valiantly to protect the kingdom."
 			},
 			{
-				"word": "gentle",
+				"word": "Genial",
+				"definition": "Friendly and pleasant in manner",
+				"example": "The ___ host made all the guests feel welcome."
+			},
+			{
+				"word": "Gentle",
 				"definition": "Mild and kind in nature",
 				"example": "The ___ breeze ruffled the leaves gently."
 			},
 			{
-				"word": "gifted",
-				"definition": "Highly talented or skilled",
-				"example": "The ___ artist created breathtaking masterpieces."
+				"word": "Genuine",
+				"definition": "True and not an imitation or counterfeit",
+				"example": "The salesperson assured us that the product was ___ and authentic."
 			},
 			{
-				"word": "glamorous",
+				"word": "Ghastly",
+				"definition": "Causing great horror or fear",
+				"example": "The ___ sight of the accident scene made her feel ill."
+			},
+			{
+				"word": "Gigantic",
+				"definition": "Extremely large in size or scale",
+				"example": "The ___ skyscraper towered over the city skyline."
+			},
+			{
+				"word": "Glamorous",
 				"definition": "Attractive and appealing in a fashionable way",
 				"example": "The ___ celebrity walked the red carpet in designer attire."
 			},
 			{
-				"word": "gleaming",
-				"definition": "Shining brightly and radiantly",
-				"example": "The ___ diamond necklace sparkled in the light."
-			},
-			{
-				"word": "glorious",
+				"word": "Glorious",
 				"definition": "Magnificent and highly impressive",
 				"example": "The ___ sunset was a stunning display of colors."
 			},
 			{
-				"word": "good",
-				"definition": "Satisfying or meeting expectations",
-				"example": "She is a ___ student and works hard in class."
+				"word": "Gloomy",
+				"definition": "Dim and lacking brightness or cheer",
+				"example": "The ___ weather put a damper on their outdoor plans."
 			},
 			{
-				"word": "gorgeous",
-				"definition": "Extremely beautiful and attractive",
-				"example": "The ___ model graced the cover of the magazine."
+				"word": "Glowing",
+				"definition": "Emitting a bright and radiant light",
+				"example": "The ___ fireflies lit up the night sky."
 			},
 			{
-				"word": "graceful",
+				"word": "Graceful",
 				"definition": "Moving in a smooth and elegant manner",
 				"example": "The ___ ballerina danced across the stage with poise."
 			},
 			{
-				"word": "grieving",
+				"word": "Gracious",
+				"definition": "Polite and exhibiting good manners",
+				"example": "The ___ host greeted each guest warmly."
+			},
+			{
+				"word": "Greedy",
+				"definition": "Having an excessive desire for more",
+				"example": "The ___ child wanted all the toys for themselves."
+			},
+			{
+				"word": "Grieving",
 				"definition": "Feeling deep sorrow or mourning",
 				"example": "The ___ family mourned the loss of their loved one."
 			},
 			{
-				"word": "grotesque",
+				"word": "Grim",
+				"definition": "Somber and dark in nature",
+				"example": "The ___ news report described the devastating effects of the natural disaster."
+			},
+			{
+				"word": "Groovy",
+				"definition": "Excellent or fashionable",
+				"example": "The ___ music from the 1960s had everyone dancing."
+			},
+			{
+				"word": "Grotesque",
 				"definition": "Disturbingly ugly or unpleasant",
 				"example": "The ___ monster in the movie was terrifying."
 			},
 			{
-				"word": "grumpy",
+				"word": "Grumpy",
 				"definition": "Ill-tempered and irritable",
 				"example": "The ___ old man grumbled and complained constantly."
 			},
 			{
-				"word": "handsome",
+				"word": "Handsome",
 				"definition": "Attractive and appealing in appearance",
 				"example": "The ___ actor was admired by many fans."
 			},
 			{
-				"word": "happy",
-				"definition": "Feeling or expressing joy and contentment",
-				"example": "The ___ children laughed and played in the park."
+				"word": "Handy",
+				"definition": "Useful and convenient for a particular task",
+				"example": "The ___ tool kit came in handy for fixing things around the house."
 			},
 			{
-				"word": "healthy",
+				"word": "Harmonious",
+				"definition": "Forming a pleasing and consistent whole",
+				"example": "The ___ blend of colors in the painting was aesthetically pleasing."
+			},
+			{
+				"word": "Harsh",
+				"definition": "Unpleasantly rough or severe",
+				"example": "The ___ criticism from the teacher was difficult to hear."
+			},
+			{
+				"word": "Healthy",
 				"definition": "In good physical condition and well-being",
 				"example": "Eating fruits and vegetables is important for a ___ diet."
 			},
 			{
-				"word": "helpful",
-				"definition": "Providing useful assistance or support",
-				"example": "The ___ teacher patiently explained the difficult concept."
+				"word": "Heartfelt",
+				"definition": "Sincere and deeply emotional",
+				"example": "She expressed her ___ gratitude to the kind stranger."
 			},
 			{
-				"word": "helpless",
-				"definition": "Unable to defend or take care of oneself",
-				"example": "The ___ kitten meowed pitifully until it was rescued."
+				"word": "Hectic",
+				"definition": "Characterized by intense activity or chaos",
+				"example": "The ___ morning rush made them late for work."
 			},
 			{
-				"word": "hilarious",
+				"word": "Hideous",
+				"definition": "Extremely ugly or unpleasant to look at",
+				"example": "The ___ monster in the movie was grotesque and terrifying."
+			},
+			{
+				"word": "Hilarious",
 				"definition": "Extremely funny and causing great laughter",
 				"example": "The ___ comedy show had the audience in stitches."
 			},
 			{
-				"word": "homeless",
-				"definition": "Having no permanent residence or shelter",
-				"example": "The ___ family lived in their car after losing their home."
+				"word": "Honest",
+				"definition": "Truthful and sincere",
+				"example": "The ___ student admitted to making a mistake on the test."
 			},
 			{
-				"word": "homely",
-				"definition": "Plain or unattractive in appearance",
-				"example": "She felt ___ compared to her beautiful friend."
+				"word": "Honorable",
+				"definition": "Having a high sense of moral principles",
+				"example": "The ___ judge made fair and just decisions."
 			},
 			{
-				"word": "horrible",
-				"definition": "Causing feelings of fear or revulsion",
-				"example": "The ___ accident scene was too gruesome to look at."
+				"word": "Hostile",
+				"definition": "Showing aggression or opposition",
+				"example": "The ___ crowd booed and jeered at the opposing team."
 			},
 			{
-				"word": "hungry",
-				"definition": "Feeling a need or desire for food",
-				"example": "The ___ children eagerly awaited their dinner."
+				"word": "Humble",
+				"definition": "Modest and lacking arrogance",
+				"example": "Despite his success, the ___ athlete remained humble and down-to-earth."
 			},
 			{
-				"word": "hurt",
-				"definition": "Feeling pain or distress",
-				"example": "The ___ child cried after falling and scraping her knee."
+				"word": "Humorous",
+				"definition": "Causing laughter or amusement",
+				"example": "The ___ comedian had the audience laughing uncontrollably."
 			},
 			{
-				"word": "ill",
-				"definition": "Suffering from sickness or poor health",
-				"example": "The ___ patient was admitted to the hospital."
+				"word": "Ideal",
+				"definition": "Perfectly suited or representing the best possible example",
+				"example": "The ___ vacation spot offers beautiful beaches and warm weather."
 			},
 			{
-				"word": "important",
-				"definition": "Having great significance or consequence",
-				"example": "It is ___ to follow safety rules in the lab."
+				"word": "Idiotic",
+				"definition": "Extremely foolish or lacking intelligence",
+				"example": "Making that ___ decision was a huge mistake."
 			},
 			{
-				"word": "impossible",
-				"definition": "Not able to be done or achieved",
-				"example": "Solving the puzzle seemed ___ at first."
+				"word": "Ignorant",
+				"definition": "Lacking knowledge or awareness",
+				"example": "The ___ bystander was unaware of the danger."
 			},
 			{
-				"word": "inexpensive",
-				"definition": "Not costly or requiring a large amount of money",
-				"example": "The ___ restaurant offered affordable meals."
+				"word": "Ill-fated",
+				"definition": "Having an unfortunate or disastrous outcome",
+				"example": "The ___ voyage ended in a tragic shipwreck."
 			},
 			{
-				"word": "innocent",
-				"definition": "Free from guilt or wrongdoing",
-				"example": "The ___ child had a pure and angelic demeanor."
+				"word": "Immense",
+				"definition": "Extremely large in size or scale",
+				"example": "The ___ mountain range stretched as far as the eye could see."
 			},
 			{
-				"word": "inquisitive",
-				"definition": "Having a curious and questioning nature",
-				"example": "The ___ student always asked intriguing questions in class."
+				"word": "Impartial",
+				"definition": "Treating all parties equally and without bias",
+				"example": "The ___ judge rendered a fair verdict based on the evidence."
 			},
 			{
-				"word": "itchy",
-				"definition": "Causing an irritating and uncomfortable sensation",
-				"example": "The ___ wool sweater made her skin itch."
+				"word": "Impeccable",
+				"definition": "Flawless and without any defects",
+				"example": "The ___ performance by the dancer was practically perfect."
 			},
 			{
-				"word": "jealous",
-				"definition": "Feeling envious or resentful of someone else's advantages",
-				"example": "She felt ___ of her sister's success."
+				"word": "Imperfect",
+				"definition": "Having flaws or defects",
+				"example": "The ___ vase had a small crack in it."
 			},
 			{
-				"word": "jittery",
-				"definition": "Feeling nervous and jumpy",
-				"example": "The ___ performer felt anxious before going on stage."
+				"word": "Impolite",
+				"definition": "Lacking good manners or courtesy",
+				"example": "The ___ behavior of the guests was disappointing."
 			},
 			{
-				"word": "jolly",
-				"definition": "Happy and cheerful in disposition",
-				"example": "The ___ Santa Claus greeted the children with a hearty laugh."
+				"word": "Imposing",
+				"definition": "Impressive and commanding respect",
+				"example": "The ___ castle loomed over the surrounding village."
 			},
 			{
-				"word": "joyous",
-				"definition": "Feeling or expressing great happiness",
-				"example": "The ___ celebration was filled with laughter and merriment."
+				"word": "Impressive",
+				"definition": "Evoking admiration or respect",
+				"example": "The ___ feat of strength amazed the spectators."
 			},
 			{
-				"word": "kind",
-				"definition": "Having a gentle and caring nature",
-				"example": "The ___ stranger helped the elderly woman cross the street."
+				"word": "Impulsive",
+				"definition": "Acting or tending to act without forethought",
+				"example": "The ___ decision to quit her job was rash and unplanned."
 			},
 			{
-				"word": "lazy",
-				"definition": "Unwilling to put forth effort or work hard",
-				"example": "The ___ student procrastinated on their homework."
+				"word": "Inane",
+				"definition": "Lacking sense or meaning",
+				"example": "The ___ small talk was dull and pointless."
 			},
 			{
-				"word": "light",
-				"definition": "Having little weight or brightness",
-				"example": "The ___ backpack made it easy to hike long distances."
+				"word": "Incandescent",
+				"definition": "Emitting brilliant light or glowing intensely",
+				"example": "The ___ lamp illuminated the entire room."
 			},
 			{
-				"word": "lively",
-				"definition": "Full of energy and activity",
-				"example": "The ___ music had everyone dancing at the party."
+				"word": "Incompetent",
+				"definition": "Lacking the necessary skills or ability",
+				"example": "The ___ employee struggled to complete basic tasks."
 			},
 			{
-				"word": "lonely",
-				"definition": "Feeling alone and without companionship",
-				"example": "The ___ child longed for friends to play with."
+				"word": "Inconvenient",
+				"definition": "Causing difficulty or discomfort",
+				"example": "The ___ road closure forced us to take a longer route."
 			},
 			{
-				"word": "long",
-				"definition": "Having a great extent or duration",
-				"example": "It was a ___ journey across the country."
+				"word": "Industrious",
+				"definition": "Hardworking and diligent",
+				"example": "The ___ worker completed all her tasks efficiently."
 			},
 			{
-				"word": "lovely",
-				"definition": "Delightfully beautiful or charming",
-				"example": "The ___ garden was filled with fragrant flowers."
+				"word": "Inept",
+				"definition": "Lacking skill or ability",
+				"example": "The ___ mechanic was unable to fix the car's engine."
 			},
 			{
-				"word": "lucky",
-				"definition": "Having good fortune or success by chance",
-				"example": "The ___ winner of the lottery couldn't believe their luck."
+				"word": "Jaded",
+				"definition": "Having lost interest or enthusiasm due to being exposed to too much of something",
+				"example": "After years of watching the same show, John felt _____ and stopped enjoying it."
 			},
 			{
-				"word": "magnificent",
-				"definition": "Extremely impressive and grand",
-				"example": "The ___ mountains took their breath away."
+				"word": "Jagged",
+				"definition": "Having sharp, rough edges or points",
+				"example": "The rock climber's hands were scratched by the _____ cliff face."
 			},
 			{
-				"word": "misty",
-				"definition": "Filled with a thin, cloudy vapor",
-				"example": "The ___ morning fog made it difficult to see clearly."
+				"word": "Jaunty",
+				"definition": "Having a lively, confident, and stylish manner",
+				"example": "The _____ dancer moved across the stage with grace and energy."
 			},
 			{
-				"word": "modern",
-				"definition": "Relating to the present or recent times",
-				"example": "The ___ apartment had sleek and contemporary furnishings."
+				"word": "Jealous",
+				"definition": "Feeling resentful or bitter towards someone because of their success or advantage",
+				"example": "Sarah felt _____ of her friend's new car and wished she had one too."
 			},
 			{
-				"word": "motionless",
-				"definition": "Remaining still and not moving",
-				"example": "The ___ statue stood silently in the park."
+				"word": "Jittery",
+				"definition": "Feeling nervous or anxious, often with physical signs like shaking",
+				"example": "Before the big test, the student felt _____ and couldn't stop fidgeting."
 			},
 			{
-				"word": "muddy",
-				"definition": "Soiled with wet, sticky earth",
-				"example": "The ___ boots left footprints on the clean floor."
+				"word": "Jolly",
+				"definition": "Happy and cheerful, often in a lively or merry way",
+				"example": "The _____ Santa Claus greeted children with a big smile and a hearty laugh."
 			},
 			{
-				"word": "mushy",
-				"definition": "Soft and pulpy in texture",
-				"example": "The overripe fruit had a ___ consistency."
+				"word": "Jovial",
+				"definition": "Cheerful, friendly, and good-humored",
+				"example": "The _____ host welcomed guests with warmth and made everyone feel at ease."
 			},
 			{
-				"word": "mysterious",
-				"definition": "Difficult to understand or explain",
-				"example": "The ___ inscriptions on the ancient artifact puzzled archaeologists."
+				"word": "Judicious",
+				"definition": "Having or showing good judgment, wise and careful consideration",
+				"example": "The _____ judge made a fair and well-reasoned decision after reviewing all the evidence."
 			},
 			{
-				"word": "nasty",
-				"definition": "Extremely unpleasant or disagreeable",
-				"example": "The ___ weather made outdoor activities impossible."
+				"word": "Juicy",
+				"definition": "Full of delicious liquid, or interesting and scandalous information",
+				"example": "The _____ orange was bursting with sweet juice."
 			},
 			{
-				"word": "naughty",
-				"definition": "Disobedient or misbehaving",
-				"example": "The ___ child refused to listen to their parents."
+				"word": "Jumbled",
+				"definition": "Mixed up in a confused or disordered way",
+				"example": "After the move, all the boxes were _____ and it was hard to find anything."
 			},
 			{
-				"word": "nervous",
-				"definition": "Feeling anxious or apprehensive",
-				"example": "She felt ___ before her big presentation."
+				"word": "Juvenile",
+				"definition": "Relating to or characteristic of a young person, often immature or childish",
+				"example": "The _____ prank of throwing water balloons was harmless but annoying."
 			},
 			{
-				"word": "nice",
-				"definition": "Pleasant and agreeable",
-				"example": "It was a ___ day for a picnic in the park."
+				"word": "Kaleidoscopic",
+				"definition": "Having many different colors and patterns, often changing in a beautiful way",
+				"example": "The _____ display of fireworks lit up the night sky with dazzling colors."
 			},
 			{
-				"word": "nutty",
-				"definition": "Resembling or flavored with nuts",
-				"example": "The ___ granola bar was a tasty snack."
+				"word": "Keen",
+				"definition": "Having or showing strong mental ability or perception",
+				"example": "The _____ detective noticed every tiny detail at the crime scene."
 			},
 			{
-				"word": "obedient",
-				"definition": "Complying with instructions or commands",
-				"example": "The ___ child always followed the rules."
+				"word": "Kinetic",
+				"definition": "Relating to or involving motion or movement",
+				"example": "The _____ sculpture spun and twisted in the wind, creating a mesmerizing display."
 			},
 			{
-				"word": "obnoxious",
-				"definition": "Extremely unpleasant and offensive",
-				"example": "The ___ neighbor played loud music at all hours."
+				"word": "Knotty",
+				"definition": "Complicated, difficult, or tangled",
+				"example": "The _____ problem of world hunger requires a complex solution from many different angles."
 			},
 			{
-				"word": "odd",
-				"definition": "Unusual or peculiar",
-				"example": "The ___ behavior of the character made the story interesting."
+				"word": "Lackluster",
+				"definition": "Lacking in energy, brightness, or enthusiasm",
+				"example": "The _____ performance by the band left the audience feeling disappointed."
 			},
 			{
-				"word": "old-fashioned",
-				"definition": "Relating to an earlier time or style",
-				"example": "The ___ diner had a charming retro ambiance."
+				"word": "Languid",
+				"definition": "Moving or acting in a slow, relaxed, and effortless manner",
+				"example": "On the hot summer day, the _____ cat lazily stretched in the shade."
 			},
 			{
-				"word": "open",
-				"definition": "Not closed or blocked",
-				"example": "The ___ door let in a cool breeze."
+				"word": "Lax",
+				"definition": "Not strict or strict enough, lacking in care or effort",
+				"example": "The _____ security guard allowed people to enter without checking their IDs."
 			},
 			{
-				"word": "outrageous",
-				"definition": "Shockingly excessive or extreme",
-				"example": "The ___ price of the luxury item was beyond our means."
+				"word": "Lean",
+				"definition": "Having little or no extra flesh or fat on the body",
+				"example": "The _____ athlete had a muscular and toned physique from intense training."
 			},
 			{
-				"word": "outstanding",
-				"definition": "Exceptionally good or excellent",
-				"example": "The athlete gave an ___ performance at the competition."
+				"word": "Lenient",
+				"definition": "Showing a tolerant or merciful attitude towards someone who has done something wrong",
+				"example": "The _____ teacher allowed the students to retake the test after their poor performance."
 			},
 			{
-				"word": "panicky",
-				"definition": "Feeling or showing sudden fear or anxiety",
-				"example": "The ___ crowd rushed for the exits during the fire alarm."
+				"word": "Lethargic",
+				"definition": "Feeling a lack of energy or enthusiasm, sluggish and indifferent",
+				"example": "After a big meal, the _____ family just wanted to lounge on the couch and take a nap."
 			},
 			{
-				"word": "perfect",
-				"definition": "Having no flaws or defects",
-				"example": "The ___ diamond was a rare and valuable gem."
+				"word": "Lively",
+				"definition": "Full of energy and enthusiasm, active and animated",
+				"example": "The _____ music and dancing at the party made everyone want to join in."
 			},
 			{
-				"word": "plain",
-				"definition": "Simple and without decoration",
-				"example": "She preferred the ___ dress over the more ornate options."
+				"word": "Lofty",
+				"definition": "Of great height or elevated position, or having high ideals or ambitions",
+				"example": "The _____ mountain peak was shrouded in clouds, making it difficult to see from below."
 			},
 			{
-				"word": "pleasant",
-				"definition": "Enjoyable and agreeable",
-				"example": "It was a ___ day for a picnic in the park."
+				"word": "Lonesome",
+				"definition": "Feeling sad or dejected from being alone or isolated",
+				"example": "The _____ traveler missed her family and friends while exploring a foreign country by herself."
 			},
 			{
-				"word": "poised",
-				"definition": "Carrying oneself with confidence and poise",
-				"example": "The ___ ballerina seemed graceful and composed on stage."
+				"word": "Lopsided",
+				"definition": "Uneven or unbalanced, with one side larger or higher than the other",
+				"example": "The _____ table wobbled every time someone put a drink on it."
 			},
 			{
-				"word": "poor",
-				"definition": "Lacking in wealth or resources",
-				"example": "The ___ family struggled to make ends meet."
+				"word": "Loud",
+				"definition": "Making a strong, powerful sound that can be heard clearly",
+				"example": "The _____ thunderclap startled everyone in the neighborhood."
 			},
 			{
-				"word": "powerful",
-				"definition": "Having great strength or influence",
-				"example": "The ___ engine allowed the car to accelerate quickly."
+				"word": "Loutish",
+				"definition": "Rude, ill-mannered, and lacking in refinement or culture",
+				"example": "The _____ behavior of the drunken guest at the formal dinner party was embarrassing."
 			},
 			{
-				"word": "precious",
-				"definition": "Of great value or importance",
-				"example": "The ___ diamond necklace was a family heirloom."
+				"word": "Lush",
+				"definition": "Consisting of luxuriant and abundant growth, or rich and opulent",
+				"example": "The _____ rainforest was teeming with vibrant plants and wildlife."
 			},
 			{
-				"word": "prickly",
-				"definition": "Having sharp points or bristles",
-				"example": "The ___ cactus deterred anyone from touching it."
+				"word": "Luxurious",
+				"definition": "Extremely comfortable, elegant, and expensive",
+				"example": "The _____ hotel suite featured plush furnishings and stunning ocean views."
 			},
 			{
-				"word": "proud",
-				"definition": "Feeling satisfaction and self-respect",
-				"example": "The ___ graduate beamed with joy at the ceremony."
+				"word": "Macabre",
+				"definition": "Disturbing or grotesque, relating to death or horror",
+				"example": "The _____ horror movie was filled with spine-chilling scenes and gruesome monsters."
 			},
 			{
-				"word": "putrid",
-				"definition": "Having an extremely unpleasant and offensive smell",
-				"example": "The ___ odor from the garbage made everyone cover their noses."
+				"word": "Majestic",
+				"definition": "Having an impressive and stately appearance, grand and dignified",
+				"example": "The _____ bald eagle soared gracefully through the sky, its wings outstretched."
 			},
 			{
-				"word": "puzzled",
-				"definition": "Feeling confused or unable to understand something",
-				"example": "The ___ student raised their hand to ask for clarification."
+				"word": "Malicious",
+				"definition": "Intentionally harmful or spiteful, motivated by a desire to cause harm or damage",
+				"example": "The _____ computer virus was designed to corrupt and destroy data on infected systems."
 			},
 			{
-				"word": "quaint",
-				"definition": "Having an old-fashioned or charming quality",
-				"example": "The ___ village seemed frozen in time with its cobblestone streets."
+				"word": "Mammoth",
+				"definition": "Extremely large in size or scale, gigantic",
+				"example": "The _____ redwood tree was one of the tallest living things on Earth."
 			},
 			{
-				"word": "real",
-				"definition": "Genuine and not artificial or fake",
-				"example": "She wanted to buy ___ diamonds, not imitations."
+				"word": "Maniacal",
+				"definition": "Exhibiting wildly eccentric or uncontrolled behavior, frenzied or insane",
+				"example": "The villain's _____ laughter echoed through the shadowy lair, sending chills down the hero's spine."
 			},
 			{
-				"word": "relieved",
-				"definition": "Feeling relaxed and free from worry or anxiety",
-				"example": "The parents felt ___ when their child returned home safely."
+				"word": "Manic",
+				"definition": "Exhibiting or characterized by frenzied or uncontrolled energy or excitement",
+				"example": "The _____ pace of the city streets, with horns honking and people rushing everywhere, was overwhelming for the country visitor."
 			},
 			{
-				"word": "repulsive",
-				"definition": "Extremely unpleasant and causing disgust",
-				"example": "The ___ smell from the rotten food made him gag."
+				"word": "Marvelous",
+				"definition": "Causing great wonder or admiration, extraordinarily good or impressive",
+				"example": "The _____ magician's tricks left the audience in awe, wondering how they were done."
 			},
 			{
-				"word": "rich",
-				"definition": "Having an abundance of wealth or resources",
-				"example": "The ___ family owned a luxurious mansion and several cars."
+				"word": "Massive",
+				"definition": "Extremely large in size, scale, or extent",
+				"example": "The _____ earthquake caused widespread damage and destruction in the region."
 			},
 			{
-				"word": "scary",
-				"definition": "Causing feelings of fear or dread",
-				"example": "The ___ movie kept her awake at night."
+				"word": "Maudlin",
+				"definition": "Overly sentimental or self-indulgent in a tearful or emotional way",
+				"example": "The _____ movie had the audience crying uncontrollably at the sad ending."
 			},
 			{
-				"word": "selfish",
-				"definition": "Caring only about oneself and not others",
-				"example": "The ___ child refused to share their toys with siblings."
+				"word": "Meager",
+				"definition": "Lacking in quantity or quality, scanty or insufficient",
+				"example": "The _____ portion of food at the restaurant left the hungry customer still feeling unsatisfied."
 			},
 			{
-				"word": "shiny",
-				"definition": "Having a smooth, glossy, and bright surface",
-				"example": "The ___ new car gleamed in the sunlight."
+				"word": "Meek",
+				"definition": "Quiet, gentle, and submissive, not inclined to assert oneself",
+				"example": "The _____ new student was too shy to raise her hand and ask questions in class."
 			},
 			{
-				"word": "shy",
-				"definition": "Feeling nervous or timid in social situations",
-				"example": "The ___ student hesitated to raise their hand in class."
+				"word": "Melancholic",
+				"definition": "Feeling or expressing sadness or depression",
+				"example": "The _____ artist's paintings reflected the deep sorrow and loneliness in his heart."
 			},
 			{
-				"word": "silly",
-				"definition": "Foolish or lacking in good sense",
-				"example": "The ___ prank caused a mess but no real harm."
+				"word": "Melodious",
+				"definition": "Having a pleasant, sweet, or harmonic sound",
+				"example": "The _____ birdsong filled the forest with a beautiful melody."
 			},
 			{
-				"word": "sleepy",
-				"definition": "Feeling drowsy or ready to fall asleep",
-				"example": "The ___ toddler rubbed their eyes and yawned."
+				"word": "Mellow",
+				"definition": "Pleasantly calm, smooth, and relaxed",
+				"example": "The _____ jazz music created a soothing and mellow atmosphere in the cozy cafe."
 			},
 			{
-				"word": "smiling",
-				"definition": "Showing a pleased or cheerful expression",
-				"example": "The ___ baby cooed happily at their parents."
+				"word": "Mercurial",
+				"definition": "Subject to sudden or unpredictable changes in mood or behavior",
+				"example": "The _____ boss's mood swings made it difficult for employees to know how to behave around her."
 			},
 			{
-				"word": "smoggy",
-				"definition": "Filled with a thick, hazy air pollution",
-				"example": "The ___ air in the city made it difficult to breathe."
+				"word": "Merciless",
+				"definition": "Showing no mercy or compassion, cruel and pitiless",
+				"example": "The _____ dictator ruled the country with an iron fist, oppressing and punishing anyone who opposed him."
 			},
 			{
-				"word": "sore",
-				"definition": "Causing or feeling pain or discomfort",
-				"example": "Her muscles felt ___ after the intense workout."
+				"word": "Meticulous",
+				"definition": "Showing great attention to detail, extremely careful and precise",
+				"example": "The _____ scientist followed the experimental procedure with meticulous care to ensure accurate results."
 			},
 			{
-				"word": "sparkling",
-				"definition": "Shining brightly and radiantly",
-				"example": "The ___ diamond ring caught the light beautifully."
+				"word": "Mild",
+				"definition": "Not severe or extreme, gentle or moderate",
+				"example": "Despite the _____ weather forecast, the storm turned out to be much stronger than expected."
 			},
 			{
-				"word": "splendid",
-				"definition": "Extremely impressive or magnificent",
-				"example": "The ___ fireworks display lit up the night sky."
+				"word": "Miniature",
+				"definition": "Extremely small, a tiny replica or model",
+				"example": "The _____ dollhouse was a perfect representation of a real home, with intricate details and furnishings."
 			},
 			{
-				"word": "spotless",
-				"definition": "Completely clean and without any dirt or stains",
-				"example": "The ___ kitchen shone after a thorough cleaning."
+				"word": "Minuscule",
+				"definition": "Extremely small, tiny or insignificant",
+				"example": "The _____ error in the computer code caused a major system failure."
 			},
 			{
-				"word": "stormy",
-				"definition": "Characterized by strong winds and heavy rain or snow",
-				"example": "The ___ weather forced them to seek shelter."
-			},
-			{
-				"word": "strange",
-				"definition": "Unusual or not previously known",
-				"example": "The ___ creature from the deep sea amazed scientists."
-			},
-			{
-				"word": "stupid",
-				"definition": "Lacking intelligence or reason",
-				"example": "That was a ___ mistake to make on the test."
-			},
-			{
-				"word": "successful",
-				"definition": "Achieving the desired outcome or goal",
-				"example": "The ___ business venture made the company very profitable."
-			},
-			{
-				"word": "super",
-				"definition": "Excellent or of the highest quality",
-				"example": "The ___ hero saved the day with their incredible powers."
-			},
-			{
-				"word": "talented",
-				"definition": "Having a special ability or skill",
-				"example": "The ___ artist created breathtaking paintings."
-			},
-			{
-				"word": "tame",
-				"definition": "Domesticated and not wild or dangerous",
-				"example": "The ___ rabbit was a friendly and gentle pet."
-			},
-			{
-				"word": "tasty",
-				"definition": "Having a pleasing or delicious flavor",
-				"example": "The ___ meal at the restaurant was truly enjoyable."
-			},
-			{
-				"word": "tender",
-				"definition": "Soft and easily damaged or hurt",
-				"example": "The ___ seedling required careful handling."
-			},
-			{
-				"word": "tense",
-				"definition": "Feeling anxiety or stress",
-				"example": "The ___ atmosphere made everyone uneasy."
-			},
-			{
-				"word": "terrible",
-				"definition": "Extremely bad or unpleasant",
-				"example": "The ___ storm caused extensive damage to the town."
-			},
-			{
-				"word": "thankful",
-				"definition": "Feeling or expressing gratitude",
-				"example": "She was ___ for the kind gesture from her friend."
-			},
-			{
-				"word": "thoughtful",
-				"definition": "Showing consideration for others",
-				"example": "The ___ neighbor brought over a homemade meal."
-			},
-			{
-				"word": "thoughtless",
-				"definition": "Lacking consideration for others",
-				"example": "The ___ prank caused harm and hurt feelings."
-			},
-			{
-				"word": "tired",
-				"definition": "Feeling a need for rest or sleep",
-				"example": "After a long day, the ___ worker collapsed on the couch."
-			},
-			{
-				"word": "tough",
-				"definition": "Strong and durable, not easily broken or damaged",
-				"example": "The ___ material could withstand harsh conditions."
-			},
-			{
-				"word": "troubled",
-				"definition": "Feeling distressed or experiencing difficulty",
-				"example": "The ___ teenager struggled with personal issues."
-			},
-			{
-				"word": "ugliest",
-				"definition": "Most unpleasant or unsightly to look at",
-				"example": "Many considered the sculpture to be the ___ work of art."
-			},
-			{
-				"word": "ugly",
-				"definition": "Unpleasant or unsightly to look at",
-				"example": "The ___ sweater was an unwanted gift."
-			},
-			{
-				"word": "uninterested",
-				"definition": "Lacking interest or enthusiasm",
-				"example": "The ___ student daydreamed during the lesson."
-			},
-			{
-				"word": "unsightly",
-				"definition": "Offensive or unpleasant to look at",
-				"example": "The ___ trash piled up on the street."
-			},
-			{
-				"word": "unusual",
-				"definition": "Out of the ordinary or different from the norm",
-				"example": "The ___ pet drew curious looks from passersby."
-			},
-			{
-				"word": "upset",
-				"definition": "Feeling unhappy or disturbed",
-				"example": "The ___ child cried after being scolded."
-			},
-			{
-				"word": "uptight",
-				"definition": "Tense and unable to relax",
-				"example": "The ___ student worried excessively before exams."
-			},
-			{
-				"word": "vast",
-				"definition": "Extremely large or immense",
-				"example": "The ___ ocean seemed to stretch endlessly."
-			},
-			{
-				"word": "victorious",
-				"definition": "Having achieved a great victory or success",
-				"example": "The ___ team celebrated their championship win."
-			},
-			{
-				"word": "vivacious",
-				"definition": "Full of life and energy",
-				"example": "The ___ performer captivated the audience with her vibrant presence."
-			},
-			{
-				"word": "wandering",
-				"definition": "Moving from place to place without a specific destination",
-				"example": "The ___ traveler explored new cities on a whim."
-			},
-			{
-				"word": "weary",
-				"definition": "Feeling extreme tiredness or fatigue",
-				"example": "The ___ hiker could barely take another step."
-			},
-			{
-				"word": "wicked",
-				"definition": "Evil or immoral in nature",
-				"example": "The ___ villain's plot threatened the entire kingdom."
-			},
-			{
-				"word": "wide-eyed",
-				"definition": "Having an expression of wonder or amazement",
-				"example": "The ___ child gazed in awe at the circus performers."
-			},
-			{
-				"word": "wild",
-				"definition": "Uncontrolled or untamed",
-				"example": "The ___ animal roamed freely in the wilderness."
-			},
-			{
-				"word": "witty",
-				"definition": "Clever and humorous in speech or writing",
-				"example": "The ___ comedian had the audience in stitches with her quick wit."
-			},
-			{
-				"word": "worried",
-				"definition": "Feeling anxious or troubled about something",
-				"example": "The ___ parents waited for news about their child's safety."
-			},
-			{
-				"word": "worrisome",
-				"definition": "Causing feelings of anxiety or concern",
-				"example": "The ___ symptoms prompted a visit to the doctor."
-			},
-			{
-				"word": "wrong",
-				"definition": "Incorrect or not in accordance with what is right",
-				"example": "The student provided the ___ answer on the test."
-			},
-			{
-				"word": "zany",
-				"definition": "Amusingly eccentric or bizarre",
-				"example": "The ___ comedian's antics had the audience in stitches."
-			},
-			{
-				"word": "zealous",
-				"definition": "Showing great enthusiasm and dedication",
-				"example": "The ___ activist worked tirelessly for the cause."
-			}];
+    "word": "nauseating",
+    "definition": "Something that causes a feeling of sickness or disgust",
+    "example": "The ___ smell of rotten eggs made me want to vomit."
+  },
+  {
+    "word": "nebulous",
+    "definition": "Something that is vague, unclear, or hazy",
+    "example": "The ___ instructions left me confused about what to do next."
+  },
+  {
+    "word": "nefarious",
+    "definition": "Something that is wicked or evil",
+    "example": "The criminal had ___ plans to rob the bank."
+  },
+  {
+    "word": "negligent",
+    "definition": "Failing to take proper care or attention",
+    "example": "The ___ driver caused an accident by not paying attention to the road."
+  },
+  {
+    "word": "nimble",
+    "definition": "Able to move quickly and easily",
+    "example": "The ___ gymnast performed complex routines with grace."
+  },
+  {
+    "word": "nonchalant",
+    "definition": "Calm and relaxed, not showing much interest or concern",
+    "example": "Despite the chaos around her, she remained ___ and composed."
+  },
+  {
+    "word": "noisome",
+    "definition": "Having an extremely unpleasant smell",
+    "example": "The ___ odor from the garbage dump made everyone hold their noses."
+  },
+  {
+    "word": "noisy",
+    "definition": "Making a lot of loud sounds",
+    "example": "The ___ construction site made it difficult to concentrate on my work."
+  },
+  {
+    "word": "nomadic",
+    "definition": "Moving from place to place regularly",
+    "example": "The ___ tribe travelled across the desert in search of water and food."
+  },
+  {
+    "word": "nostalgic",
+    "definition": "Feeling or evoking a sentimental longing for the past",
+    "example": "Looking at old family photos made her feel ___ for her childhood."
+  },
+  {
+    "word": "notorious",
+    "definition": "Well-known for something bad or negative",
+    "example": "The ___ criminal was finally caught after years of evading the police."
+  },
+  {
+    "word": "noxious",
+    "definition": "Harmful or poisonous",
+    "example": "The ___ fumes from the factory were causing respiratory problems for nearby residents."
+  },
+  {
+    "word": "nuanced",
+    "definition": "Having subtle shades of meaning or expression",
+    "example": "The author's writing was ___, capturing the complexities of human emotion."
+  },
+  {
+    "word": "numb",
+    "definition": "Unable to feel or perceive sensations",
+    "example": "After sitting for too long, my legs became ___ and tingly."
+  },
+  {
+    "word": "numbing",
+    "definition": "Causing a loss of sensation or feeling",
+    "example": "The ___ cold made it difficult to move my fingers."
+  },
+  {
+    "word": "nutty",
+    "definition": "Crazy or eccentric",
+    "example": "My ___ neighbor has the habit of talking to himself in the backyard."
+  },
+  {
+    "word": "obedient",
+    "definition": "Willing to follow instructions or orders",
+    "example": "The ___ dog always listens to its owner's commands."
+  },
+  {
+    "word": "obese",
+    "definition": "Extremely overweight or fat",
+    "example": "The doctor advised the ___ patient to exercise and follow a healthy diet."
+  },
+  {
+    "word": "obnoxious",
+    "definition": "Extremely unpleasant or rude",
+    "example": "The ___ customer's behavior made everyone in the restaurant uncomfortable."
+  },
+  {
+    "word": "oblivious",
+    "definition": "Not aware of or paying attention to something",
+    "example": "He was ___ to the fact that his friends were making fun of him."
+  },
+  {
+    "word": "obscene",
+    "definition": "Offensive or disgusting, especially in a sexual way",
+    "example": "The movie contained ___ language and scenes that were not suitable for children."
+  },
+  {
+    "word": "obscure",
+    "definition": "Not well-known or understood by most people",
+    "example": "She chose to study an ___ ancient language that few people have heard of."
+  },
+  {
+    "word": "obsequious",
+    "definition": "Excessively obedient or respectful",
+    "example": "The ___ assistant always agreed with everything the boss said, even when it was clearly wrong."
+  },
+  {
+    "word": "obsessive",
+    "definition": "Having an excessive or unhealthy preoccupation with something",
+    "example": "His ___ cleaning habits made it difficult for him to relax and enjoy life."
+  },
+  {
+    "word": "obstinate",
+    "definition": "Stubbornly refusing to change one's opinion or course of action",
+    "example": "The ___ child refused to eat vegetables, no matter how much their parents insisted."
+  },
+  {
+    "word": "obstructive",
+    "definition": "Causing or tending to cause an obstruction or delay",
+    "example": "The ___ roadblocks made it difficult for the ambulance to reach the hospital quickly."
+  },
+  {
+    "word": "obtuse",
+    "definition": "Slow to understand or perceive",
+    "example": "Despite the teacher's clear explanations, the ___ student still didn't grasp the concept."
+  },
+  {
+    "word": "occidental",
+    "definition": "Relating to the Western world or culture",
+    "example": "The ___ philosophy course focused on the ideas of Western thinkers."
+  },
+  {
+    "word": "oceanic",
+    "definition": "Relating to or resembling the ocean",
+    "example": "The ___ depths of the Pacific Ocean are still largely unexplored."
+  },
+  {
+    "word": "octagonal",
+    "definition": "Having eight sides and eight angles",
+    "example": "The ___ shape of the stop sign made it easy to recognize from a distance."
+  },
+  {
+    "word": "odious",
+    "definition": "Extremely unpleasant or repulsive",
+    "example": "The ___ dictator committed many atrocities against his own people."
+  },
+  {
+    "word": "offbeat",
+    "definition": "Unusual or unconventional",
+    "example": "The independent film had an ___ story that kept viewers guessing."
+  },
+  {
+    "word": "offensive",
+    "definition": "Causing someone to feel insulted or hurt",
+    "example": "The comedian's ___ jokes about race and gender offended many audience members."
+  },
+  {
+    "word": "official",
+    "definition": "Approved or authorized by an organization or authority",
+    "example": "The ___ statement from the government addressed the recent controversy."
+  },
+  {
+    "word": "ominous",
+    "definition": "Suggesting that something bad or unpleasant is going to happen",
+    "example": "The dark clouds gathering in the sky looked ___, indicating that a storm was approaching."
+  },
+  {
+    "word": "omnipotent",
+    "definition": "Having unlimited power or authority",
+    "example": "In many religions, God is considered to be ___ and all-powerful."
+  },
+  {
+    "word": "omnipresent",
+    "definition": "Present everywhere at the same time",
+    "example": "The ___ surveillance cameras made it impossible to move around without being watched."
+  },
+  {
+    "word": "onerous",
+    "definition": "Involving a great deal of effort or responsibility",
+    "example": "Taking care of an elderly parent can be an ___ task, both physically and emotionally."
+  },
+  {
+    "word": "opaque",
+    "definition": "Not transparent or clear, blocking the passage of light",
+    "example": "The ___ window curtains prevented anyone from seeing inside the room."
+  },
+  {
+    "word": "opulent",
+    "definition": "Extremely luxurious or wealthy",
+    "example": "The ___ palace was decorated with gold and precious gems, reflecting the ruler's immense riches."
+  },
+  {
+    "word": "oracular",
+    "definition": "Relating to or resembling an oracle, mysterious or ambiguous",
+    "example": "The fortuneteller's ___ predictions were open to interpretation."
+  },
+  {
+    "word": "orderly",
+    "definition": "Arranged in a neat and organized manner",
+    "example": "The ___ rows of desks in the classroom made it easy for students to move around."
+  },
+  {
+    "word": "organic",
+    "definition": "Relating to or derived from living organisms",
+    "example": "Many people prefer to buy ___ produce grown without the use of synthetic pesticides."
+  },
+  {
+    "word": "ornamental",
+    "definition": "Used for decoration rather than for practical purposes",
+    "example": "The ___ fountain in the park added beauty to the surroundings."
+  },
+  {
+    "word": "ornery",
+    "definition": "Stubborn and difficult to deal with",
+    "example": "The ___ old man refused to follow the doctor's orders and take his medication."
+  },
+  {
+    "word": "ornate",
+    "definition": "Decorated with intricate or elaborate designs",
+    "example": "The ___ cathedral's architecture featured detailed carvings and stained glass windows."
+  },
+  {
+    "word": "orphaned",
+    "definition": "Having lost both parents",
+    "example": "The ___ children were taken in by their grandparents after the tragic accident."
+  },
+  {
+    "word": "oscillating",
+    "definition": "Moving back and forth repeatedly",
+    "example": "The ___ fan kept the room cool on a hot summer day."
+  },
+  {
+    "word": "ostentatious",
+    "definition": "Characterized by excessive or pretentious display",
+    "example": "The celebrity's ___ lifestyle involved expensive cars and lavish parties."
+  },
+  {
+    "word": "outlandish",
+    "definition": "Bizarre or wildly unconventional",
+    "example": "The fashion designer's ___ creations were more like works of art than wearable clothing."
+  },
+  {
+    "word": "outrageous",
+    "definition": "Shockingly offensive or excessive",
+    "example": "The comedian's ___ jokes about sensitive topics sparked controversy."
+  }];
 	</script>
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script>
@@ -1343,7 +1197,9 @@
 						scalar: 1
 					});
 					$('#back').click(function () {
-						window.location.href = window.location.href;
+						window.setTimeout(() => {
+							window.location.href = window.location.href;
+						}, 5000);
 					})
 				}
 			});
