@@ -13,47 +13,6 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Words for Emma</title>
 	<style>
-		* {
-			font-size: 70px;
-			box-sizing: border-box;
-		}
-
-		#definition {
-			font-style: italic;
-			text-align: center;
-			padding-left: 10vw;
-			padding-right: 10vw;
-			padding-bottom: 50px;
-		}
-
-		#options {
-
-			text-align: center;
-		}
-
-		#options span {
-			display: block;
-		}
-
-		#options span {
-			padding: 20px 40px;
-			border-radius: 100px;
-			font-weight: 700;
-			text-transform: uppercase;
-			font-size: 60px;
-			transition: 0.2s color;
-			cursor: pointer;
-		}
-
-		#options span:hover {
-			color: rgb(66, 137, 208);
-			text-decoration: underline;
-		}
-
-		.wrong {
-			animation: tilt-n-move-shaking 0.1s infinite;
-		}
-
 		@keyframes tilt-n-move-shaking {
 			0% {
 				transform: translate(0, 0) rotate(0deg);
@@ -75,6 +34,10 @@
 				transform: translate(0, 0) rotate(0deg);
 			}
 		}
+		
+		* {
+			box-sizing: border-box;
+		}
 
 		body,
 		html {
@@ -87,6 +50,11 @@
 			overflow-x: hidden;
 			width: 100vw;
 			height: 100vh;
+			font-size: 70px;
+		}
+
+		body.wrong {
+			animation: tilt-n-move-shaking 0.1s infinite;
 		}
 
 		#content {
@@ -96,6 +64,43 @@
 			height: 100%;
 			position: absolute;
 		}
+		
+		#front #definition {
+			font-style: italic;
+			text-align: center;
+			padding-left: 10vw;
+			padding-right: 10vw;
+			padding-bottom: 50px;
+		}
+
+		#front #options {
+
+			text-align: center;
+		}
+
+		#front #options span {
+			display: block;
+		}
+
+		#front #options span {
+			padding: 20px 40px;
+			border-radius: 100px;
+			font-weight: 700;
+			text-transform: uppercase;
+			font-size: 60px;
+			transition: 0.2s color;
+			cursor: pointer;
+		}
+
+		#front #options span:hover {
+			color: rgb(66, 137, 208);
+			text-decoration: underline;
+		}
+
+		
+
+		
+		
 
 		#front,
 		#back {
@@ -111,22 +116,47 @@
 
 		}
 
-		#back span {
-			color: rgb(96, 172, 247);
+		#back #correct {
+
+		}
+
+		#back #example {
+			font-style: italic;
+			padding: 50px 0;
+			display: block;
 		}
 
 		#back em {
-			text-decoration: underline;
+			text-transform: uppercase;
+			font-size: 50px;
 		}
 
 		.hidden {
 			display: none !important;
+		}
+
+		#points {
+		}
+
+		#score {
+			position: absolute;
+			top: 3vh;
+			right: 5vh;
+			font-size: 40px;
+		}
+
+		#continue {
+			color: rgb(66, 137, 208);
+			cursor: pointer;
 		}
 	</style>
 
 </head>
 
 <body>
+	<div id="score">
+		Points: <span id="points">0</span>
+	</div>
 	<div id="card">
 		<div id="content">
 			<div id="front">
@@ -138,10 +168,100 @@
 				</div>
 			</div>
 			<div id="back" class="hidden">
-				Hi
+				<div id="correct">Correct!</div>
+				<div id="example"></div>
+				<span id="continue">Next &rarr;</span>
 			</div>
 		</div>
 	</div>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script>
+		var chosen = null;
+		var options = [];
+		var points = 0;
+
+		function shuffle(array) {
+			let currentIndex = array.length;
+
+			// While there remain elements to shuffle...
+			while (currentIndex != 0) {
+
+				// Pick a remaining element...
+				let randomIndex = Math.floor(Math.random() * currentIndex);
+				currentIndex--;
+
+				// And swap it with the current element.
+				[array[currentIndex], array[randomIndex]] = [
+					array[randomIndex], array[currentIndex]];
+			}
+		}
+
+		function wrongAnswer() {
+			points--;
+			if (points < 0) {
+				points = 0;
+			}
+			updatePoints();
+
+			$('body').addClass('wrong');
+			setTimeout(() => {
+				$('body').removeClass('wrong');
+			}, 250);
+		}
+
+		function correctAnswer() {
+			points++;
+			updatePoints();
+
+			$('#front').addClass('hidden');
+			$('#example').html('&quot;' + chosen.example.replace('___', '<em>' + chosen.word.toLowerCase() + '</em>') + '&quot;');
+			$('#back').removeClass('hidden');
+			
+			confetti({
+				spread: 400,
+				particleCount: 200,
+				scalar: 1
+			});
+		}
+
+		function updatePoints() {
+			$('#points').html(points);
+		}
+
+		function nextQuestion() {
+			$('#front').removeClass('hidden');
+			$('#back').addClass('hidden');
+
+			// Load words
+			chosen = words[Math.floor(Math.random() * words.length)];
+			var word2 = words[Math.floor(Math.random() * words.length)];
+			var word3 = words[Math.floor(Math.random() * words.length)];
+
+			options = [chosen.word, word2.word, word3.word];
+			shuffle(options);
+
+			$('#definition').html('&quot;' + chosen.definition + '&quot;');
+
+			$('#word-1').text(options[0]);
+			$('#word-2').text(options[1]);
+			$('#word-3').text(options[2]);
+		}
+
+		$(document).ready(() => {
+			$('.word').click(function () {
+				var t = $(this).text();
+				console.log(t, chosen.word);
+				if (t !== chosen.word) {
+					wrongAnswer();
+				} else {
+					correctAnswer();
+					$('#continue').one('click', nextQuestion);
+				}
+			});
+			
+			nextQuestion();
+		});
+	</script>
 	<script>
 		var words = [
 			{
@@ -647,563 +767,503 @@
 			{
 				"word": "Jaded",
 				"definition": "Having lost interest or enthusiasm due to being exposed to too much of something",
-				"example": "After years of watching the same show, John felt _____ and stopped enjoying it."
+				"example": "After years of watching the same show, John felt ___ and stopped enjoying it."
 			},
 			{
 				"word": "Jagged",
 				"definition": "Having sharp, rough edges or points",
-				"example": "The rock climber's hands were scratched by the _____ cliff face."
+				"example": "The rock climber's hands were scratched by the ___ cliff face."
 			},
 			{
 				"word": "Jaunty",
 				"definition": "Having a lively, confident, and stylish manner",
-				"example": "The _____ dancer moved across the stage with grace and energy."
+				"example": "The ___ dancer moved across the stage with grace and energy."
 			},
 			{
 				"word": "Jealous",
 				"definition": "Feeling resentful or bitter towards someone because of their success or advantage",
-				"example": "Sarah felt _____ of her friend's new car and wished she had one too."
+				"example": "Sarah felt ___ of her friend's new car and wished she had one too."
 			},
 			{
 				"word": "Jittery",
 				"definition": "Feeling nervous or anxious, often with physical signs like shaking",
-				"example": "Before the big test, the student felt _____ and couldn't stop fidgeting."
+				"example": "Before the big test, the student felt ___ and couldn't stop fidgeting."
 			},
 			{
 				"word": "Jolly",
 				"definition": "Happy and cheerful, often in a lively or merry way",
-				"example": "The _____ Santa Claus greeted children with a big smile and a hearty laugh."
+				"example": "The ___ Santa Claus greeted children with a big smile and a hearty laugh."
 			},
 			{
 				"word": "Jovial",
 				"definition": "Cheerful, friendly, and good-humored",
-				"example": "The _____ host welcomed guests with warmth and made everyone feel at ease."
+				"example": "The ___ host welcomed guests with warmth and made everyone feel at ease."
 			},
 			{
 				"word": "Judicious",
 				"definition": "Having or showing good judgment, wise and careful consideration",
-				"example": "The _____ judge made a fair and well-reasoned decision after reviewing all the evidence."
+				"example": "The ___ judge made a fair and well-reasoned decision after reviewing all the evidence."
 			},
 			{
 				"word": "Juicy",
 				"definition": "Full of delicious liquid, or interesting and scandalous information",
-				"example": "The _____ orange was bursting with sweet juice."
+				"example": "The ___ orange was bursting with sweet juice."
 			},
 			{
 				"word": "Jumbled",
 				"definition": "Mixed up in a confused or disordered way",
-				"example": "After the move, all the boxes were _____ and it was hard to find anything."
+				"example": "After the move, all the boxes were ___ and it was hard to find anything."
 			},
 			{
 				"word": "Juvenile",
 				"definition": "Relating to or characteristic of a young person, often immature or childish",
-				"example": "The _____ prank of throwing water balloons was harmless but annoying."
+				"example": "The ___ prank of throwing water balloons was harmless but annoying."
 			},
 			{
 				"word": "Kaleidoscopic",
 				"definition": "Having many different colors and patterns, often changing in a beautiful way",
-				"example": "The _____ display of fireworks lit up the night sky with dazzling colors."
+				"example": "The ___ display of fireworks lit up the night sky with dazzling colors."
 			},
 			{
 				"word": "Keen",
 				"definition": "Having or showing strong mental ability or perception",
-				"example": "The _____ detective noticed every tiny detail at the crime scene."
+				"example": "The ___ detective noticed every tiny detail at the crime scene."
 			},
 			{
 				"word": "Kinetic",
 				"definition": "Relating to or involving motion or movement",
-				"example": "The _____ sculpture spun and twisted in the wind, creating a mesmerizing display."
+				"example": "The ___ sculpture spun and twisted in the wind, creating a mesmerizing display."
 			},
 			{
 				"word": "Knotty",
 				"definition": "Complicated, difficult, or tangled",
-				"example": "The _____ problem of world hunger requires a complex solution from many different angles."
+				"example": "The ___ problem of world hunger requires a complex solution from many different angles."
 			},
 			{
 				"word": "Lackluster",
 				"definition": "Lacking in energy, brightness, or enthusiasm",
-				"example": "The _____ performance by the band left the audience feeling disappointed."
+				"example": "The ___ performance by the band left the audience feeling disappointed."
 			},
 			{
 				"word": "Languid",
 				"definition": "Moving or acting in a slow, relaxed, and effortless manner",
-				"example": "On the hot summer day, the _____ cat lazily stretched in the shade."
+				"example": "On the hot summer day, the ___ cat lazily stretched in the shade."
 			},
 			{
 				"word": "Lax",
 				"definition": "Not strict or strict enough, lacking in care or effort",
-				"example": "The _____ security guard allowed people to enter without checking their IDs."
+				"example": "The ___ security guard allowed people to enter without checking their IDs."
 			},
 			{
 				"word": "Lean",
 				"definition": "Having little or no extra flesh or fat on the body",
-				"example": "The _____ athlete had a muscular and toned physique from intense training."
+				"example": "The ___ athlete had a muscular and toned physique from intense training."
 			},
 			{
 				"word": "Lenient",
 				"definition": "Showing a tolerant or merciful attitude towards someone who has done something wrong",
-				"example": "The _____ teacher allowed the students to retake the test after their poor performance."
+				"example": "The ___ teacher allowed the students to retake the test after their poor performance."
 			},
 			{
 				"word": "Lethargic",
 				"definition": "Feeling a lack of energy or enthusiasm, sluggish and indifferent",
-				"example": "After a big meal, the _____ family just wanted to lounge on the couch and take a nap."
+				"example": "After a big meal, the ___ family just wanted to lounge on the couch and take a nap."
 			},
 			{
 				"word": "Lively",
 				"definition": "Full of energy and enthusiasm, active and animated",
-				"example": "The _____ music and dancing at the party made everyone want to join in."
+				"example": "The ___ music and dancing at the party made everyone want to join in."
 			},
 			{
 				"word": "Lofty",
 				"definition": "Of great height or elevated position, or having high ideals or ambitions",
-				"example": "The _____ mountain peak was shrouded in clouds, making it difficult to see from below."
+				"example": "The ___ mountain peak was shrouded in clouds, making it difficult to see from below."
 			},
 			{
 				"word": "Lonesome",
 				"definition": "Feeling sad or dejected from being alone or isolated",
-				"example": "The _____ traveler missed her family and friends while exploring a foreign country by herself."
+				"example": "The ___ traveler missed her family and friends while exploring a foreign country by herself."
 			},
 			{
 				"word": "Lopsided",
 				"definition": "Uneven or unbalanced, with one side larger or higher than the other",
-				"example": "The _____ table wobbled every time someone put a drink on it."
+				"example": "The ___ table wobbled every time someone put a drink on it."
 			},
 			{
 				"word": "Loud",
 				"definition": "Making a strong, powerful sound that can be heard clearly",
-				"example": "The _____ thunderclap startled everyone in the neighborhood."
+				"example": "The ___ thunderclap startled everyone in the neighborhood."
 			},
 			{
 				"word": "Loutish",
 				"definition": "Rude, ill-mannered, and lacking in refinement or culture",
-				"example": "The _____ behavior of the drunken guest at the formal dinner party was embarrassing."
+				"example": "The ___ behavior of the drunken guest at the formal dinner party was embarrassing."
 			},
 			{
 				"word": "Lush",
 				"definition": "Consisting of luxuriant and abundant growth, or rich and opulent",
-				"example": "The _____ rainforest was teeming with vibrant plants and wildlife."
+				"example": "The ___ rainforest was teeming with vibrant plants and wildlife."
 			},
 			{
 				"word": "Luxurious",
 				"definition": "Extremely comfortable, elegant, and expensive",
-				"example": "The _____ hotel suite featured plush furnishings and stunning ocean views."
+				"example": "The ___ hotel suite featured plush furnishings and stunning ocean views."
 			},
 			{
 				"word": "Macabre",
 				"definition": "Disturbing or grotesque, relating to death or horror",
-				"example": "The _____ horror movie was filled with spine-chilling scenes and gruesome monsters."
+				"example": "The ___ horror movie was filled with spine-chilling scenes and gruesome monsters."
 			},
 			{
 				"word": "Majestic",
 				"definition": "Having an impressive and stately appearance, grand and dignified",
-				"example": "The _____ bald eagle soared gracefully through the sky, its wings outstretched."
+				"example": "The ___ bald eagle soared gracefully through the sky, its wings outstretched."
 			},
 			{
 				"word": "Malicious",
 				"definition": "Intentionally harmful or spiteful, motivated by a desire to cause harm or damage",
-				"example": "The _____ computer virus was designed to corrupt and destroy data on infected systems."
+				"example": "The ___ computer virus was designed to corrupt and destroy data on infected systems."
 			},
 			{
 				"word": "Mammoth",
 				"definition": "Extremely large in size or scale, gigantic",
-				"example": "The _____ redwood tree was one of the tallest living things on Earth."
+				"example": "The ___ redwood tree was one of the tallest living things on Earth."
 			},
 			{
 				"word": "Maniacal",
 				"definition": "Exhibiting wildly eccentric or uncontrolled behavior, frenzied or insane",
-				"example": "The villain's _____ laughter echoed through the shadowy lair, sending chills down the hero's spine."
+				"example": "The villain's ___ laughter echoed through the shadowy lair, sending chills down the hero's spine."
 			},
 			{
 				"word": "Manic",
 				"definition": "Exhibiting or characterized by frenzied or uncontrolled energy or excitement",
-				"example": "The _____ pace of the city streets, with horns honking and people rushing everywhere, was overwhelming for the country visitor."
+				"example": "The ___ pace of the city streets, with horns honking and people rushing everywhere, was overwhelming for the country visitor."
 			},
 			{
 				"word": "Marvelous",
 				"definition": "Causing great wonder or admiration, extraordinarily good or impressive",
-				"example": "The _____ magician's tricks left the audience in awe, wondering how they were done."
+				"example": "The ___ magician's tricks left the audience in awe, wondering how they were done."
 			},
 			{
 				"word": "Massive",
 				"definition": "Extremely large in size, scale, or extent",
-				"example": "The _____ earthquake caused widespread damage and destruction in the region."
+				"example": "The ___ earthquake caused widespread damage and destruction in the region."
 			},
 			{
 				"word": "Maudlin",
 				"definition": "Overly sentimental or self-indulgent in a tearful or emotional way",
-				"example": "The _____ movie had the audience crying uncontrollably at the sad ending."
+				"example": "The ___ movie had the audience crying uncontrollably at the sad ending."
 			},
 			{
 				"word": "Meager",
 				"definition": "Lacking in quantity or quality, scanty or insufficient",
-				"example": "The _____ portion of food at the restaurant left the hungry customer still feeling unsatisfied."
+				"example": "The ___ portion of food at the restaurant left the hungry customer still feeling unsatisfied."
 			},
 			{
 				"word": "Meek",
 				"definition": "Quiet, gentle, and submissive, not inclined to assert oneself",
-				"example": "The _____ new student was too shy to raise her hand and ask questions in class."
+				"example": "The ___ new student was too shy to raise her hand and ask questions in class."
 			},
 			{
 				"word": "Melancholic",
 				"definition": "Feeling or expressing sadness or depression",
-				"example": "The _____ artist's paintings reflected the deep sorrow and loneliness in his heart."
+				"example": "The ___ artist's paintings reflected the deep sorrow and loneliness in his heart."
 			},
 			{
 				"word": "Melodious",
 				"definition": "Having a pleasant, sweet, or harmonic sound",
-				"example": "The _____ birdsong filled the forest with a beautiful melody."
+				"example": "The ___ birdsong filled the forest with a beautiful melody."
 			},
 			{
 				"word": "Mellow",
 				"definition": "Pleasantly calm, smooth, and relaxed",
-				"example": "The _____ jazz music created a soothing and mellow atmosphere in the cozy cafe."
+				"example": "The ___ jazz music created a soothing and mellow atmosphere in the cozy cafe."
 			},
 			{
 				"word": "Mercurial",
 				"definition": "Subject to sudden or unpredictable changes in mood or behavior",
-				"example": "The _____ boss's mood swings made it difficult for employees to know how to behave around her."
+				"example": "The ___ boss's mood swings made it difficult for employees to know how to behave around her."
 			},
 			{
 				"word": "Merciless",
 				"definition": "Showing no mercy or compassion, cruel and pitiless",
-				"example": "The _____ dictator ruled the country with an iron fist, oppressing and punishing anyone who opposed him."
+				"example": "The ___ dictator ruled the country with an iron fist, oppressing and punishing anyone who opposed him."
 			},
 			{
 				"word": "Meticulous",
 				"definition": "Showing great attention to detail, extremely careful and precise",
-				"example": "The _____ scientist followed the experimental procedure with meticulous care to ensure accurate results."
+				"example": "The ___ scientist followed the experimental procedure with meticulous care to ensure accurate results."
 			},
 			{
 				"word": "Mild",
 				"definition": "Not severe or extreme, gentle or moderate",
-				"example": "Despite the _____ weather forecast, the storm turned out to be much stronger than expected."
+				"example": "Despite the ___ weather forecast, the storm turned out to be much stronger than expected."
 			},
 			{
 				"word": "Miniature",
 				"definition": "Extremely small, a tiny replica or model",
-				"example": "The _____ dollhouse was a perfect representation of a real home, with intricate details and furnishings."
+				"example": "The ___ dollhouse was a perfect representation of a real home, with intricate details and furnishings."
 			},
 			{
 				"word": "Minuscule",
 				"definition": "Extremely small, tiny or insignificant",
-				"example": "The _____ error in the computer code caused a major system failure."
+				"example": "The ___ error in the computer code caused a major system failure."
 			},
 			{
-    "word": "nauseating",
-    "definition": "Something that causes a feeling of sickness or disgust",
-    "example": "The ___ smell of rotten eggs made me want to vomit."
-  },
-  {
-    "word": "nebulous",
-    "definition": "Something that is vague, unclear, or hazy",
-    "example": "The ___ instructions left me confused about what to do next."
-  },
-  {
-    "word": "nefarious",
-    "definition": "Something that is wicked or evil",
-    "example": "The criminal had ___ plans to rob the bank."
-  },
-  {
-    "word": "negligent",
-    "definition": "Failing to take proper care or attention",
-    "example": "The ___ driver caused an accident by not paying attention to the road."
-  },
-  {
-    "word": "nimble",
-    "definition": "Able to move quickly and easily",
-    "example": "The ___ gymnast performed complex routines with grace."
-  },
-  {
-    "word": "nonchalant",
-    "definition": "Calm and relaxed, not showing much interest or concern",
-    "example": "Despite the chaos around her, she remained ___ and composed."
-  },
-  {
-    "word": "noisome",
-    "definition": "Having an extremely unpleasant smell",
-    "example": "The ___ odor from the garbage dump made everyone hold their noses."
-  },
-  {
-    "word": "noisy",
-    "definition": "Making a lot of loud sounds",
-    "example": "The ___ construction site made it difficult to concentrate on my work."
-  },
-  {
-    "word": "nomadic",
-    "definition": "Moving from place to place regularly",
-    "example": "The ___ tribe travelled across the desert in search of water and food."
-  },
-  {
-    "word": "nostalgic",
-    "definition": "Feeling or evoking a sentimental longing for the past",
-    "example": "Looking at old family photos made her feel ___ for her childhood."
-  },
-  {
-    "word": "notorious",
-    "definition": "Well-known for something bad or negative",
-    "example": "The ___ criminal was finally caught after years of evading the police."
-  },
-  {
-    "word": "noxious",
-    "definition": "Harmful or poisonous",
-    "example": "The ___ fumes from the factory were causing respiratory problems for nearby residents."
-  },
-  {
-    "word": "nuanced",
-    "definition": "Having subtle shades of meaning or expression",
-    "example": "The author's writing was ___, capturing the complexities of human emotion."
-  },
-  {
-    "word": "numb",
-    "definition": "Unable to feel or perceive sensations",
-    "example": "After sitting for too long, my legs became ___ and tingly."
-  },
-  {
-    "word": "numbing",
-    "definition": "Causing a loss of sensation or feeling",
-    "example": "The ___ cold made it difficult to move my fingers."
-  },
-  {
-    "word": "nutty",
-    "definition": "Crazy or eccentric",
-    "example": "My ___ neighbor has the habit of talking to himself in the backyard."
-  },
-  {
-    "word": "obedient",
-    "definition": "Willing to follow instructions or orders",
-    "example": "The ___ dog always listens to its owner's commands."
-  },
-  {
-    "word": "obese",
-    "definition": "Extremely overweight or fat",
-    "example": "The doctor advised the ___ patient to exercise and follow a healthy diet."
-  },
-  {
-    "word": "obnoxious",
-    "definition": "Extremely unpleasant or rude",
-    "example": "The ___ customer's behavior made everyone in the restaurant uncomfortable."
-  },
-  {
-    "word": "oblivious",
-    "definition": "Not aware of or paying attention to something",
-    "example": "He was ___ to the fact that his friends were making fun of him."
-  },
-  {
-    "word": "obscene",
-    "definition": "Offensive or disgusting, especially in a sexual way",
-    "example": "The movie contained ___ language and scenes that were not suitable for children."
-  },
-  {
-    "word": "obscure",
-    "definition": "Not well-known or understood by most people",
-    "example": "She chose to study an ___ ancient language that few people have heard of."
-  },
-  {
-    "word": "obsequious",
-    "definition": "Excessively obedient or respectful",
-    "example": "The ___ assistant always agreed with everything the boss said, even when it was clearly wrong."
-  },
-  {
-    "word": "obsessive",
-    "definition": "Having an excessive or unhealthy preoccupation with something",
-    "example": "His ___ cleaning habits made it difficult for him to relax and enjoy life."
-  },
-  {
-    "word": "obstinate",
-    "definition": "Stubbornly refusing to change one's opinion or course of action",
-    "example": "The ___ child refused to eat vegetables, no matter how much their parents insisted."
-  },
-  {
-    "word": "obstructive",
-    "definition": "Causing or tending to cause an obstruction or delay",
-    "example": "The ___ roadblocks made it difficult for the ambulance to reach the hospital quickly."
-  },
-  {
-    "word": "obtuse",
-    "definition": "Slow to understand or perceive",
-    "example": "Despite the teacher's clear explanations, the ___ student still didn't grasp the concept."
-  },
-  {
-    "word": "occidental",
-    "definition": "Relating to the Western world or culture",
-    "example": "The ___ philosophy course focused on the ideas of Western thinkers."
-  },
-  {
-    "word": "oceanic",
-    "definition": "Relating to or resembling the ocean",
-    "example": "The ___ depths of the Pacific Ocean are still largely unexplored."
-  },
-  {
-    "word": "octagonal",
-    "definition": "Having eight sides and eight angles",
-    "example": "The ___ shape of the stop sign made it easy to recognize from a distance."
-  },
-  {
-    "word": "odious",
-    "definition": "Extremely unpleasant or repulsive",
-    "example": "The ___ dictator committed many atrocities against his own people."
-  },
-  {
-    "word": "offbeat",
-    "definition": "Unusual or unconventional",
-    "example": "The independent film had an ___ story that kept viewers guessing."
-  },
-  {
-    "word": "offensive",
-    "definition": "Causing someone to feel insulted or hurt",
-    "example": "The comedian's ___ jokes about race and gender offended many audience members."
-  },
-  {
-    "word": "official",
-    "definition": "Approved or authorized by an organization or authority",
-    "example": "The ___ statement from the government addressed the recent controversy."
-  },
-  {
-    "word": "ominous",
-    "definition": "Suggesting that something bad or unpleasant is going to happen",
-    "example": "The dark clouds gathering in the sky looked ___, indicating that a storm was approaching."
-  },
-  {
-    "word": "omnipotent",
-    "definition": "Having unlimited power or authority",
-    "example": "In many religions, God is considered to be ___ and all-powerful."
-  },
-  {
-    "word": "omnipresent",
-    "definition": "Present everywhere at the same time",
-    "example": "The ___ surveillance cameras made it impossible to move around without being watched."
-  },
-  {
-    "word": "onerous",
-    "definition": "Involving a great deal of effort or responsibility",
-    "example": "Taking care of an elderly parent can be an ___ task, both physically and emotionally."
-  },
-  {
-    "word": "opaque",
-    "definition": "Not transparent or clear, blocking the passage of light",
-    "example": "The ___ window curtains prevented anyone from seeing inside the room."
-  },
-  {
-    "word": "opulent",
-    "definition": "Extremely luxurious or wealthy",
-    "example": "The ___ palace was decorated with gold and precious gems, reflecting the ruler's immense riches."
-  },
-  {
-    "word": "oracular",
-    "definition": "Relating to or resembling an oracle, mysterious or ambiguous",
-    "example": "The fortuneteller's ___ predictions were open to interpretation."
-  },
-  {
-    "word": "orderly",
-    "definition": "Arranged in a neat and organized manner",
-    "example": "The ___ rows of desks in the classroom made it easy for students to move around."
-  },
-  {
-    "word": "organic",
-    "definition": "Relating to or derived from living organisms",
-    "example": "Many people prefer to buy ___ produce grown without the use of synthetic pesticides."
-  },
-  {
-    "word": "ornamental",
-    "definition": "Used for decoration rather than for practical purposes",
-    "example": "The ___ fountain in the park added beauty to the surroundings."
-  },
-  {
-    "word": "ornery",
-    "definition": "Stubborn and difficult to deal with",
-    "example": "The ___ old man refused to follow the doctor's orders and take his medication."
-  },
-  {
-    "word": "ornate",
-    "definition": "Decorated with intricate or elaborate designs",
-    "example": "The ___ cathedral's architecture featured detailed carvings and stained glass windows."
-  },
-  {
-    "word": "orphaned",
-    "definition": "Having lost both parents",
-    "example": "The ___ children were taken in by their grandparents after the tragic accident."
-  },
-  {
-    "word": "oscillating",
-    "definition": "Moving back and forth repeatedly",
-    "example": "The ___ fan kept the room cool on a hot summer day."
-  },
-  {
-    "word": "ostentatious",
-    "definition": "Characterized by excessive or pretentious display",
-    "example": "The celebrity's ___ lifestyle involved expensive cars and lavish parties."
-  },
-  {
-    "word": "outlandish",
-    "definition": "Bizarre or wildly unconventional",
-    "example": "The fashion designer's ___ creations were more like works of art than wearable clothing."
-  },
-  {
-    "word": "outrageous",
-    "definition": "Shockingly offensive or excessive",
-    "example": "The comedian's ___ jokes about sensitive topics sparked controversy."
-  }];
-	</script>
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<script>
-		var chosen = null;
-		var options = [];
-
-		function shuffle(array) {
-			let currentIndex = array.length;
-
-			// While there remain elements to shuffle...
-			while (currentIndex != 0) {
-
-				// Pick a remaining element...
-				let randomIndex = Math.floor(Math.random() * currentIndex);
-				currentIndex--;
-
-				// And swap it with the current element.
-				[array[currentIndex], array[randomIndex]] = [
-					array[randomIndex], array[currentIndex]];
-			}
-		}
-
-		$(document).ready(() => {
-			chosen = words[Math.floor(Math.random() * words.length)];
-			var word2 = words[Math.floor(Math.random() * words.length)];
-			var word3 = words[Math.floor(Math.random() * words.length)];
-
-			options = [chosen.word, word2.word, word3.word];
-			shuffle(options);
-
-			$('#definition').html('&quot;' + chosen.definition + '&quot;');
-
-			$('#word-1').text(options[0]);
-			$('#word-2').text(options[1]);
-			$('#word-3').text(options[2]);
-
-			$('.word').click(function () {
-				var t = $(this).text();
-				console.log(t, chosen.word);
-				if (t !== chosen.word) {
-					$('body').addClass('wrong');
-					setTimeout(() => {
-						$('body').removeClass('wrong');
-					}, 250);
-				} else {
-					$('#front').addClass('hidden');
-					$('#back').html('<div>Correct!<br/><br/><span>&quot;' + chosen.example.replace('___', '<em>' + chosen.word.toLowerCase() + '</em>') + '&quot;</span></div>').removeClass('hidden');
-					confetti({
-						spread: 400,
-						particleCount: 200,
-						scalar: 1
-					});
-					$('#back').click(function () {
-						window.setTimeout(() => {
-							window.location.href = window.location.href;
-						}, 5000);
-					})
-				}
-			});
-		});
+				"word": "nauseating",
+				"definition": "Something that causes a feeling of sickness or disgust",
+				"example": "The ___ smell of rotten eggs made me want to vomit."
+			},
+			{
+				"word": "nebulous",
+				"definition": "Something that is vague, unclear, or hazy",
+				"example": "The ___ instructions left me confused about what to do next."
+			},
+			{
+				"word": "nefarious",
+				"definition": "Something that is wicked or evil",
+				"example": "The criminal had ___ plans to rob the bank."
+			},
+			{
+				"word": "negligent",
+				"definition": "Failing to take proper care or attention",
+				"example": "The ___ driver caused an accident by not paying attention to the road."
+			},
+			{
+				"word": "nimble",
+				"definition": "Able to move quickly and easily",
+				"example": "The ___ gymnast performed complex routines with grace."
+			},
+			{
+				"word": "nonchalant",
+				"definition": "Calm and relaxed, not showing much interest or concern",
+				"example": "Despite the chaos around her, she remained ___ and composed."
+			},
+			{
+				"word": "noisome",
+				"definition": "Having an extremely unpleasant smell",
+				"example": "The ___ odor from the garbage dump made everyone hold their noses."
+			},
+			{
+				"word": "noisy",
+				"definition": "Making a lot of loud sounds",
+				"example": "The ___ construction site made it difficult to concentrate on my work."
+			},
+			{
+				"word": "nomadic",
+				"definition": "Moving from place to place regularly",
+				"example": "The ___ tribe travelled across the desert in search of water and food."
+			},
+			{
+				"word": "nostalgic",
+				"definition": "Feeling or evoking a sentimental longing for the past",
+				"example": "Looking at old family photos made her feel ___ for her childhood."
+			},
+			{
+				"word": "notorious",
+				"definition": "Well-known for something bad or negative",
+				"example": "The ___ criminal was finally caught after years of evading the police."
+			},
+			{
+				"word": "noxious",
+				"definition": "Harmful or poisonous",
+				"example": "The ___ fumes from the factory were causing respiratory problems for nearby residents."
+			},
+			{
+				"word": "nuanced",
+				"definition": "Having subtle shades of meaning or expression",
+				"example": "The author's writing was ___, capturing the complexities of human emotion."
+			},
+			{
+				"word": "numb",
+				"definition": "Unable to feel or perceive sensations",
+				"example": "After sitting for too long, my legs became ___ and tingly."
+			},
+			{
+				"word": "numbing",
+				"definition": "Causing a loss of sensation or feeling",
+				"example": "The ___ cold made it difficult to move my fingers."
+			},
+			{
+				"word": "nutty",
+				"definition": "Crazy or eccentric",
+				"example": "My ___ neighbor has the habit of talking to himself in the backyard."
+			},
+			{
+				"word": "obedient",
+				"definition": "Willing to follow instructions or orders",
+				"example": "The ___ dog always listens to its owner's commands."
+			},
+			{
+				"word": "obese",
+				"definition": "Extremely overweight or fat",
+				"example": "The doctor advised the ___ patient to exercise and follow a healthy diet."
+			},
+			{
+				"word": "obnoxious",
+				"definition": "Extremely unpleasant or rude",
+				"example": "The ___ customer's behavior made everyone in the restaurant uncomfortable."
+			},
+			{
+				"word": "oblivious",
+				"definition": "Not aware of or paying attention to something",
+				"example": "He was ___ to the fact that his friends were making fun of him."
+			},
+			{
+				"word": "obscene",
+				"definition": "Offensive or disgusting, especially in a sexual way",
+				"example": "The movie contained ___ language and scenes that were not suitable for children."
+			},
+			{
+				"word": "obscure",
+				"definition": "Not well-known or understood by most people",
+				"example": "She chose to study an ___ ancient language that few people have heard of."
+			},
+			{
+				"word": "obsequious",
+				"definition": "Excessively obedient or respectful",
+				"example": "The ___ assistant always agreed with everything the boss said, even when it was clearly wrong."
+			},
+			{
+				"word": "obsessive",
+				"definition": "Having an excessive or unhealthy preoccupation with something",
+				"example": "His ___ cleaning habits made it difficult for him to relax and enjoy life."
+			},
+			{
+				"word": "obstinate",
+				"definition": "Stubbornly refusing to change one's opinion or course of action",
+				"example": "The ___ child refused to eat vegetables, no matter how much their parents insisted."
+			},
+			{
+				"word": "obstructive",
+				"definition": "Causing or tending to cause an obstruction or delay",
+				"example": "The ___ roadblocks made it difficult for the ambulance to reach the hospital quickly."
+			},
+			{
+				"word": "obtuse",
+				"definition": "Slow to understand or perceive",
+				"example": "Despite the teacher's clear explanations, the ___ student still didn't grasp the concept."
+			},
+			{
+				"word": "occidental",
+				"definition": "Relating to the Western world or culture",
+				"example": "The ___ philosophy course focused on the ideas of Western thinkers."
+			},
+			{
+				"word": "oceanic",
+				"definition": "Relating to or resembling the ocean",
+				"example": "The ___ depths of the Pacific Ocean are still largely unexplored."
+			},
+			{
+				"word": "octagonal",
+				"definition": "Having eight sides and eight angles",
+				"example": "The ___ shape of the stop sign made it easy to recognize from a distance."
+			},
+			{
+				"word": "odious",
+				"definition": "Extremely unpleasant or repulsive",
+				"example": "The ___ dictator committed many atrocities against his own people."
+			},
+			{
+				"word": "offbeat",
+				"definition": "Unusual or unconventional",
+				"example": "The independent film had an ___ story that kept viewers guessing."
+			},
+			{
+				"word": "offensive",
+				"definition": "Causing someone to feel insulted or hurt",
+				"example": "The comedian's ___ jokes about race and gender offended many audience members."
+			},
+			{
+				"word": "official",
+				"definition": "Approved or authorized by an organization or authority",
+				"example": "The ___ statement from the government addressed the recent controversy."
+			},
+			{
+				"word": "ominous",
+				"definition": "Suggesting that something bad or unpleasant is going to happen",
+				"example": "The dark clouds gathering in the sky looked ___, indicating that a storm was approaching."
+			},
+			{
+				"word": "omnipotent",
+				"definition": "Having unlimited power or authority",
+				"example": "In many religions, God is considered to be ___ and all-powerful."
+			},
+			{
+				"word": "omnipresent",
+				"definition": "Present everywhere at the same time",
+				"example": "The ___ surveillance cameras made it impossible to move around without being watched."
+			},
+			{
+				"word": "onerous",
+				"definition": "Involving a great deal of effort or responsibility",
+				"example": "Taking care of an elderly parent can be an ___ task, both physically and emotionally."
+			},
+			{
+				"word": "opaque",
+				"definition": "Not transparent or clear, blocking the passage of light",
+				"example": "The ___ window curtains prevented anyone from seeing inside the room."
+			},
+			{
+				"word": "opulent",
+				"definition": "Extremely luxurious or wealthy",
+				"example": "The ___ palace was decorated with gold and precious gems, reflecting the ruler's immense riches."
+			},
+			{
+				"word": "oracular",
+				"definition": "Relating to or resembling an oracle, mysterious or ambiguous",
+				"example": "The fortuneteller's ___ predictions were open to interpretation."
+			},
+			{
+				"word": "orderly",
+				"definition": "Arranged in a neat and organized manner",
+				"example": "The ___ rows of desks in the classroom made it easy for students to move around."
+			},
+			{
+				"word": "organic",
+				"definition": "Relating to or derived from living organisms",
+				"example": "Many people prefer to buy ___ produce grown without the use of synthetic pesticides."
+			},
+			{
+				"word": "ornamental",
+				"definition": "Used for decoration rather than for practical purposes",
+				"example": "The ___ fountain in the park added beauty to the surroundings."
+			},
+			{
+				"word": "ornery",
+				"definition": "Stubborn and difficult to deal with",
+				"example": "The ___ old man refused to follow the doctor's orders and take his medication."
+			},
+			{
+				"word": "ornate",
+				"definition": "Decorated with intricate or elaborate designs",
+				"example": "The ___ cathedral's architecture featured detailed carvings and stained glass windows."
+			},
+			{
+				"word": "orphaned",
+				"definition": "Having lost both parents",
+				"example": "The ___ children were taken in by their grandparents after the tragic accident."
+			},
+			{
+				"word": "oscillating",
+				"definition": "Moving back and forth repeatedly",
+				"example": "The ___ fan kept the room cool on a hot summer day."
+			},
+			{
+				"word": "ostentatious",
+				"definition": "Characterized by excessive or pretentious display",
+				"example": "The celebrity's ___ lifestyle involved expensive cars and lavish parties."
+			},
+			{
+				"word": "outlandish",
+				"definition": "Bizarre or wildly unconventional",
+				"example": "The fashion designer's ___ creations were more like works of art than wearable clothing."
+			},
+			{
+				"word": "outrageous",
+				"definition": "Shockingly offensive or excessive",
+				"example": "The comedian's ___ jokes about sensitive topics sparked controversy."
+			}];
 	</script>
 </body>
 
