@@ -92,15 +92,11 @@
 			cursor: pointer;
 		}
 
-		#front #options span:hover {
+		#front #options span:hover,
+		.word.selected {
 			color: rgb(66, 137, 208);
 			text-decoration: underline;
 		}
-
-
-
-
-
 
 		#front,
 		#back {
@@ -151,7 +147,8 @@
 			}
 
 			to {
-				opacity: 0;
+				opacity: 0.5;
+				text-decoration: line-through;
 			}
 		}
 
@@ -256,19 +253,73 @@
 
 		$(document).ready(() => {
 			$('.word').click(function () {
-				var t = $(this).hasClass('correct');
-				if (!t) {
-					$(this).addClass('invalid');
-					wrongAnswer();
-				} else {
-					correctAnswer();
-					$('.word.invalid').removeClass('invalid');
-					$('#continue').one('click', nextQuestion);
-				}
+				checkAnswer($(this));
 			});
 
 			nextQuestion();
 		});
+
+		function checkAnswer(word) {
+			var t = word.hasClass('correct');
+			if (!t) {
+				word.addClass('invalid');
+				wrongAnswer();
+			} else {
+				correctAnswer();
+				$('.word.invalid').removeClass('invalid');
+				$('#continue').one('click', nextQuestion);
+			}
+		}
+
+		$(document).keyup(function (e) {
+			e.preventDefault();
+
+			if ($('#front').is(':visible')) {
+				if (e.which == 40) { // Arrow down 
+					let selected = $('.word.selected');
+					if (selected.length == 0) {
+						$('.word').not('.invalid').first().addClass('selected');
+					} else {
+						selected = selected.next();
+						if (selected.length == 0) { // Was last one
+							$('.word.selected').removeClass('selected');
+							$('.word').not('.invalid').first().addClass('selected');
+						} else {
+							$('.word.selected').removeClass('selected');
+							selected.addClass('selected');
+						}
+					}
+				}
+
+				if (e.which == 38) { // Arrow up
+					let selected = $('.word.selected');
+					if (selected.length == 0) { // Nothing selected
+						$('.word').last().addClass('selected');
+					} else {
+						selected = selected.prev();
+						if (selected.length == 0) {
+							$('.word.selected').removeClass('selected');
+							$('.word').last().addClass('selected');
+						} else {
+							$('.word.selected').removeClass('selected');
+							selected.addClass('selected');
+						}
+					}
+				}
+
+				if (e.which == 13) {
+					let selected = $('.word.selected');
+					if (selected.length === 1) {
+						checkAnswer(selected);
+					}
+				}
+			} else {
+				if (e.which == 13) {
+					nextQuestion();
+				}
+			}
+		});
+
 	</script>
 	<script>
 		var questions = [
