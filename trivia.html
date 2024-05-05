@@ -121,12 +121,8 @@
 		#back #example {
 			font-style: italic;
 			padding: 50px 0;
-			display: block;
-		}
-
-		#back em {
-			text-transform: uppercase;
 			font-size: 50px;
+			display: block;
 		}
 
 		.hidden {
@@ -160,7 +156,7 @@
 		}
 
 		.word.invalid {
-			animation: fadeOut 0.25s ease-in-out 0.75s forwards;
+			animation: fadeOut 0.25s ease-in-out 0.6s forwards;
 		}
 	</style>
 
@@ -182,6 +178,7 @@
 			</div>
 			<div id="back" class="hidden">
 				<div id="correct">Correct!</div>
+				<div id="example"></div>
 				<span id="continue">Next &rarr;</span>
 			</div>
 		</div>
@@ -226,6 +223,7 @@
 			updatePoints();
 
 			$('#front').addClass('hidden');
+			$('#example').html(chosen.explanation);
 			$('#back').removeClass('hidden');
 
 			confetti({
@@ -277,98 +275,74 @@
 			{
 				"question": "What is the capital city of France?",
 				"answers": [
-					{ "text": "Madrid", "correct": false },
 					{ "text": "Paris", "correct": true },
+					{ "text": "London", "correct": false },
 					{ "text": "Berlin", "correct": false }
-				]
+				],
+				"explanation": "Paris is the capital city of France, known for iconic landmarks like the Eiffel Tower and the Louvre Museum."
 			},
 			{
-				"question": "Which planet is closest to the Sun?",
-				"answers": [
-					{ "text": "Mars", "correct": false },
-					{ "text": "Venus", "correct": false },
-					{ "text": "Mercury", "correct": true }
-				]
-			},
-			{
-				"question": "What is the process by which plants make their own food called?",
-				"answers": [
-					{ "text": "Respiration", "correct": false },
-					{ "text": "Photosynthesis", "correct": true },
-					{ "text": "Digestion", "correct": false }
-				]
-			},
-			{
-				"question": "Who is credited with inventing the lightbulb?",
-				"answers": [
-					{ "text": "Thomas Edison", "correct": true },
-					{ "text": "Albert Einstein", "correct": false },
-					{ "text": "Alexander Graham Bell", "correct": false }
-				]
-			},
-			{
-				"question": "Which is the largest ocean on Earth?",
-				"answers": [
-					{ "text": "Atlantic Ocean", "correct": false },
-					{ "text": "Pacific Ocean", "correct": true },
-					{ "text": "Indian Ocean", "correct": false }
-				]
-			},
-			{
-				"question": "What is the chemical symbol for water?",
-				"answers": [
-					{ "text": "W", "correct": false },
-					{ "text": "H2O", "correct": true },
-					{ "text": "O2", "correct": false }
-				]
-			},
-			{
-				"question": "Who wrote 'To Kill a Mockingbird'?",
-				"answers": [
-					{ "text": "J.K. Rowling", "correct": false },
-					{ "text": "Harper Lee", "correct": true },
-					{ "text": "Mark Twain", "correct": false }
-				]
-			},
-			{
-				"question": "What is the largest mammal on Earth?",
-				"answers": [
-					{ "text": "Elephant", "correct": false },
-					{ "text": "Blue Whale", "correct": true },
-					{ "text": "Giraffe", "correct": false }
-				]
-			},
-			{
-				"question": "Which planet is known as the 'Red Planet'?",
+				"question": "Which planet is known as the Red Planet?",
 				"answers": [
 					{ "text": "Mars", "correct": true },
 					{ "text": "Venus", "correct": false },
 					{ "text": "Jupiter", "correct": false }
-				]
+				],
+				"explanation": "Mars is called the Red Planet because of its reddish appearance, caused by iron oxide, or rust, on its surface."
 			},
 			{
-				"question": "What gas do humans breathe in?",
+				"question": "What is the tallest mountain in the world?",
 				"answers": [
-					{ "text": "Oxygen", "correct": true },
-					{ "text": "Carbon Dioxide", "correct": false },
+					{ "text": "Mount Everest", "correct": true },
+					{ "text": "K2", "correct": false },
+					{ "text": "Kangchenjunga", "correct": false }
+				],
+				"explanation": "Mount Everest, located in the Himalayas, is the tallest mountain in the world, standing at 29,032 feet (8,848 meters) above sea level."
+			},
+			{
+				"question": "What is the main ingredient in guacamole?",
+				"answers": [
+					{ "text": "Avocado", "correct": true },
+					{ "text": "Tomato", "correct": false },
+					{ "text": "Onion", "correct": false }
+				],
+				"explanation": "Avocado is the main ingredient in guacamole, a popular Mexican dip or spread."
+			},
+			{
+				"question": "What is the capital city of Japan?",
+				"answers": [
+					{ "text": "Tokyo", "correct": true },
+					{ "text": "Beijing", "correct": false },
+					{ "text": "Seoul", "correct": false }
+				],
+				"explanation": "Tokyo is the capital city of Japan, one of the most populous cities in the world."
+			},
+			{
+				"question": "Which gas do plants absorb during photosynthesis?",
+				"answers": [
+					{ "text": "Carbon dioxide", "correct": true },
+					{ "text": "Oxygen", "correct": false },
 					{ "text": "Nitrogen", "correct": false }
-				]
+				],
+				"explanation": "Plants absorb carbon dioxide during photosynthesis, converting it into oxygen and glucose."
 			},
 			{
-				"question": "Who painted the Mona Lisa?",
+				"question": "What is the hardest natural substance on Earth?",
 				"answers": [
-					{ "text": "Leonardo da Vinci", "correct": true },
-					{ "text": "Pablo Picasso", "correct": false },
-					{ "text": "Vincent van Gogh", "correct": false }
-				]
+					{ "text": "Diamond", "correct": true },
+					{ "text": "Quartz", "correct": false },
+					{ "text": "Graphite", "correct": false }
+				],
+				"explanation": "Diamond is the hardest natural substance on Earth, composed of carbon atoms arranged in a crystal lattice structure."
 			},
 			{
-				"question": "What is the largest desert in the world?",
+				"question": "What is the largest organ in the human body?",
 				"answers": [
-					{ "text": "Gobi Desert", "correct": false },
-					{ "text": "Sahara Desert", "correct": true },
-					{ "text": "Mojave Desert", "correct": false }
-				]
+					{ "text": "Skin", "correct": true },
+					{ "text": "Liver", "correct": false },
+					{ "text": "Heart", "correct": false }
+				],
+				"explanation": "The skin is the largest organ in the human body, providing protection, sensation, and regulation of body temperature."
 			},
 			{
 				"question": "Who wrote 'Romeo and Juliet'?",
@@ -376,431 +350,215 @@
 					{ "text": "William Shakespeare", "correct": true },
 					{ "text": "Charles Dickens", "correct": false },
 					{ "text": "Jane Austen", "correct": false }
-				]
+				],
+				"explanation": "William Shakespeare wrote 'Romeo and Juliet', one of his most famous plays, depicting the tragic love story of the titular characters."
 			},
 			{
-				"question": "What is the hardest natural substance on Earth?",
+				"question": "Which continent is the largest by land area?",
 				"answers": [
-					{ "text": "Diamond", "correct": true },
-					{ "text": "Gold", "correct": false },
-					{ "text": "Iron", "correct": false }
-				]
+					{ "text": "Asia", "correct": true },
+					{ "text": "Africa", "correct": false },
+					{ "text": "North America", "correct": false }
+				],
+				"explanation": "Asia is the largest continent by land area, covering approximately 30% of Earth's land area."
 			},
 			{
-				"question": "What is the largest country by land area?",
+				"question": "What is the chemical symbol for water?",
 				"answers": [
+					{ "text": "H2O", "correct": true },
+					{ "text": "CO2", "correct": false },
+					{ "text": "NaCl", "correct": false }
+				],
+				"explanation": "The chemical symbol for water is H2O, indicating that each water molecule consists of two hydrogen atoms bonded to one oxygen atom."
+			},
+			{
+				"question": "Which animal is known as the 'King of the Jungle'?",
+				"answers": [
+					{ "text": "Lion", "correct": true },
+					{ "text": "Tiger", "correct": false },
+					{ "text": "Leopard", "correct": false }
+				],
+				"explanation": "The lion is often referred to as the 'King of the Jungle' due to its strength, power, and dominance in its natural habitat."
+			},
+			{
+				"question": "What is the closest planet to the Sun?",
+				"answers": [
+					{ "text": "Mercury", "correct": true },
+					{ "text": "Venus", "correct": false },
+					{ "text": "Earth", "correct": false }
+				],
+				"explanation": "Mercury is the closest planet to the Sun in our solar system, with an average distance of about 36 million miles (58 million kilometers) from the Sun."
+			},
+			{
+				"question": "What is the process by which plants make their own food?",
+				"answers": [
+					{ "text": "Photosynthesis", "correct": true },
+					{ "text": "Respiration", "correct": false },
+					{ "text": "Pollination", "correct": false }
+				],
+				"explanation": "Photosynthesis is the process by which plants make their own food using sunlight, carbon dioxide, and water, producing oxygen as a byproduct."
+			},
+			{
+				"question": "Who painted the Mona Lisa?",
+				"answers": [
+					{ "text": "Leonardo da Vinci", "correct": true },
+					{ "text": "Pablo Picasso", "correct": false },
+					{ "text": "Vincent van Gogh", "correct": false }
+				],
+				"explanation": "Leonardo da Vinci painted the Mona Lisa, one of the most famous and iconic paintings in the world, during the Renaissance period."
+			},
+			{
+				"question": "What is the longest river in the world?",
+				"answers": [
+					{ "text": "Nile", "correct": true },
+					{ "text": "Amazon", "correct": false },
+					{ "text": "Mississippi", "correct": false }
+				],
+				"explanation": "The Nile River in Africa is considered the longest river in the world, stretching over 4,100 miles (6,650 kilometers) in length."
+			},
+			{
+				"question": "Which country is known as the Land of the Rising Sun?",
+				"answers": [
+					{ "text": "Japan", "correct": true },
 					{ "text": "China", "correct": false },
-					{ "text": "Russia", "correct": true },
-					{ "text": "United States", "correct": false }
-				]
+					{ "text": "Korea", "correct": false }
+				],
+				"explanation": "Japan is often referred to as the Land of the Rising Sun due to its name's literal meaning and its position east of the Asian mainland."
 			},
 			{
-				"question": "What is the largest bird in the world?",
+				"question": "What is the largest ocean in the world?",
 				"answers": [
-					{ "text": "Ostrich", "correct": true },
-					{ "text": "Eagle", "correct": false },
-					{ "text": "Albatross", "correct": false }
-				]
+					{ "text": "Pacific Ocean", "correct": true },
+					{ "text": "Atlantic Ocean", "correct": false },
+					{ "text": "Indian Ocean", "correct": false }
+				],
+				"explanation": "The Pacific Ocean is the largest ocean in the world, covering approximately one-third of the Earth's surface."
 			},
 			{
-				"question": "Which country is famous for its pyramids?",
+				"question": "Which planet is known as the 'Morning Star' or 'Evening Star'?",
 				"answers": [
-					{ "text": "Mexico", "correct": false },
-					{ "text": "Egypt", "correct": true },
-					{ "text": "Greece", "correct": false }
-				]
+					{ "text": "Venus", "correct": true },
+					{ "text": "Mars", "correct": false },
+					{ "text": "Jupiter", "correct": false }
+				],
+				"explanation": "Venus is often referred to as the 'Morning Star' when it appears in the east before sunrise and the 'Evening Star' when it appears in the west after sunset."
 			},
 			{
-				"question": "What is the main function of the heart?",
+				"question": "What is the largest mammal in the world?",
 				"answers": [
-					{ "text": "Pumping Blood", "correct": true },
-					{ "text": "Digesting Food", "correct": false },
-					{ "text": "Filtering Water", "correct": false }
-				]
+					{ "text": "Blue Whale", "correct": true },
+					{ "text": "African Elephant", "correct": false },
+					{ "text": "Giraffe", "correct": false }
+				],
+				"explanation": "The Blue Whale is the largest mammal in the world, reaching lengths of up to 100 feet (30 meters) and weighing as much as 200 tons."
 			},
 			{
-				"question": "What gas do plants absorb to make food?",
+				"question": "Which continent is home to the Amazon Rainforest?",
 				"answers": [
-					{ "text": "Oxygen", "correct": false },
-					{ "text": "Carbon Dioxide", "correct": true },
-					{ "text": "Nitrogen", "correct": false }
-				]
+					{ "text": "South America", "correct": true },
+					{ "text": "Africa", "correct": false },
+					{ "text": "Asia", "correct": false }
+				],
+				"explanation": "The Amazon Rainforest, the largest tropical rainforest in the world, is primarily located in South America, covering parts of Brazil, Peru, Colombia, and other countries."
 			},
 			{
-				"question": "Who was the first man to walk on the Moon?",
+				"question": "What is the largest desert in the world?",
 				"answers": [
-					{ "text": "Neil Armstrong", "correct": true },
-					{ "text": "Buzz Aldrin", "correct": false },
-					{ "text": "Yuri Gagarin", "correct": false }
-				]
+					{ "text": "Antarctica", "correct": true },
+					{ "text": "Sahara", "correct": false },
+					{ "text": "Arabian", "correct": false }
+				],
+				"explanation": "Antarctica is the largest desert in the world, even though it is covered in ice and snow rather than sand like other deserts."
 			},
 			{
-				"question": "What is the process of a liquid turning into a gas called?",
+				"question": "What is the process of water turning into vapor called?",
 				"answers": [
-					{ "text": "Melting", "correct": false },
-					{ "text": "Freezing", "correct": false },
-					{ "text": "Evaporation", "correct": true }
-				]
+					{ "text": "Evaporation", "correct": true },
+					{ "text": "Condensation", "correct": false },
+					{ "text": "Precipitation", "correct": false }
+				],
+				"explanation": "Evaporation is the process by which water turns into vapor or gas, typically due to heating from the sun."
 			},
 			{
-				"question": "What is the currency of Japan?",
+				"question": "Who invented the light bulb?",
 				"answers": [
-					{ "text": "Yuan", "correct": false },
-					{ "text": "Yen", "correct": true },
-					{ "text": "Won", "correct": false }
-				]
+					{ "text": "Thomas Edison", "correct": true },
+					{ "text": "Nikola Tesla", "correct": false },
+					{ "text": "Alexander Graham Bell", "correct": false }
+				],
+				"explanation": "Thomas Edison is credited with inventing the first commercially practical incandescent light bulb, which revolutionized indoor lighting."
 			},
 			{
-				"question": "Who discovered penicillin?",
+				"question": "What is the largest type of big cat in the world?",
 				"answers": [
-					{ "text": "Alexander Fleming", "correct": true },
-					{ "text": "Albert Einstein", "correct": false },
-					{ "text": "Marie Curie", "correct": false }
-				]
+					{ "text": "Siberian Tiger", "correct": true },
+					{ "text": "Lion", "correct": false },
+					{ "text": "Jaguar", "correct": false }
+				],
+				"explanation": "The Siberian Tiger, also known as the Amur Tiger, is the largest type of big cat in the world, capable of reaching lengths of up to 11 feet (3.3 meters) and weighing over 900 pounds (400 kilograms)."
 			},
 			{
-				"question": "What is the tallest mountain in the world?",
+				"question": "Which country is famous for the Great Wall?",
 				"answers": [
-					{ "text": "K2", "correct": false },
-					{ "text": "Mount Everest", "correct": true },
-					{ "text": "Kangchenjunga", "correct": false }
-				]
+					{ "text": "China", "correct": true },
+					{ "text": "India", "correct": false },
+					{ "text": "Russia", "correct": false }
+				],
+				"explanation": "China is famous for the Great Wall, a series of fortifications built to protect against invasions from various nomadic groups and military incursions."
+			},
+			{
+				"question": "What is the largest planet in our solar system?",
+				"answers": [
+					{ "text": "Jupiter", "correct": true },
+					{ "text": "Saturn", "correct": false },
+					{ "text": "Neptune", "correct": false }
+				],
+				"explanation": "Jupiter is the largest planet in our solar system, with a diameter of approximately 86,881 miles (139,822 kilometers)."
 			},
 			{
 				"question": "What is the chemical symbol for gold?",
 				"answers": [
 					{ "text": "Au", "correct": true },
 					{ "text": "Ag", "correct": false },
-					{ "text": "Fe", "correct": false }
-				]
+					{ "text": "Pb", "correct": false }
+				],
+				"explanation": "The chemical symbol for gold is Au, derived from the Latin word 'aurum', which means 'shining dawn' or 'glow of sunrise'."
 			},
 			{
-				"question": "Which animal is known as the 'King of the Jungle'?",
-				"answers": [
-					{ "text": "Tiger", "correct": false },
-					{ "text": "Lion", "correct": true },
-					{ "text": "Elephant", "correct": false }
-				]
-			},
-			{
-				"question": "What is the main ingredient in bread?",
-				"answers": [
-					{ "text": "Flour", "correct": true },
-					{ "text": "Sugar", "correct": false },
-					{ "text": "Milk", "correct": false }
-				]
-			},
-			{
-				"question": "Who wrote 'Harry Potter' series?",
-				"answers": [
-					{ "text": "J.K. Rowling", "correct": true },
-					{ "text": "Stephen King", "correct": false },
-					{ "text": "Roald Dahl", "correct": false }
-				]
-			},
-			{
-				"question": "What is the largest rainforest in the world?",
-				"answers": [
-					{ "text": "Amazon Rainforest", "correct": true },
-					{ "text": "Congo Rainforest", "correct": false },
-					{ "text": "Daintree Rainforest", "correct": false }
-				]
-			},
-			{
-				"question": "What is the chemical symbol for oxygen?",
-				"answers": [
-					{ "text": "O", "correct": false },
-					{ "text": "O2", "correct": false },
-					{ "text": "O2", "correct": true }
-				]
-			},
-			{
-				"question": "Who painted the 'Starry Night'?",
-				"answers": [
-					{ "text": "Vincent van Gogh", "correct": true },
-					{ "text": "Pablo Picasso", "correct": false },
-					{ "text": "Leonardo da Vinci", "correct": false }
-				]
-			},
-			{
-				"question": "What is the hardest natural material on Earth?",
-				"answers": [
-					{ "text": "Steel", "correct": false },
-					{ "text": "Diamond", "correct": true },
-					{ "text": "Titanium", "correct": false }
-				]
-			},
-			{
-				"question": "What is the largest island in the world?",
-				"answers": [
-					{ "text": "Greenland", "correct": true },
-					{ "text": "Australia", "correct": false },
-					{ "text": "Borneo", "correct": false }
-				]
-			},
-			{
-				"question": "What is the currency of the United Kingdom?",
-				"answers": [
-					{ "text": "Euro", "correct": false },
-					{ "text": "Pound Sterling", "correct": true },
-					{ "text": "Dollar", "correct": false }
-				]
-			},
-			{
-				"question": "What gas makes up most of the Earth's atmosphere?",
-				"answers": [
-					{ "text": "Nitrogen", "correct": true },
-					{ "text": "Oxygen", "correct": false },
-					{ "text": "Carbon Dioxide", "correct": false }
-				]
-			},
-			{
-				"question": "What is the largest cat species in the world?",
-				"answers": [
-					{ "text": "Tiger", "correct": true },
-					{ "text": "Lion", "correct": false },
-					{ "text": "Leopard", "correct": false }
-				]
-			},
-			{
-				"question": "What is the tallest tree species in the world?",
-				"answers": [
-					{ "text": "Sequoia", "correct": true },
-					{ "text": "Oak", "correct": false },
-					{ "text": "Pine", "correct": false }
-				]
-			},
-			{
-				"question": "What is the main function of the lungs?",
-				"answers": [
-					{ "text": "Digesting Food", "correct": false },
-					{ "text": "Breathing", "correct": true },
-					{ "text": "Pumping Blood", "correct": false }
-				]
-			},
-			{
-				"question": "What is the smallest bone in the human body?",
-				"answers": [
-					{ "text": "Femur", "correct": false },
-					{ "text": "Stapes", "correct": true },
-					{ "text": "Tibia", "correct": false }
-				]
-			},
-			{
-				"question": "Who discovered gravity?",
-				"answers": [
-					{ "text": "Albert Einstein", "correct": false },
-					{ "text": "Isaac Newton", "correct": true },
-					{ "text": "Galileo Galilei", "correct": false }
-				]
-			},
-			{
-				"question": "What is the largest rodent in the world?",
-				"answers": [
-					{ "text": "Rabbit", "correct": false },
-					{ "text": "Beaver", "correct": false },
-					{ "text": "Capybara", "correct": true }
-				]
-			},
-			{
-				"question": "What is the currency of China?",
-				"answers": [
-					{ "text": "Yuan", "correct": true },
-					{ "text": "Dollar", "correct": false },
-					{ "text": "Euro", "correct": false }
-				]
-			},
-			{
-				"question": "Who is known as the 'Father of Modern Physics'?",
-				"answers": [
-					{ "text": "Albert Einstein", "correct": false },
-					{ "text": "Isaac Newton", "correct": false },
-					{ "text": "Galileo Galilei", "correct": true }
-				]
-			},
-			{
-				"question": "What is the largest continent by land area?",
-				"answers": [
-					{ "text": "Europe", "correct": false },
-					{ "text": "Asia", "correct": true },
-					{ "text": "Africa", "correct": false }
-				]
-			},
-			{
-				"question": "Who wrote 'The Adventures of Tom Sawyer'?",
-				"answers": [
-					{ "text": "Mark Twain", "correct": true },
-					{ "text": "Charles Dickens", "correct": false },
-					{ "text": "J.K. Rowling", "correct": false }
-				]
-			},
-			{
-				"question": "What is the chemical symbol for iron?",
-				"answers": [
-					{ "text": "Ir", "correct": false },
-					{ "text": "Fe", "correct": true },
-					{ "text": "Au", "correct": false }
-				]
-			},
-			{
-				"question": "What is the largest planet in our solar system?",
-				"answers": [
-					{ "text": "Mars", "correct": false },
-					{ "text": "Jupiter", "correct": true },
-					{ "text": "Saturn", "correct": false }
-				]
-			},
-			{
-				"question": "What is the main function of the liver?",
-				"answers": [
-					{ "text": "Pumping Blood", "correct": false },
-					{ "text": "Digesting Food", "correct": false },
-					{ "text": "Detoxifying the body", "correct": true }
-				]
-			},
-			{
-				"question": "What is the currency of Canada?",
-				"answers": [
-					{ "text": "Euro", "correct": false },
-					{ "text": "Pound Sterling", "correct": false },
-					{ "text": "Canadian Dollar", "correct": true }
-				]
-			},
-			{
-				"question": "Which is the largest bird in the world?",
-				"answers": [
-					{ "text": "Ostrich", "correct": true },
-					{ "text": "Eagle", "correct": false },
-					{ "text": "Albatross", "correct": false }
-				]
-			},
-			{
-				"question": "What is the largest lake in the world by surface area?",
-				"answers": [
-					{ "text": "Lake Superior", "correct": true },
-					{ "text": "Caspian Sea", "correct": false },
-					{ "text": "Lake Baikal", "correct": false }
-				]
-			},
-			{
-				"question": "Who is known as the 'Father of Modern Psychology'?",
-				"answers": [
-					{ "text": "Sigmund Freud", "correct": true },
-					{ "text": "Carl Jung", "correct": false },
-					{ "text": "Ivan Pavlov", "correct": false }
-				]
-			},
-			{
-				"question": "What gas do plants release during photosynthesis?",
+				"question": "Which gas do humans need to breathe in order to survive?",
 				"answers": [
 					{ "text": "Oxygen", "correct": true },
-					{ "text": "Carbon Dioxide", "correct": false },
+					{ "text": "Carbon dioxide", "correct": false },
 					{ "text": "Nitrogen", "correct": false }
-				]
+				],
+				"explanation": "Oxygen is the gas that humans need to breathe in order to survive, as it is essential for cellular respiration, the process by which cells generate energy."
 			},
 			{
-				"question": "Who is the author of 'The Diary of a Young Girl'?",
+				"question": "Who was the first person to step on the moon?",
 				"answers": [
-					{ "text": "Harper Lee", "correct": false },
-					{ "text": "Anne Frank", "correct": true },
-					{ "text": "J.K. Rowling", "correct": false }
-				]
+					{ "text": "Neil Armstrong", "correct": true },
+					{ "text": "Buzz Aldrin", "correct": false },
+					{ "text": "Yuri Gagarin", "correct": false }
+				],
+				"explanation": "Neil Armstrong was the first person to step on the moon on July 20, 1969, during the Apollo 11 mission, famously uttering the words 'That's one small step for man, one giant leap for mankind.'"
 			},
 			{
-				"question": "What is the chemical symbol for sodium?",
+				"question": "What is the largest type of bear in the world?",
 				"answers": [
-					{ "text": "Na", "correct": true },
-					{ "text": "So", "correct": false },
-					{ "text": "Sn", "correct": false }
-				]
+					{ "text": "Polar Bear", "correct": true },
+					{ "text": "Grizzly Bear", "correct": false },
+					{ "text": "Kodiak Bear", "correct": false }
+				],
+				"explanation": "The Polar Bear is the largest type of bear in the world, well-adapted to its Arctic habitat with its thick fur and layers of fat for insulation."
 			},
 			{
-				"question": "What is the process of a solid turning into a liquid called?",
+				"question": "Which country is known as the 'Land of Fire and Ice'?",
 				"answers": [
-					{ "text": "Melting", "correct": true },
-					{ "text": "Freezing", "correct": false },
-					{ "text": "Condensation", "correct": false }
-				]
-			},
-			{
-				"question": "Who is credited with discovering penicillin?",
-				"answers": [
-					{ "text": "Alexander Fleming", "correct": true },
-					{ "text": "Louis Pasteur", "correct": false },
-					{ "text": "Marie Curie", "correct": false }
-				]
-			},
-			{
-				"question": "What is the main function of the kidneys?",
-				"answers": [
-					{ "text": "Digesting Food", "correct": false },
-					{ "text": "Pumping Blood", "correct": false },
-					{ "text": "Filtering Waste from Blood", "correct": true }
-				]
-			},
-			{
-				"question": "What is the chemical symbol for helium?",
-				"answers": [
-					{ "text": "He", "correct": true },
-					{ "text": "H", "correct": false },
-					{ "text": "Hu", "correct": false }
-				]
-			},
-			{
-				"question": "Who is the current President of the United States?",
-				"answers": [
-					{ "text": "Barack Obama", "correct": false },
-					{ "text": "Donald Trump", "correct": false },
-					{ "text": "Joe Biden", "correct": true }
-				]
-			},
-			{
-				"question": "What is the chemical symbol for silver?",
-				"answers": [
-					{ "text": "Si", "correct": false },
-					{ "text": "Ag", "correct": true },
-					{ "text": "Au", "correct": false }
-				]
-			},
-			{
-				"question": "What is the largest city in the United States by population?",
-				"answers": [
-					{ "text": "Los Angeles", "correct": false },
-					{ "text": "Chicago", "correct": false },
-					{ "text": "New York City", "correct": true }
-				]
-			},
-			{
-				"question": "Who wrote 'Pride and Prejudice'?",
-				"answers": [
-					{ "text": "Emily Bronte", "correct": false },
-					{ "text": "Jane Austen", "correct": true },
-					{ "text": "Charlotte Bronte", "correct": false }
-				]
-			},
-			{
-				"question": "What is the smallest planet in our solar system?",
-				"answers": [
-					{ "text": "Mars", "correct": false },
-					{ "text": "Mercury", "correct": true },
-					{ "text": "Venus", "correct": false }
-				]
-			},
-			{
-				"question": "What is the capital city of Brazil?",
-				"answers": [
-					{ "text": "Rio de Janeiro", "correct": false },
-					{ "text": "São Paulo", "correct": false },
-					{ "text": "Brasília", "correct": true }
-				]
-			},
-			{
-				"question": "Who wrote 'The Great Gatsby'?",
-				"answers": [
-					{ "text": "F. Scott Fitzgerald", "correct": true },
-					{ "text": "Ernest Hemingway", "correct": false },
-					{ "text": "J.D. Salinger", "correct": false }
-				]
+					{ "text": "Iceland", "correct": true },
+					{ "text": "Greenland", "correct": false },
+					{ "text": "New Zealand", "correct": false }
+				],
+				"explanation": "Iceland is often referred to as the 'Land of Fire and Ice' due to its combination of active volcanoes and glaciers."
 			},
 			{
 				"question": "What is the chemical symbol for carbon?",
@@ -808,833 +566,659 @@
 					{ "text": "C", "correct": true },
 					{ "text": "Co", "correct": false },
 					{ "text": "Cr", "correct": false }
-				]
+				],
+				"explanation": "The chemical symbol for carbon is C, derived from the Latin word 'carbo', meaning 'charcoal'. Carbon is a fundamental element found in all living organisms and many non-living substances."
 			},
 			{
-				"question": "Which is the largest mammal in the world?",
+				"question": "Who discovered penicillin?",
 				"answers": [
+					{ "text": "Alexander Fleming", "correct": true },
+					{ "text": "Louis Pasteur", "correct": false },
+					{ "text": "Marie Curie", "correct": false }
+				],
+				"explanation": "Alexander Fleming discovered penicillin, the first antibiotic drug, in 1928, revolutionizing medicine and saving countless lives by treating bacterial infections."
+			},
+			{
+				"question": "What is the fastest land animal?",
+				"answers": [
+					{ "text": "Cheetah", "correct": true },
+					{ "text": "Lion", "correct": false },
+					{ "text": "Gazelle", "correct": false }
+				],
+				"explanation": "The cheetah is the fastest land animal, capable of reaching speeds up to 75 miles per hour (120 kilometers per hour) in short bursts."
+			},
+			{
+				"question": "Which planet is known as the 'Blue Planet'?",
+				"answers": [
+					{ "text": "Earth", "correct": true },
+					{ "text": "Neptune", "correct": false },
+					{ "text": "Uranus", "correct": false }
+				],
+				"explanation": "Earth is often referred to as the 'Blue Planet' because of its abundant water, which gives it a blue appearance when seen from space."
+			},
+			{
+				"question": "What is the largest bird in the world?",
+				"answers": [
+					{ "text": "Ostrich", "correct": true },
+					{ "text": "Emu", "correct": false },
+					{ "text": "Albatross", "correct": false }
+				],
+				"explanation": "The ostrich is the largest bird in the world, capable of reaching heights of up to 9 feet (2.7 meters) and weighing up to 320 pounds (145 kilograms)."
+			},
+			{
+				"question": "Which country is known as the 'Land of the Midnight Sun'?",
+				"answers": [
+					{ "text": "Norway", "correct": true },
+					{ "text": "Sweden", "correct": false },
+					{ "text": "Finland", "correct": false }
+				],
+				"explanation": "Norway is known as the 'Land of the Midnight Sun' because during the summer months, parts of the country experience continuous daylight due to its high latitude."
+			},
+			{
+				"question": "What is the largest species of shark?",
+				"answers": [
+					{ "text": "Whale Shark", "correct": true },
+					{ "text": "Great White Shark", "correct": false },
+					{ "text": "Hammerhead Shark", "correct": false }
+				],
+				"explanation": "The whale shark is the largest species of shark, reaching lengths of up to 40 feet (12 meters) and weighing as much as 20 tons."
+			},
+			{
+				"question": "What is the chemical symbol for silver?",
+				"answers": [
+					{ "text": "Ag", "correct": true },
+					{ "text": "Au", "correct": false },
+					{ "text": "Si", "correct": false }
+				],
+				"explanation": "The chemical symbol for silver is Ag, derived from the Latin word 'argentum'. Silver has been used for centuries in coins, jewelry, and various industrial applications."
+			},
+			{
+				"question": "Which is the largest rainforest in the world?",
+				"answers": [
+					{ "text": "Amazon Rainforest", "correct": true },
+					{ "text": "Congo Rainforest", "correct": false },
+					{ "text": "Borneo Rainforest", "correct": false }
+				],
+				"explanation": "The Amazon Rainforest is the largest rainforest in the world, covering an area of approximately 2.1 million square miles (5.5 million square kilometers) across South America."
+			},
+			{
+				"question": "Who is known as the 'Father of Modern Physics'?",
+				"answers": [
+					{ "text": "Albert Einstein", "correct": true },
+					{ "text": "Isaac Newton", "correct": false },
+					{ "text": "Galileo Galilei", "correct": false }
+				],
+				"explanation": "Albert Einstein is often referred to as the 'Father of Modern Physics' for his groundbreaking contributions to theoretical physics, particularly his theory of relativity."
+			},
+			{
+				"question": "What is the smallest planet in our solar system?",
+				"answers": [
+					{ "text": "Mercury", "correct": true },
+					{ "text": "Pluto", "correct": false },
+					{ "text": "Mars", "correct": false }
+				],
+				"explanation": "Mercury is the smallest planet in our solar system, with a diameter of approximately 3,032 miles (4,879 kilometers)."
+			},
+			{
+				"question": "What is the chemical symbol for sodium?",
+				"answers": [
+					{ "text": "Na", "correct": true },
+					{ "text": "No", "correct": false },
+					{ "text": "Sn", "correct": false }
+				],
+				"explanation": "The chemical symbol for sodium is Na, derived from the Latin word 'natrium'. Sodium is a highly reactive metal commonly found in salts and various compounds."
+			},
+			{
+				"question": "Which is the largest type of penguin?",
+				"answers": [
+					{ "text": "Emperor Penguin", "correct": true },
+					{ "text": "King Penguin", "correct": false },
+					{ "text": "Gentoo Penguin", "correct": false }
+				],
+				"explanation": "The Emperor Penguin is the largest type of penguin, native to Antarctica and known for its distinctive black and white plumage."
+			},
+			{
+				"question": "Who wrote 'To Kill a Mockingbird'?",
+				"answers": [
+					{ "text": "Harper Lee", "correct": true },
+					{ "text": "Mark Twain", "correct": false },
+					{ "text": "John Steinbeck", "correct": false }
+				],
+				"explanation": "'To Kill a Mockingbird' was written by Harper Lee, published in 1960. It addresses the issues of racial injustice and moral growth in the American South."
+			},
+			{
+				"question": "What is the process by which rocks are broken down into smaller pieces?",
+				"answers": [
+					{ "text": "Weathering", "correct": true },
+					{ "text": "Erosion", "correct": false },
+					{ "text": "Deposition", "correct": false }
+				],
+				"explanation": "Weathering is the process by which rocks are broken down into smaller pieces through exposure to environmental factors such as wind, water, and temperature changes."
+			},
+			{
+				"question": "Which is the largest moon in the solar system?",
+				"answers": [
+					{ "text": "Ganymede", "correct": true },
+					{ "text": "Titan", "correct": false },
+					{ "text": "Callisto", "correct": false }
+				],
+				"explanation": "Ganymede, one of Jupiter's moons, is the largest moon in the solar system, even larger than the planet Mercury."
+			},
+			{
+				"question": "Who is credited with discovering America?",
+				"answers": [
+					{ "text": "Christopher Columbus", "correct": true },
+					{ "text": "Amerigo Vespucci", "correct": false },
+					{ "text": "Leif Erikson", "correct": false }
+				],
+				"explanation": "Christopher Columbus is credited with discovering America in 1492 when he landed in the Bahamas, although there were indigenous peoples already living there."
+			},
+			{
+				"question": "What is the chemical symbol for helium?",
+				"answers": [
+					{ "text": "He", "correct": true },
+					{ "text": "H", "correct": false },
+					{ "text": "Hi", "correct": false }
+				],
+				"explanation": "The chemical symbol for helium is He, derived from the Greek word 'helios', meaning 'sun'. Helium is the second most abundant element in the universe."
+			},
+			{
+				"question": "What is the capital city of Australia?",
+				"answers": [
+					{ "text": "Canberra", "correct": true },
+					{ "text": "Sydney", "correct": false },
+					{ "text": "Melbourne", "correct": false }
+				],
+				"explanation": "Canberra is the capital city of Australia, chosen for its strategic location between the two largest cities, Sydney and Melbourne."
+			},
+			{
+				"question": "Which gas do humans exhale when they breathe out?",
+				"answers": [
+					{ "text": "Carbon dioxide", "correct": true },
+					{ "text": "Oxygen", "correct": false },
+					{ "text": "Nitrogen", "correct": false }
+				],
+				"explanation": "Humans exhale carbon dioxide when they breathe out, a byproduct of cellular respiration."
+			},
+			{
+				"question": "Who painted the 'Starry Night'?",
+				"answers": [
+					{ "text": "Vincent van Gogh", "correct": true },
+					{ "text": "Pablo Picasso", "correct": false },
+					{ "text": "Claude Monet", "correct": false }
+				],
+				"explanation": "Vincent van Gogh painted the 'Starry Night', one of his most famous works, depicting the night sky over the village of Saint-Rémy-de-Provence."
+			},
+			{
+				"question": "What is the tallest animal in the world?",
+				"answers": [
+					{ "text": "Giraffe", "correct": true },
 					{ "text": "Elephant", "correct": false },
-					{ "text": "Blue Whale", "correct": true },
-					{ "text": "Giraffe", "correct": false }
-				]
+					{ "text": "Kangaroo", "correct": false }
+				],
+				"explanation": "The giraffe is the tallest animal in the world, with its long neck and legs allowing it to reach high branches for food."
 			},
 			{
-				"question": "What is the largest bone in the human body?",
+				"question": "Which continent is known as the 'Dark Continent'?",
 				"answers": [
-					{ "text": "Femur", "correct": true },
-					{ "text": "Tibia", "correct": false },
-					{ "text": "Radius", "correct": false }
-				]
+					{ "text": "Africa", "correct": true },
+					{ "text": "Antarctica", "correct": false },
+					{ "text": "Asia", "correct": false }
+				],
+				"explanation": "Africa is sometimes referred to as the 'Dark Continent', a term historically used to describe its unexplored and mysterious nature to Europeans."
+			},
+			{
+				"question": "What is the largest species of bear in the world?",
+				"answers": [
+					{ "text": "Polar Bear", "correct": true },
+					{ "text": "Grizzly Bear", "correct": false },
+					{ "text": "Kodiak Bear", "correct": false }
+				],
+				"explanation": "The Polar Bear is the largest species of bear in the world, well-adapted to its Arctic habitat with its thick fur and layers of fat for insulation."
+			},
+			{
+				"question": "Which planet is known as the 'Red Planet'?",
+				"answers": [
+					{ "text": "Mars", "correct": true },
+					{ "text": "Venus", "correct": false },
+					{ "text": "Jupiter", "correct": false }
+				],
+				"explanation": "Mars is called the 'Red Planet' due to its reddish appearance caused by iron oxide on its surface."
+			},
+			{
+				"question": "What is the smallest bird in the world?",
+				"answers": [
+					{ "text": "Bee Hummingbird", "correct": true },
+					{ "text": "Sparrow", "correct": false },
+					{ "text": "Blue Tit", "correct": false }
+				],
+				"explanation": "The Bee Hummingbird is the smallest bird in the world, measuring only about 2 inches (5 centimeters) in length."
+			},
+			{
+				"question": "What is the chemical symbol for iron?",
+				"answers": [
+					{ "text": "Fe", "correct": true },
+					{ "text": "Ir", "correct": false },
+					{ "text": "In", "correct": false }
+				],
+				"explanation": "The chemical symbol for iron is Fe, derived from the Latin word 'ferrum'. Iron is one of the most abundant elements on Earth and is essential for many biological processes."
+			},
+			{
+				"question": "Who composed the 'Symphony No. 9'?",
+				"answers": [
+					{ "text": "Ludwig van Beethoven", "correct": true },
+					{ "text": "Wolfgang Amadeus Mozart", "correct": false },
+					{ "text": "Johann Sebastian Bach", "correct": false }
+				],
+				"explanation": "Ludwig van Beethoven composed the 'Symphony No. 9 in D minor, Op. 125', also known as the 'Choral Symphony'. It is one of his most famous and celebrated works."
+			},
+			{
+				"question": "What is the chemical symbol for potassium?",
+				"answers": [
+					{ "text": "K", "correct": true },
+					{ "text": "P", "correct": false },
+					{ "text": "Pt", "correct": false }
+				],
+				"explanation": "The chemical symbol for potassium is K, derived from the Latin word 'kalium'. Potassium is an essential mineral for human health and is involved in various physiological processes."
+			},
+			{
+				"question": "Which animal is known as the 'Ship of the Desert'?",
+				"answers": [
+					{ "text": "Camel", "correct": true },
+					{ "text": "Elephant", "correct": false },
+					{ "text": "Giraffe", "correct": false }
+				],
+				"explanation": "The camel is known as the 'Ship of the Desert' due to its ability to travel long distances across arid desert regions while carrying heavy loads."
+			},
+			{
+				"question": "Who wrote 'The Adventures of Tom Sawyer'?",
+				"answers": [
+					{ "text": "Mark Twain", "correct": true },
+					{ "text": "Charles Dickens", "correct": false },
+					{ "text": "J.K. Rowling", "correct": false }
+				],
+				"explanation": "'The Adventures of Tom Sawyer' was written by Mark Twain, originally published in 1876. It is a classic American novel about the adventures of a young boy growing up along the Mississippi River."
+			},
+			{
+				"question": "What is the largest reptile in the world?",
+				"answers": [
+					{ "text": "Saltwater Crocodile", "correct": true },
+					{ "text": "Komodo Dragon", "correct": false },
+					{ "text": "Green Anaconda", "correct": false }
+				],
+				"explanation": "The Saltwater Crocodile is the largest reptile in the world, capable of reaching lengths of up to 23 feet (7 meters) and weighing over 2,000 pounds (900 kilograms)."
+			},
+			{
+				"question": "Which country is known as the 'Land of the Rising Sun'?",
+				"answers": [
+					{ "text": "Japan", "correct": true },
+					{ "text": "China", "correct": false },
+					{ "text": "Korea", "correct": false }
+				],
+				"explanation": "Japan is often referred to as the 'Land of the Rising Sun' due to its name's literal meaning and its position east of the Asian mainland."
+			},
+			{
+				"question": "What is the chemical symbol for copper?",
+				"answers": [
+					{ "text": "Cu", "correct": true },
+					{ "text": "Co", "correct": false },
+					{ "text": "Cp", "correct": false }
+				],
+				"explanation": "The chemical symbol for copper is Cu, derived from the Latin word 'cuprum'. Copper is a versatile metal used in various applications, from electrical wiring to architectural structures."
+			},
+			{
+				"question": "Which is the largest planet in our solar system?",
+				"answers": [
+					{ "text": "Jupiter", "correct": true },
+					{ "text": "Saturn", "correct": false },
+					{ "text": "Neptune", "correct": false }
+				],
+				"explanation": "Jupiter is the largest planet in our solar system, with a diameter of approximately 86,881 miles (139,822 kilometers)."
 			},
 			{
 				"question": "Who is known as the 'Father of Geometry'?",
 				"answers": [
 					{ "text": "Euclid", "correct": true },
-					{ "text": "Pythagoras", "correct": false },
-					{ "text": "Archimedes", "correct": false }
-				]
-			},
-			{
-				"question": "What gas do plants release during respiration?",
-				"answers": [
-					{ "text": "Oxygen", "correct": false },
-					{ "text": "Carbon Dioxide", "correct": true },
-					{ "text": "Nitrogen", "correct": false }
-				]
-			},
-			{
-				"question": "Who wrote '1984'?",
-				"answers": [
-					{ "text": "Aldous Huxley", "correct": false },
-					{ "text": "George Orwell", "correct": true },
-					{ "text": "Ray Bradbury", "correct": false }
-				]
-			},
-			{
-				"question": "What is the chemical symbol for potassium?",
-				"answers": [
-					{ "text": "K", "correct": true },
-					{ "text": "Po", "correct": false },
-					{ "text": "P", "correct": false }
-				]
-			},
-			{
-				"question": "What is the main function of the pancreas?",
-				"answers": [
-					{ "text": "Producing Insulin", "correct": true },
-					{ "text": "Producing Digestive Enzymes", "correct": false },
-					{ "text": "Filtering Blood", "correct": false }
-				]
-			},
-			{
-				"question": "What is the chemical symbol for calcium?",
-				"answers": [
-					{ "text": "Cu", "correct": false },
-					{ "text": "Ca", "correct": true },
-					{ "text": "Co", "correct": false }
-				]
-			},
-			{
-				"question": "Who painted the 'Last Supper'?",
-				"answers": [
-					{ "text": "Leonardo da Vinci", "correct": true },
-					{ "text": "Vincent van Gogh", "correct": false },
-					{ "text": "Pablo Picasso", "correct": false }
-				]
-			},
-			{
-				"question": "What is the main component of Earth's atmosphere?",
-				"answers": [
-					{ "text": "Oxygen", "correct": false },
-					{ "text": "Nitrogen", "correct": true },
-					{ "text": "Carbon Dioxide", "correct": false }
-				]
-			},
-			{
-				"question": "Who discovered the theory of relativity?",
-				"answers": [
-					{ "text": "Isaac Newton", "correct": false },
-					{ "text": "Albert Einstein", "correct": true },
-					{ "text": "Galileo Galilei", "correct": false }
-				]
-			},
-			{
-				"question": "What is the main function of the gallbladder?",
-				"answers": [
-					{ "text": "Producing Bile", "correct": true },
-					{ "text": "Filtering Blood", "correct": false },
-					{ "text": "Producing Insulin", "correct": false }
-				]
-			},
-			{
-				"question": "What is the chemical symbol for nitrogen?",
-				"answers": [
-					{ "text": "Ni", "correct": false },
-					{ "text": "N", "correct": true },
-					{ "text": "Na", "correct": false }
-				]
-			},
-			{
-				"question": "What is the largest species of bear?",
-				"answers": [
-					{ "text": "Polar Bear", "correct": true },
-					{ "text": "Grizzly Bear", "correct": false },
-					{ "text": "Kodiak Bear", "correct": false }
-				]
-			},
-			{
-				"question": "What is the chemical symbol for hydrogen?",
-				"answers": [
-					{ "text": "H", "correct": true },
-					{ "text": "He", "correct": false },
-					{ "text": "Ho", "correct": false }
-				]
-			},
-			{
-				"question": "Who discovered the theory of evolution?",
-				"answers": [
-					{ "text": "Isaac Newton", "correct": false },
-					{ "text": "Charles Darwin", "correct": true },
-					{ "text": "Gregor Mendel", "correct": false }
-				]
-			},
-			{
-				"question": "What is the capital city of Australia?",
-				"answers": [
-					{ "text": "Melbourne", "correct": false },
-					{ "text": "Sydney", "correct": false },
-					{ "text": "Canberra", "correct": true }
-				]
-			},
-			{
-				"question": "Who wrote 'Hamlet'?",
-				"answers": [
-					{ "text": "William Shakespeare", "correct": true },
-					{ "text": "Charles Dickens", "correct": false },
-					{ "text": "Jane Austen", "correct": false }
-				]
-			},
-			{
-				"question": "What is the chemical symbol for sodium?",
-				"answers": [
-					{ "text": "S", "correct": false },
-					{ "text": "So", "correct": false },
-					{ "text": "Na", "correct": true }
-				]
-			},
-			{
-				"question": "What is the largest organ in the human body?",
-				"answers": [
-					{ "text": "Skin", "correct": true },
-					{ "text": "Heart", "correct": false },
-					{ "text": "Liver", "correct": false }
-				]
-			},
-			{
-				"question": "What is the main function of the spleen?",
-				"answers": [
-					{ "text": "Digesting Food", "correct": false },
-					{ "text": "Producing Insulin", "correct": false },
-					{ "text": "Filtering Blood", "correct": true }
-				]
-			},
-			{
-				"question": "Who invented the first practical telephone?",
-				"answers": [
-					{ "text": "Alexander Graham Bell", "correct": true },
-					{ "text": "Thomas Edison", "correct": false },
-					{ "text": "Nikola Tesla", "correct": false }
-				]
-			},
-			{
-				"question": "What is the chemical symbol for carbon dioxide?",
-				"answers": [
-					{ "text": "C", "correct": false },
-					{ "text": "Co", "correct": false },
-					{ "text": "CO2", "correct": true }
-				]
-			},
-			{
-				"question": "Who painted the 'Sistine Chapel Ceiling'?",
-				"answers": [
-					{ "text": "Leonardo da Vinci", "correct": false },
-					{ "text": "Michelangelo", "correct": true },
-					{ "text": "Raphael", "correct": false }
-				]
-			},
-			{
-				"question": "What is the largest animal ever known to have existed on Earth?",
-				"answers": [
-					{ "text": "Blue Whale", "correct": true },
-					{ "text": "Megalodon", "correct": false },
-					{ "text": "Diplodocus", "correct": false }
-				]
-			},
-			{
-				"question": "Who wrote 'Moby-Dick'?",
-				"answers": [
-					{ "text": "Herman Melville", "correct": true },
-					{ "text": "Jules Verne", "correct": false },
-					{ "text": "Mark Twain", "correct": false }
-				]
-			},
-			{
-				"question": "What is the capital city of Canada?",
-				"answers": [
-					{ "text": "Toronto", "correct": false },
-					{ "text": "Ottawa", "correct": true },
-					{ "text": "Vancouver", "correct": false }
-				]
-			},
-			{
-				"question": "Who wrote 'The Catcher in the Rye'?",
-				"answers": [
-					{ "text": "J.D. Salinger", "correct": true },
-					{ "text": "F. Scott Fitzgerald", "correct": false },
-					{ "text": "Ernest Hemingway", "correct": false }
-				]
-			},
-			{
-				"question": "What is the chemical symbol for gold?",
-				"answers": [
-					{ "text": "Go", "correct": false },
-					{ "text": "Au", "correct": true },
-					{ "text": "Ag", "correct": false }
-				]
-			},
-			{
-				"question": "Who discovered electricity?",
-				"answers": [
-					{ "text": "Thomas Edison", "correct": false },
-					{ "text": "Benjamin Franklin", "correct": true },
-					{ "text": "Nikola Tesla", "correct": false }
-				]
-			},
-			{
-				"question": "What is the chemical symbol for potassium?",
-				"answers": [
-					{ "text": "P", "correct": false },
-					{ "text": "K", "correct": true },
-					{ "text": "Po", "correct": false }
-				]
-			},
-			{
-				"question": "Who wrote 'The Hobbit'?",
-				"answers": [
-					{ "text": "J.R.R. Tolkien", "correct": true },
-					{ "text": "C.S. Lewis", "correct": false },
-					{ "text": "J.K. Rowling", "correct": false }
-				]
-			},
-			{
-				"question": "What is the main function of the thyroid gland?",
-				"answers": [
-					{ "text": "Regulating Body Temperature", "correct": false },
-					{ "text": "Producing Insulin", "correct": false },
-					{ "text": "Regulating Metabolism", "correct": true }
-				]
-			},
-			{
-				"question": "Who wrote 'The Odyssey'?",
-				"answers": [
-					{ "text": "Homer", "correct": true },
-					{ "text": "Virgil", "correct": false },
-					{ "text": "Plato", "correct": false }
-				]
-			},
-			{
-				"question": "What is the chemical symbol for silver?",
-				"answers": [
-					{ "text": "S", "correct": false },
-					{ "text": "Ag", "correct": true },
-					{ "text": "Si", "correct": false }
-				]
-			},
-			{
-				"question": "Who painted the 'Mona Lisa'?",
-				"answers": [
-					{ "text": "Leonardo da Vinci", "correct": true },
-					{ "text": "Vincent van Gogh", "correct": false },
-					{ "text": "Pablo Picasso", "correct": false }
-				]
-			},
-			{
-				"question": "What is the main function of the cerebellum?",
-				"answers": [
-					{ "text": "Controlling Movement", "correct": true },
-					{ "text": "Processing Thoughts", "correct": false },
-					{ "text": "Regulating Body Temperature", "correct": false }
-				]
-			},
-			{
-				"question": "Who is known as the 'Father of Medicine'?",
-				"answers": [
-					{ "text": "Hippocrates", "correct": true },
-					{ "text": "Aristotle", "correct": false },
-					{ "text": "Socrates", "correct": false }
-				]
-			},
-			{
-				"question": "What is the chemical symbol for helium?",
-				"answers": [
-					{ "text": "H", "correct": true },
-					{ "text": "He", "correct": false },
-					{ "text": "Hu", "correct": false }
-				]
-			},
-			{
-				"question": "Who was the first woman to win a Nobel Prize?",
-				"answers": [
-					{ "text": "Marie Curie", "correct": true },
-					{ "text": "Rosalind Franklin", "correct": false },
-					{ "text": "Dorothy Hodgkin", "correct": false }
-				]
-			},
-			{
-				"question": "What is the largest animal on land?",
-				"answers": [
-					{ "text": "Elephant", "correct": true },
-					{ "text": "Giraffe", "correct": false },
-					{ "text": "Hippopotamus", "correct": false }
-				]
-			},
-			{
-				"question": "Who wrote 'The Scarlet Letter'?",
-				"answers": [
-					{ "text": "Nathaniel Hawthorne", "correct": true },
-					{ "text": "Emily Dickinson", "correct": false },
-					{ "text": "Henry David Thoreau", "correct": false }
-				]
-			},
-			{
-				"question": "What is the capital city of Russia?",
-				"answers": [
-					{ "text": "St. Petersburg", "correct": false },
-					{ "text": "Moscow", "correct": true },
-					{ "text": "Kiev", "correct": false }
-				]
-			},
-			{
-				"question": "Who discovered radioactivity?",
-				"answers": [
-					{ "text": "Marie Curie", "correct": true },
-					{ "text": "Albert Einstein", "correct": false },
-					{ "text": "Niels Bohr", "correct": false }
-				]
+					{ "text": "Archimedes", "correct": false },
+					{ "text": "Pythagoras", "correct": false }
+				],
+				"explanation": "Euclid is known as the 'Father of Geometry' for his contributions to the development of geometry as a mathematical discipline in ancient Greece."
 			},
 			{
 				"question": "What is the chemical symbol for lead?",
 				"answers": [
 					{ "text": "Pb", "correct": true },
-					{ "text": "L", "correct": false },
-					{ "text": "P", "correct": false }
-				]
+					{ "text": "Le", "correct": false },
+					{ "text": "Pl", "correct": false }
+				],
+				"explanation": "The chemical symbol for lead is Pb, derived from the Latin word 'plumbum'. Lead is a heavy metal used in various industrial applications, although its toxicity has led to reduced usage in recent years."
 			},
 			{
-				"question": "Who painted the 'Girl with a Pearl Earring'?",
+				"question": "What is the largest organ in the human body?",
 				"answers": [
-					{ "text": "Johannes Vermeer", "correct": true },
-					{ "text": "Pablo Picasso", "correct": false },
-					{ "text": "Vincent van Gogh", "correct": false }
-				]
+					{ "text": "Skin", "correct": true },
+					{ "text": "Liver", "correct": false },
+					{ "text": "Heart", "correct": false }
+				],
+				"explanation": "The skin is the largest organ in the human body, providing protection, sensation, and regulation of body temperature."
 			},
 			{
-				"question": "What is the main function of the adrenal glands?",
+				"question": "Who invented the telephone?",
 				"answers": [
-					{ "text": "Producing Insulin", "correct": false },
-					{ "text": "Producing Adrenaline", "correct": true },
-					{ "text": "Filtering Blood", "correct": false }
-				]
-			},
-			{
-				"question": "Who is known as the 'Father of Geometry'?",
-				"answers": [
-					{ "text": "Euclid", "correct": true },
-					{ "text": "Pythagoras", "correct": false },
-					{ "text": "Archimedes", "correct": false }
-				]
+					{ "text": "Alexander Graham Bell", "correct": true },
+					{ "text": "Thomas Edison", "correct": false },
+					{ "text": "Nikola Tesla", "correct": false }
+				],
+				"explanation": "Alexander Graham Bell is credited with inventing the telephone, revolutionizing communication with his invention in 1876."
 			},
 			{
 				"question": "What is the chemical symbol for nitrogen?",
 				"answers": [
-					{ "text": "Ni", "correct": false },
 					{ "text": "N", "correct": true },
-					{ "text": "Na", "correct": false }
-				]
+					{ "text": "Ni", "correct": false },
+					{ "text": "Ne", "correct": false }
+				],
+				"explanation": "The chemical symbol for nitrogen is N. Nitrogen is the most abundant gas in Earth's atmosphere and is essential for life, as it is a key component of amino acids and nucleic acids."
+			},
+			{
+				"question": "Who wrote 'Pride and Prejudice'?",
+				"answers": [
+					{ "text": "Jane Austen", "correct": true },
+					{ "text": "Charlotte Brontë", "correct": false },
+					{ "text": "Emily Dickinson", "correct": false }
+				],
+				"explanation": "'Pride and Prejudice' was written by Jane Austen and first published in 1813. It is one of the most beloved and enduring works of English literature, exploring themes of love, marriage, and social class."
+			},
+			{
+				"question": "What is the chemical symbol for silver?",
+				"answers": [
+					{ "text": "Ag", "correct": true },
+					{ "text": "Au", "correct": false },
+					{ "text": "Si", "correct": false }
+				],
+				"explanation": "The chemical symbol for silver is Ag, derived from the Latin word 'argentum'. Silver has been used for centuries in coins, jewelry, and various industrial applications."
+			},
+			{
+				"question": "What is the process by which plants make their own food?",
+				"answers": [
+					{ "text": "Photosynthesis", "correct": true },
+					{ "text": "Respiration", "correct": false },
+					{ "text": "Pollination", "correct": false }
+				],
+				"explanation": "Photosynthesis is the process by which plants make their own food using sunlight, carbon dioxide, and water, producing oxygen as a byproduct."
+			},
+			{
+				"question": "Who discovered gravity?",
+				"answers": [
+					{ "text": "Isaac Newton", "correct": true },
+					{ "text": "Galileo Galilei", "correct": false },
+					{ "text": "Albert Einstein", "correct": false }
+				],
+				"explanation": "Isaac Newton is credited with discovering gravity, famously described by his law of universal gravitation. Newton's work laid the foundation for classical mechanics."
+			},
+			{
+				"question": "What is the largest planet in our solar system?",
+				"answers": [
+					{ "text": "Jupiter", "correct": true },
+					{ "text": "Saturn", "correct": false },
+					{ "text": "Neptune", "correct": false }
+				],
+				"explanation": "Jupiter is the largest planet in our solar system, with a diameter of approximately 86,881 miles (139,822 kilometers)."
+			},
+			{
+				"question": "Who wrote 'War and Peace'?",
+				"answers": [
+					{ "text": "Leo Tolstoy", "correct": true },
+					{ "text": "Fyodor Dostoevsky", "correct": false },
+					{ "text": "Anton Chekhov", "correct": false }
+				],
+				"explanation": "'War and Peace' was written by Leo Tolstoy and published between 1865 and 1869. It is one of the longest and most celebrated works of literature, exploring themes of war, love, and the human condition."
+			},
+			{
+				"question": "What is the process of water turning into vapor called?",
+				"answers": [
+					{ "text": "Evaporation", "correct": true },
+					{ "text": "Condensation", "correct": false },
+					{ "text": "Precipitation", "correct": false }
+				],
+				"explanation": "Evaporation is the process by which water turns into vapor or gas, typically due to heating from the sun."
 			},
 			{
 				"question": "Who invented the light bulb?",
 				"answers": [
 					{ "text": "Thomas Edison", "correct": true },
-					{ "text": "Benjamin Franklin", "correct": false },
-					{ "text": "Nikola Tesla", "correct": false }
-				]
+					{ "text": "Nikola Tesla", "correct": false },
+					{ "text": "Alexander Graham Bell", "correct": false }
+				],
+				"explanation": "Thomas Edison is credited with inventing the first commercially practical incandescent light bulb, which revolutionized indoor lighting."
 			},
 			{
-				"question": "What is the chemical symbol for phosphorus?",
+				"question": "What is the largest type of big cat in the world?",
 				"answers": [
-					{ "text": "Po", "correct": false },
-					{ "text": "P", "correct": true },
-					{ "text": "Ph", "correct": false }
-				]
+					{ "text": "Siberian Tiger", "correct": true },
+					{ "text": "Lion", "correct": false },
+					{ "text": "Jaguar", "correct": false }
+				],
+				"explanation": "The Siberian Tiger, also known as the Amur Tiger, is the largest type of big cat in the world, capable of reaching lengths of up to 11 feet (3.3 meters) and weighing over 900 pounds (400 kilograms)."
 			},
 			{
-    "question": "What is the capital city of France?",
-    "answers": [
-      {"text": "Berlin", "correct": false},
-      {"text": "Paris", "correct": true},
-      {"text": "Rome", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the chemical symbol for water?",
-    "answers": [
-      {"text": "W", "correct": false},
-      {"text": "Wa", "correct": false},
-      {"text": "H2O", "correct": true}
-    ]
-  },
-  {
-    "question": "Who wrote 'Charlie and the Chocolate Factory'?",
-    "answers": [
-      {"text": "Roald Dahl", "correct": true},
-      {"text": "J.K. Rowling", "correct": false},
-      {"text": "Dr. Seuss", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the largest ocean in the world?",
-    "answers": [
-      {"text": "Atlantic Ocean", "correct": false},
-      {"text": "Indian Ocean", "correct": false},
-      {"text": "Pacific Ocean", "correct": true}
-    ]
-  },
-  {
-    "question": "What is the main function of the heart?",
-    "answers": [
-      {"text": "Pumping Blood", "correct": true},
-      {"text": "Digesting Food", "correct": false},
-      {"text": "Filtering Water", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the currency of Japan?",
-    "answers": [
-      {"text": "Yuan", "correct": false},
-      {"text": "Yen", "correct": true},
-      {"text": "Won", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the tallest mountain in Africa?",
-    "answers": [
-      {"text": "Mount Kilimanjaro", "correct": true},
-      {"text": "Mount Everest", "correct": false},
-      {"text": "Mount Fuji", "correct": false}
-    ]
-  },
-  {
-    "question": "Who painted the 'Mona Lisa'?",
-    "answers": [
-      {"text": "Leonardo da Vinci", "correct": true},
-      {"text": "Vincent van Gogh", "correct": false},
-      {"text": "Pablo Picasso", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the chemical symbol for oxygen?",
-    "answers": [
-      {"text": "O", "correct": true},
-      {"text": "O2", "correct": false},
-      {"text": "H2O", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the largest planet in our solar system?",
-    "answers": [
-      {"text": "Mars", "correct": false},
-      {"text": "Jupiter", "correct": true},
-      {"text": "Saturn", "correct": false}
-    ]
-  },
-  {
-    "question": "Who wrote 'Green Eggs and Ham'?",
-    "answers": [
-      {"text": "Dr. Seuss", "correct": true},
-      {"text": "Roald Dahl", "correct": false},
-      {"text": "J.K. Rowling", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the chemical symbol for iron?",
-    "answers": [
-      {"text": "Fe", "correct": true},
-      {"text": "Ir", "correct": false},
-      {"text": "Au", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the largest mammal in the world?",
-    "answers": [
-      {"text": "Elephant", "correct": false},
-      {"text": "Blue Whale", "correct": true},
-      {"text": "Giraffe", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the main function of the brain?",
-    "answers": [
-      {"text": "Breathing", "correct": false},
-      {"text": "Thinking", "correct": true},
-      {"text": "Pumping Blood", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the currency of the United States?",
-    "answers": [
-      {"text": "Dollar", "correct": true},
-      {"text": "Euro", "correct": false},
-      {"text": "Yen", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the chemical symbol for gold?",
-    "answers": [
-      {"text": "Go", "correct": false},
-      {"text": "Au", "correct": true},
-      {"text": "Ag", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the smallest planet in our solar system?",
-    "answers": [
-      {"text": "Mars", "correct": false},
-      {"text": "Mercury", "correct": true},
-      {"text": "Venus", "correct": false}
-    ]
-  },
-  {
-    "question": "Who wrote 'The Cat in the Hat'?",
-    "answers": [
-      {"text": "Roald Dahl", "correct": false},
-      {"text": "Dr. Seuss", "correct": true},
-      {"text": "Beatrix Potter", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the chemical symbol for carbon?",
-    "answers": [
-      {"text": "C", "correct": true},
-      {"text": "Co", "correct": false},
-      {"text": "Cr", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the largest bird in the world?",
-    "answers": [
-      {"text": "Ostrich", "correct": true},
-      {"text": "Eagle", "correct": false},
-      {"text": "Albatross", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the main function of the lungs?",
-    "answers": [
-      {"text": "Digesting Food", "correct": false},
-      {"text": "Breathing", "correct": true},
-      {"text": "Pumping Blood", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the chemical symbol for helium?",
-    "answers": [
-      {"text": "H", "correct": true},
-      {"text": "He", "correct": false},
-      {"text": "Hu", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the largest lake in Africa?",
-    "answers": [
-      {"text": "Lake Victoria", "correct": true},
-      {"text": "Lake Tanganyika", "correct": false},
-      {"text": "Lake Malawi", "correct": false}
-    ]
-  },
-  {
-    "question": "Who painted the 'Starry Night'?",
-    "answers": [
-      {"text": "Vincent van Gogh", "correct": true},
-      {"text": "Leonardo da Vinci", "correct": false},
-      {"text": "Pablo Picasso", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the main function of the stomach?",
-    "answers": [
-      {"text": "Digesting Food", "correct": true},
-      {"text": "Filtering Blood", "correct": false},
-      {"text": "Producing Insulin", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the chemical symbol for sodium?",
-    "answers": [
-      {"text": "Na", "correct": true},
-      {"text": "So", "correct": false},
-      {"text": "Sn", "correct": false}
-    ]
-  },
-  {
-    "question": "Who wrote 'The Giving Tree'?",
-    "answers": [
-      {"text": "Dr. Seuss", "correct": false},
-      {"text": "Shel Silverstein", "correct": true},
-      {"text": "Beatrix Potter", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the largest desert in the world?",
-    "answers": [
-      {"text": "Sahara Desert", "correct": true},
-      {"text": "Arabian Desert", "correct": false},
-      {"text": "Gobi Desert", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the main function of the liver?",
-    "answers": [
-      {"text": "Digesting Food", "correct": false},
-      {"text": "Detoxifying the body", "correct": true},
-      {"text": "Filtering Blood", "correct": false}
-    ]
-  },
-  {
-    "question": "Who is the current President of the United States?",
-    "answers": [
-      {"text": "Barack Obama", "correct": false},
-      {"text": "Donald Trump", "correct": false},
-      {"text": "Joe Biden", "correct": true}
-    ]
-  },
-  {
-    "question": "What is the chemical symbol for silver?",
-    "answers": [
-      {"text": "Si", "correct": false},
-      {"text": "Ag", "correct": true},
-      {"text": "Au", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the largest city in the United States by population?",
-    "answers": [
-      {"text": "Los Angeles", "correct": false},
-      {"text": "Chicago", "correct": false},
-      {"text": "New York City", "correct": true}
-    ]
-  },
-  {
-    "question": "Who wrote 'Pride and Prejudice'?",
-    "answers": [
-      {"text": "Emily Bronte", "correct": false},
-      {"text": "Jane Austen", "correct": true},
-      {"text": "Charlotte Bronte", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the smallest planet in our solar system?",
-    "answers": [
-      {"text": "Mars", "correct": false},
-      {"text": "Mercury", "correct": true},
-      {"text": "Venus", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the capital city of Brazil?",
-    "answers": [
-      {"text": "Rio de Janeiro", "correct": false},
-      {"text": "São Paulo", "correct": false},
-      {"text": "Brasília", "correct": true}
-    ]
-  },
-  {
-    "question": "Who wrote 'The Great Gatsby'?",
-    "answers": [
-      {"text": "F. Scott Fitzgerald", "correct": true},
-      {"text": "Ernest Hemingway", "correct": false},
-      {"text": "J.D. Salinger", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the chemical symbol for carbon?",
-    "answers": [
-      {"text": "C", "correct": true},
-      {"text": "Co", "correct": false},
-      {"text": "Cr", "correct": false}
-    ]
-  },
-  {
-    "question": "Which is the largest mammal in the world?",
-    "answers": [
-      {"text": "Elephant", "correct": false},
-      {"text": "Blue Whale", "correct": true},
-      {"text": "Giraffe", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the largest bone in the human body?",
-    "answers": [
-      {"text": "Femur", "correct": true},
-      {"text": "Tibia", "correct": false},
-      {"text": "Radius", "correct": false}
-    ]
-  },
-  {
-    "question": "Who is known as the 'Father of Geometry'?",
-    "answers": [
-      {"text": "Euclid", "correct": true},
-      {"text": "Pythagoras", "correct": false},
-      {"text": "Archimedes", "correct": false}
-    ]
-  },
-  {
-    "question": "What gas do plants release during respiration?",
-    "answers": [
-      {"text": "Oxygen", "correct": false},
-      {"text": "Carbon Dioxide", "correct": true},
-      {"text": "Nitrogen", "correct": false}
-    ]
-  },
-  {
-    "question": "Who wrote '1984'?",
-    "answers": [
-      {"text": "Aldous Huxley", "correct": false},
-      {"text": "George Orwell", "correct": true},
-      {"text": "Ray Bradbury", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the chemical symbol for potassium?",
-    "answers": [
-      {"text": "K", "correct": true},
-      {"text": "Po", "correct": false},
-      {"text": "P", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the main function of the pancreas?",
-    "answers": [
-      {"text": "Producing Insulin", "correct": true},
-      {"text": "Producing Digestive Enzymes", "correct": false},
-      {"text": "Filtering Blood", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the chemical symbol for calcium?",
-    "answers": [
-      {"text": "Cu", "correct": false},
-      {"text": "Ca", "correct": true},
-      {"text": "Co", "correct": false}
-    ]
-  },
-  {
-    "question": "Who painted the 'Last Supper'?",
-    "answers": [
-      {"text": "Leonardo da Vinci", "correct": true},
-      {"text": "Vincent van Gogh", "correct": false},
-      {"text": "Pablo Picasso", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the main component of Earth's atmosphere?",
-    "answers": [
-      {"text": "Oxygen", "correct": false},
-      {"text": "Nitrogen", "correct": true},
-      {"text": "Carbon Dioxide", "correct": false}
-    ]
-  },
-  {
-    "question": "Who discovered the theory of relativity?",
-    "answers": [
-      {"text": "Isaac Newton", "correct": false},
-      {"text": "Albert Einstein", "correct": true},
-      {"text": "Galileo Galilei", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the main function of the gallbladder?",
-    "answers": [
-      {"text": "Producing Bile", "correct": true},
-      {"text": "Filtering Blood", "correct": false},
-      {"text": "Producing Insulin", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the chemical symbol for nitrogen?",
-    "answers": [
-      {"text": "Ni", "correct": false},
-      {"text": "N", "correct": true},
-      {"text": "Na", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the largest species of bear?",
-    "answers": [
-      {"text": "Polar Bear", "correct": true},
-      {"text": "Grizzly Bear", "correct": false},
-      {"text": "Kodiak Bear", "correct": false}
-    ]
-  },
-  {
-    "question": "What is the main function of the cerebrum?",
-    "answers": [
-      {"text": "Controlling Movement", "correct": false},
-      {"text": "Processing Thoughts", "correct": true},
-      {"text": "Regulating Body Temperature", "correct": false}
-    ]
-  }
-		];
+				"question": "Which country is famous for the Great Wall?",
+				"answers": [
+					{ "text": "China", "correct": true },
+					{ "text": "India", "correct": false },
+					{ "text": "Russia", "correct": false }
+				],
+				"explanation": "China is famous for the Great Wall, a series of fortifications built to protect against invasions from various nomadic groups and military incursions."
+			},
+			{
+				"question": "What is the chemical symbol for gold?",
+				"answers": [
+					{ "text": "Au", "correct": true },
+					{ "text": "Ag", "correct": false },
+					{ "text": "Pb", "correct": false }
+				],
+				"explanation": "The chemical symbol for gold is Au, derived from the Latin word 'aurum', which means 'shining dawn' or 'glow of sunrise'."
+			},
+			{
+				"question": "Which gas do humans need to breathe in order to survive?",
+				"answers": [
+					{ "text": "Oxygen", "correct": true },
+					{ "text": "Carbon dioxide", "correct": false },
+					{ "text": "Nitrogen", "correct": false }
+				],
+				"explanation": "Oxygen is the gas that humans need to breathe in order to survive, as it is essential for cellular respiration, the process by which cells generate energy."
+			},
+			{
+				"question": "Who was the first person to step on the moon?",
+				"answers": [
+					{ "text": "Neil Armstrong", "correct": true },
+					{ "text": "Buzz Aldrin", "correct": false },
+					{ "text": "Yuri Gagarin", "correct": false }
+				],
+				"explanation": "Neil Armstrong was the first person to step on the moon on July 20, 1969, during the Apollo 11 mission, famously uttering the words 'That's one small step for man, one giant leap for mankind.'"
+			},
+			{
+				"question": "What is the largest type of bear in the world?",
+				"answers": [
+					{ "text": "Polar Bear", "correct": true },
+					{ "text": "Grizzly Bear", "correct": false },
+					{ "text": "Kodiak Bear", "correct": false }
+				],
+				"explanation": "The Polar Bear is the largest type of bear in the world, well-adapted to its Arctic habitat with its thick fur and layers of fat for insulation."
+			},
+			{
+				"question": "Which country is known as the 'Land of Fire and Ice'?",
+				"answers": [
+					{ "text": "Iceland", "correct": true },
+					{ "text": "Greenland", "correct": false },
+					{ "text": "New Zealand", "correct": false }
+				],
+				"explanation": "Iceland is often referred to as the 'Land of Fire and Ice' due to its combination of active volcanoes and glaciers."
+			},
+			{
+				"question": "What is the chemical symbol for carbon?",
+				"answers": [
+					{ "text": "C", "correct": true },
+					{ "text": "Co", "correct": false },
+					{ "text": "Cr", "correct": false }
+				],
+				"explanation": "The chemical symbol for carbon is C, derived from the Latin word 'carbo', meaning 'charcoal'. Carbon is a fundamental element found in all living organisms and many non-living substances."
+			},
+			{
+				"question": "Who discovered penicillin?",
+				"answers": [
+					{ "text": "Alexander Fleming", "correct": true },
+					{ "text": "Louis Pasteur", "correct": false },
+					{ "text": "Marie Curie", "correct": false }
+				],
+				"explanation": "Alexander Fleming discovered penicillin, the first antibiotic drug, in 1928, revolutionizing medicine and saving countless lives by treating bacterial infections."
+			},
+			{
+				"question": "What is the fastest land animal?",
+				"answers": [
+					{ "text": "Cheetah", "correct": true },
+					{ "text": "Lion", "correct": false },
+					{ "text": "Gazelle", "correct": false }
+				],
+				"explanation": "The cheetah is the fastest land animal, capable of reaching speeds up to 75 miles per hour (120 kilometers per hour) in short bursts."
+			},
+			{
+				"question": "Which planet is known as the 'Blue Planet'?",
+				"answers": [
+					{ "text": "Earth", "correct": true },
+					{ "text": "Neptune", "correct": false },
+					{ "text": "Uranus", "correct": false }
+				],
+				"explanation": "Earth is often referred to as the 'Blue Planet' because of its abundant water, which gives it a blue appearance when seen from space."
+			},
+			{
+				"question": "What is the largest bird in the world?",
+				"answers": [
+					{ "text": "Ostrich", "correct": true },
+					{ "text": "Emu", "correct": false },
+					{ "text": "Albatross", "correct": false }
+				],
+				"explanation": "The ostrich is the largest bird in the world, capable of reaching heights of up to 9 feet (2.7 meters) and weighing up to 320 pounds (145 kilograms)."
+			},
+			{
+				"question": "Which country is known as the 'Land of the Midnight Sun'?",
+				"answers": [
+					{ "text": "Norway", "correct": true },
+					{ "text": "Sweden", "correct": false },
+					{ "text": "Finland", "correct": false }
+				],
+				"explanation": "Norway is known as the 'Land of the Midnight Sun' because during the summer months, parts of the country experience continuous daylight due to its high latitude."
+			},
+			{
+				"question": "What is the largest species of shark?",
+				"answers": [
+					{ "text": "Whale Shark", "correct": true },
+					{ "text": "Great White Shark", "correct": false },
+					{ "text": "Hammerhead Shark", "correct": false }
+				],
+				"explanation": "The whale shark is the largest species of shark, reaching lengths of up to 40 feet (12 meters) and weighing as much as 20 tons."
+			},
+			{
+				"question": "What is the chemical symbol for sodium?",
+				"answers": [
+					{ "text": "Na", "correct": true },
+					{ "text": "No", "correct": false },
+					{ "text": "Sn", "correct": false }
+				],
+				"explanation": "The chemical symbol for sodium is Na, derived from the Latin word 'natrium'. Sodium is a highly reactive metal commonly found in salts and various compounds."
+			},
+			{
+				"question": "Which is the largest rainforest in the world?",
+				"answers": [
+					{ "text": "Amazon Rainforest", "correct": true },
+					{ "text": "Congo Rainforest", "correct": false },
+					{ "text": "Borneo Rainforest", "correct": false }
+				],
+				"explanation": "The Amazon Rainforest is the largest rainforest in the world, covering an area of approximately 2.1 million square miles (5.5 million square kilometers) across South America."
+			},
+			{
+				"question": "Who is known as the 'Father of Modern Physics'?",
+				"answers": [
+					{ "text": "Albert Einstein", "correct": true },
+					{ "text": "Isaac Newton", "correct": false },
+					{ "text": "Galileo Galilei", "correct": false }
+				],
+				"explanation": "Albert Einstein is often referred to as the 'Father of Modern Physics' for his groundbreaking contributions to theoretical physics, particularly his theory of relativity."
+			},
+			{
+				"question": "What is the smallest planet in our solar system?",
+				"answers": [
+					{ "text": "Mercury", "correct": true },
+					{ "text": "Pluto", "correct": false },
+					{ "text": "Mars", "correct": false }
+				],
+				"explanation": "Mercury is the smallest planet in our solar system, with a diameter of approximately 3,032 miles (4,879 kilometers)."
+			},
+			{
+				"question": "What is the chemical symbol for sodium?",
+				"answers": [
+					{ "text": "Na", "correct": true },
+					{ "text": "No", "correct": false },
+					{ "text": "Sn", "correct": false }
+				],
+				"explanation": "The chemical symbol for sodium is Na, derived from the Latin word 'natrium'. Sodium is a highly reactive metal commonly found in salts and various compounds."
+			},
+			{
+				"question": "Which is the largest type of penguin?",
+				"answers": [
+					{ "text": "Emperor Penguin", "correct": true },
+					{ "text": "King Penguin", "correct": false },
+					{ "text": "Gentoo Penguin", "correct": false }
+				],
+				"explanation": "The Emperor Penguin is the largest type of penguin, native to Antarctica and known for its distinctive black and white plumage."
+			},
+			{
+				"question": "Who wrote 'To Kill a Mockingbird'?",
+				"answers": [
+					{ "text": "Harper Lee", "correct": true },
+					{ "text": "Mark Twain", "correct": false },
+					{ "text": "John Steinbeck", "correct": false }
+				],
+				"explanation": "'To Kill a Mockingbird' was written by Harper Lee, published in 1960. It addresses the issues of racial injustice and moral growth in the American South."
+			},
+			{
+				"question": "What is the process by which rocks are broken down into smaller pieces?",
+				"answers": [
+					{ "text": "Weathering", "correct": true },
+					{ "text": "Erosion", "correct": false },
+					{ "text": "Deposition", "correct": false }
+				],
+				"explanation": "Weathering is the process by which rocks are broken down into smaller pieces through exposure to environmental factors such as wind, water, and temperature changes."
+			},
+			{
+				"question": "Which is the largest moon in the solar system?",
+				"answers": [
+					{ "text": "Ganymede", "correct": true },
+					{ "text": "Titan", "correct": false },
+					{ "text": "Callisto", "correct": false }
+				],
+				"explanation": "Ganymede, one of Jupiter's moons, is the largest moon in the solar system, even larger than the planet Mercury."
+			},
+			{
+				"question": "Who is credited with discovering America?",
+				"answers": [
+					{ "text": "Christopher Columbus", "correct": true },
+					{ "text": "Amerigo Vespucci", "correct": false },
+					{ "text": "Leif Erikson", "correct": false }
+				],
+				"explanation": "Christopher Columbus is credited with discovering America in 1492 when he landed in the Bahamas, although there were indigenous peoples already living there."
+			},
+			{
+				"question": "What is the chemical symbol for helium?",
+				"answers": [
+					{ "text": "He", "correct": true },
+					{ "text": "H", "correct": false },
+					{ "text": "Hi", "correct": false }
+				],
+				"explanation": "The chemical symbol for helium is He, derived from the Greek word 'helios', meaning 'sun'. Helium is the second most abundant element in the universe."
+			}
+		]
+			;
 	</script>
 </body>
 
