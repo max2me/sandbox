@@ -34,7 +34,7 @@
 				transform: translate(0, 0) rotate(0deg);
 			}
 		}
-		
+
 		* {
 			box-sizing: border-box;
 		}
@@ -64,7 +64,7 @@
 			height: 100%;
 			position: absolute;
 		}
-		
+
 		#front #definition {
 			font-style: italic;
 			text-align: center;
@@ -97,10 +97,10 @@
 			text-decoration: underline;
 		}
 
-		
 
-		
-		
+
+
+
 
 		#front,
 		#back {
@@ -116,9 +116,7 @@
 
 		}
 
-		#back #correct {
-
-		}
+		#back #correct {}
 
 		#back #example {
 			font-style: italic;
@@ -135,8 +133,7 @@
 			display: none !important;
 		}
 
-		#points {
-		}
+		#points {}
 
 		#score {
 			position: absolute;
@@ -148,6 +145,22 @@
 		#continue {
 			color: rgb(66, 137, 208);
 			cursor: pointer;
+		}
+
+		.word {}
+
+		@keyframes fadeOut {
+			from {
+				opacity: 1;
+			}
+
+			to {
+				opacity: 0;
+			}
+		}
+
+		.word.invalid {
+			animation: fadeOut 0.25s ease-in-out 0.75s forwards;
 		}
 	</style>
 
@@ -216,7 +229,7 @@
 			$('#front').addClass('hidden');
 			$('#example').html('&quot;' + chosen.example.replace('___', '<em>' + chosen.word.toLowerCase() + '</em>') + '&quot;');
 			$('#back').removeClass('hidden');
-			
+
 			confetti({
 				spread: 400,
 				particleCount: 200,
@@ -250,15 +263,16 @@
 		$(document).ready(() => {
 			$('.word').click(function () {
 				var t = $(this).text();
-				console.log(t, chosen.word);
 				if (t !== chosen.word) {
+					$(this).addClass('invalid');
 					wrongAnswer();
 				} else {
 					correctAnswer();
+					$('.word.invalid').removeClass('invalid');
 					$('#continue').one('click', nextQuestion);
 				}
 			});
-			
+
 			nextQuestion();
 		});
 	</script>
