@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,700;0,900;1,900&display=swap"
+		rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Trivia for Emma</title>
+	<style>
+		@keyframes tilt-n-move-shaking {
+			0% {
+				transform: translate(0, 0) rotate(0deg);
+			}
+
+			25% {
+				transform: translate(5px, 5px) rotate(5deg);
+			}
+
+			50% {
+				transform: translate(0, 0) rotate(0eg);
+			}
+
+			75% {
+				transform: translate(-5px, 5px) rotate(-5deg);
+			}
+
+			100% {
+				transform: translate(0, 0) rotate(0deg);
+			}
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body,
+		html {
+			background-color: rgb(0, 0, 0);
+			color: #FFF;
+			font-family: "Lato", sans-serif;
+			font-weight: 900;
+			font-style: normal;
+			overflow-y: hidden;
+			overflow-x: hidden;
+			width: 100vw;
+			height: 100vh;
+			font-size: 70px;
+		}
+
+		body.wrong {
+			animation: tilt-n-move-shaking 0.1s infinite;
+		}
+
+		#content {
+			display: grid;
+			align-items: center;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+		}
+
+		#front #definition {
+			font-style: italic;
+			text-align: center;
+			padding-left: 10vw;
+			padding-right: 10vw;
+			padding-bottom: 50px;
+		}
+
+		#front #options {
+
+			text-align: center;
+		}
+
+		#front #options span {
+			display: block;
+		}
+
+		#front #options span {
+			padding: 20px 40px;
+			border-radius: 100px;
+			font-weight: 700;
+			text-transform: uppercase;
+			font-size: 60px;
+			transition: 0.2s color;
+			cursor: pointer;
+		}
+
+		#front #options span:hover {
+			color: rgb(66, 137, 208);
+			text-decoration: underline;
+		}
+
+
+
+
+
+
+		#front,
+		#back {
+			background: #000;
+			z-index: 10;
+		}
+
+		#back {
+			padding-left: 15vw;
+			padding-right: 15vw;
+			text-align: center;
+			z-index: 5;
+
+		}
+
+		#back #correct {}
+
+		#back #example {
+			font-style: italic;
+			padding: 50px 0;
+			display: block;
+		}
+
+		#back em {
+			text-transform: uppercase;
+			font-size: 50px;
+		}
+
+		.hidden {
+			display: none !important;
+		}
+
+		#points {}
+
+		#score {
+			position: absolute;
+			top: 3vh;
+			right: 5vh;
+			font-size: 40px;
+		}
+
+		#continue {
+			color: rgb(66, 137, 208);
+			cursor: pointer;
+		}
+
+		.word {}
+
+		@keyframes fadeOut {
+			from {
+				opacity: 1;
+			}
+
+			to {
+				opacity: 0;
+			}
+		}
+
+		.word.invalid {
+			animation: fadeOut 0.25s ease-in-out 0.75s forwards;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div id="score">
+		Points: <span id="points">0</span>
+	</div>
+	<div id="card">
+		<div id="content">
+			<div id="front">
+				<div id="definition"></div>
+				<div id="options">
+					<span id="word-1" class="word"></span>
+					<span id="word-2" class="word"></span>
+					<span id="word-3" class="word"></span>
+				</div>
+			</div>
+			<div id="back" class="hidden">
+				<div id="correct">Correct!</div>
+				<span id="continue">Next &rarr;</span>
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script>
+		var chosen = null;
+		var options = [];
+		var points = 0;
+
+		function shuffle(array) {
+			let currentIndex = array.length;
+
+			// While there remain elements to shuffle...
+			while (currentIndex != 0) {
+
+				// Pick a remaining element...
+				let randomIndex = Math.floor(Math.random() * currentIndex);
+				currentIndex--;
+
+				// And swap it with the current element.
+				[array[currentIndex], array[randomIndex]] = [
+					array[randomIndex], array[currentIndex]];
+			}
+		}
+
+		function wrongAnswer() {
+			points--;
+			if (points < 0) {
+				points = 0;
+			}
+			updatePoints();
+
+			$('body').addClass('wrong');
+			setTimeout(() => {
+				$('body').removeClass('wrong');
+			}, 250);
+		}
+
+		function correctAnswer() {
+			points++;
+			updatePoints();
+
+			$('#front').addClass('hidden');
+			$('#back').removeClass('hidden');
+
+			confetti({
+				spread: 400,
+				particleCount: 200,
+				scalar: 1
+			});
+		}
+
+		function updatePoints() {
+			$('#points').html(points);
+		}
+
+		function nextQuestion() {
+			$('#front').removeClass('hidden');
+			$('#back').addClass('hidden');
+
+			// Load words
+			chosen = questions[Math.floor(Math.random() * questions.length)];
+
+			options = chosen.answers;
+			shuffle(options);
+
+			$('#definition').html('&quot;' + chosen.question + '&quot;');
+
+			$('#word-1').text(options[0].text).toggleClass('correct', options[0].correct);
+			$('#word-2').text(options[1].text).toggleClass('correct', options[1].correct);
+			$('#word-3').text(options[2].text).toggleClass('correct', options[2].correct);
+		}
+
+		$(document).ready(() => {
+			$('.word').click(function () {
+				var t = $(this).hasClass('correct');
+				if (!t) {
+					$(this).addClass('invalid');
+					wrongAnswer();
+				} else {
+					correctAnswer();
+					$('.word.invalid').removeClass('invalid');
+					$('#continue').one('click', nextQuestion);
+				}
+			});
+
+			nextQuestion();
+		});
+	</script>
+	<script>
+		var questions = [
+			{
+				"question": "What is the capital city of France?",
+				"answers": [
+					{ "text": "Madrid", "correct": false },
+					{ "text": "Paris", "correct": true },
+					{ "text": "Berlin", "correct": false }
+				]
+			},
+			{
+				"question": "Which planet is closest to the Sun?",
+				"answers": [
+					{ "text": "Mars", "correct": false },
+					{ "text": "Venus", "correct": false },
+					{ "text": "Mercury", "correct": true }
+				]
+			},
+			{
+				"question": "What is the process by which plants make their own food called?",
+				"answers": [
+					{ "text": "Respiration", "correct": false },
+					{ "text": "Photosynthesis", "correct": true },
+					{ "text": "Digestion", "correct": false }
+				]
+			},
+			{
+				"question": "Who is credited with inventing the lightbulb?",
+				"answers": [
+					{ "text": "Thomas Edison", "correct": true },
+					{ "text": "Albert Einstein", "correct": false },
+					{ "text": "Alexander Graham Bell", "correct": false }
+				]
+			},
+			{
+				"question": "Which is the largest ocean on Earth?",
+				"answers": [
+					{ "text": "Atlantic Ocean", "correct": false },
+					{ "text": "Pacific Ocean", "correct": true },
+					{ "text": "Indian Ocean", "correct": false }
+				]
+			},
+			{
+				"question": "What is the chemical symbol for water?",
+				"answers": [
+					{ "text": "W", "correct": false },
+					{ "text": "H2O", "correct": true },
+					{ "text": "O2", "correct": false }
+				]
+			},
+			{
+				"question": "Who wrote 'To Kill a Mockingbird'?",
+				"answers": [
+					{ "text": "J.K. Rowling", "correct": false },
+					{ "text": "Harper Lee", "correct": true },
+					{ "text": "Mark Twain", "correct": false }
+				]
+			},
+			{
+				"question": "What is the largest mammal on Earth?",
+				"answers": [
+					{ "text": "Elephant", "correct": false },
+					{ "text": "Blue Whale", "correct": true },
+					{ "text": "Giraffe", "correct": false }
+				]
+			},
+			{
+				"question": "Which planet is known as the 'Red Planet'?",
+				"answers": [
+					{ "text": "Mars", "correct": true },
+					{ "text": "Venus", "correct": false },
+					{ "text": "Jupiter", "correct": false }
+				]
+			},
+			{
+				"question": "What gas do humans breathe in?",
+				"answers": [
+					{ "text": "Oxygen", "correct": true },
+					{ "text": "Carbon Dioxide", "correct": false },
+					{ "text": "Nitrogen", "correct": false }
+				]
+			},
+			{
+				"question": "Who painted the Mona Lisa?",
+				"answers": [
+					{ "text": "Leonardo da Vinci", "correct": true },
+					{ "text": "Pablo Picasso", "correct": false },
+					{ "text": "Vincent van Gogh", "correct": false }
+				]
+			},
+			{
+				"question": "What is the largest desert in the world?",
+				"answers": [
+					{ "text": "Gobi Desert", "correct": false },
+					{ "text": "Sahara Desert", "correct": true },
+					{ "text": "Mojave Desert", "correct": false }
+				]
+			},
+			{
+				"question": "Who wrote 'Romeo and Juliet'?",
+				"answers": [
+					{ "text": "William Shakespeare", "correct": true },
+					{ "text": "Charles Dickens", "correct": false },
+					{ "text": "Jane Austen", "correct": false }
+				]
+			},
+			{
+				"question": "What is the hardest natural substance on Earth?",
+				"answers": [
+					{ "text": "Diamond", "correct": true },
+					{ "text": "Gold", "correct": false },
+					{ "text": "Iron", "correct": false }
+				]
+			},
+			{
+				"question": "What is the largest country by land area?",
+				"answers": [
+					{ "text": "China", "correct": false },
+					{ "text": "Russia", "correct": true },
+					{ "text": "United States", "correct": false }
+				]
+			},
+			{
+				"question": "What is the largest bird in the world?",
+				"answers": [
+					{ "text": "Ostrich", "correct": true },
+					{ "text": "Eagle", "correct": false },
+					{ "text": "Albatross", "correct": false }
+				]
+			},
+			{
+				"question": "Which country is famous for its pyramids?",
+				"answers": [
+					{ "text": "Mexico", "correct": false },
+					{ "text": "Egypt", "correct": true },
+					{ "text": "Greece", "correct": false }
+				]
+			},
+			{
+				"question": "What is the main function of the heart?",
+				"answers": [
+					{ "text": "Pumping Blood", "correct": true },
+					{ "text": "Digesting Food", "correct": false },
+					{ "text": "Filtering Water", "correct": false }
+				]
+			},
+			{
+				"question": "What gas do plants absorb to make food?",
+				"answers": [
+					{ "text": "Oxygen", "correct": false },
+					{ "text": "Carbon Dioxide", "correct": true },
+					{ "text": "Nitrogen", "correct": false }
+				]
+			},
+			{
+				"question": "Who was the first man to walk on the Moon?",
+				"answers": [
+					{ "text": "Neil Armstrong", "correct": true },
+					{ "text": "Buzz Aldrin", "correct": false },
+					{ "text": "Yuri Gagarin", "correct": false }
+				]
+			},
+			{
+				"question": "What is the process of a liquid turning into a gas called?",
+				"answers": [
+					{ "text": "Melting", "correct": false },
+					{ "text": "Freezing", "correct": false },
+					{ "text": "Evaporation", "correct": true }
+				]
+			},
+			{
+				"question": "What is the currency of Japan?",
+				"answers": [
+					{ "text": "Yuan", "correct": false },
+					{ "text": "Yen", "correct": true },
+					{ "text": "Won", "correct": false }
+				]
+			},
+			{
+				"question": "Who discovered penicillin?",
+				"answers": [
+					{ "text": "Alexander Fleming", "correct": true },
+					{ "text": "Albert Einstein", "correct": false },
+					{ "text": "Marie Curie", "correct": false }
+				]
+			},
+			{
+				"question": "What is the tallest mountain in the world?",
+				"answers": [
+					{ "text": "K2", "correct": false },
+					{ "text": "Mount Everest", "correct": true },
+					{ "text": "Kangchenjunga", "correct": false }
+				]
+			},
+			{
+				"question": "What is the chemical symbol for gold?",
+				"answers": [
+					{ "text": "Au", "correct": true },
+					{ "text": "Ag", "correct": false },
+					{ "text": "Fe", "correct": false }
+				]
+			},
+			{
+				"question": "Which animal is known as the 'King of the Jungle'?",
+				"answers": [
+					{ "text": "Tiger", "correct": false },
+					{ "text": "Lion", "correct": true },
+					{ "text": "Elephant", "correct": false }
+				]
+			},
+			{
+				"question": "What is the main ingredient in bread?",
+				"answers": [
+					{ "text": "Flour", "correct": true },
+					{ "text": "Sugar", "correct": false },
+					{ "text": "Milk", "correct": false }
+				]
+			},
+			{
+				"question": "Who wrote 'Harry Potter' series?",
+				"answers": [
+					{ "text": "J.K. Rowling", "correct": true },
+					{ "text": "Stephen King", "correct": false },
+					{ "text": "Roald Dahl", "correct": false }
+				]
+			},
+			{
+				"question": "What is the largest rainforest in the world?",
+				"answers": [
+					{ "text": "Amazon Rainforest", "correct": true },
+					{ "text": "Congo Rainforest", "correct": false },
+					{ "text": "Daintree Rainforest", "correct": false }
+				]
+			},
+			{
+				"question": "What is the chemical symbol for oxygen?",
+				"answers": [
+					{ "text": "O", "correct": false },
+					{ "text": "O2", "correct": false },
+					{ "text": "O2", "correct": true }
+				]
+			},
+			{
+				"question": "Who painted the 'Starry Night'?",
+				"answers": [
+					{ "text": "Vincent van Gogh", "correct": true },
+					{ "text": "Pablo Picasso", "correct": false },
+					{ "text": "Leonardo da Vinci", "correct": false }
+				]
+			},
+			{
+				"question": "What is the hardest natural material on Earth?",
+				"answers": [
+					{ "text": "Steel", "correct": false },
+					{ "text": "Diamond", "correct": true },
+					{ "text": "Titanium", "correct": false }
+				]
+			},
+			{
+				"question": "What is the largest island in the world?",
+				"answers": [
+					{ "text": "Greenland", "correct": true },
+					{ "text": "Australia", "correct": false },
+					{ "text": "Borneo", "correct": false }
+				]
+			},
+			{
+				"question": "What is the currency of the United Kingdom?",
+				"answers": [
+					{ "text": "Euro", "correct": false },
+					{ "text": "Pound Sterling", "correct": true },
+					{ "text": "Dollar", "correct": false }
+				]
+			},
+			{
+				"question": "What gas makes up most of the Earth's atmosphere?",
+				"answers": [
+					{ "text": "Nitrogen", "correct": true },
+					{ "text": "Oxygen", "correct": false },
+					{ "text": "Carbon Dioxide", "correct": false }
+				]
+			},
+			{
+				"question": "What is the largest cat species in the world?",
+				"answers": [
+					{ "text": "Tiger", "correct": true },
+					{ "text": "Lion", "correct": false },
+					{ "text": "Leopard", "correct": false }
+				]
+			},
+			{
+				"question": "What is the tallest tree species in the world?",
+				"answers": [
+					{ "text": "Sequoia", "correct": true },
+					{ "text": "Oak", "correct": false },
+					{ "text": "Pine", "correct": false }
+				]
+			},
+			{
+				"question": "What is the main function of the lungs?",
+				"answers": [
+					{ "text": "Digesting Food", "correct": false },
+					{ "text": "Breathing", "correct": true },
+					{ "text": "Pumping Blood", "correct": false }
+				]
+			},
+			{
+				"question": "What is the smallest bone in the human body?",
+				"answers": [
+					{ "text": "Femur", "correct": false },
+					{ "text": "Stapes", "correct": true },
+					{ "text": "Tibia", "correct": false }
+				]
+			},
+			{
+				"question": "Who discovered gravity?",
+				"answers": [
+					{ "text": "Albert Einstein", "correct": false },
+					{ "text": "Isaac Newton", "correct": true },
+					{ "text": "Galileo Galilei", "correct": false }
+				]
+			},
+			{
+				"question": "What is the largest rodent in the world?",
+				"answers": [
+					{ "text": "Rabbit", "correct": false },
+					{ "text": "Beaver", "correct": false },
+					{ "text": "Capybara", "correct": true }
+				]
+			},
+			{
+				"question": "What is the currency of China?",
+				"answers": [
+					{ "text": "Yuan", "correct": true },
+					{ "text": "Dollar", "correct": false },
+					{ "text": "Euro", "correct": false }
+				]
+			},
+			{
+				"question": "Who is known as the 'Father of Modern Physics'?",
+				"answers": [
+					{ "text": "Albert Einstein", "correct": false },
+					{ "text": "Isaac Newton", "correct": false },
+					{ "text": "Galileo Galilei", "correct": true }
+				]
+			},
+			{
+				"question": "What is the largest continent by land area?",
+				"answers": [
+					{ "text": "Europe", "correct": false },
+					{ "text": "Asia", "correct": true },
+					{ "text": "Africa", "correct": false }
+				]
+			},
+			{
+				"question": "Who wrote 'The Adventures of Tom Sawyer'?",
+				"answers": [
+					{ "text": "Mark Twain", "correct": true },
+					{ "text": "Charles Dickens", "correct": false },
+					{ "text": "J.K. Rowling", "correct": false }
+				]
+			},
+			{
+				"question": "What is the chemical symbol for iron?",
+				"answers": [
+					{ "text": "Ir", "correct": false },
+					{ "text": "Fe", "correct": true },
+					{ "text": "Au", "correct": false }
+				]
+			},
+			{
+				"question": "What is the largest planet in our solar system?",
+				"answers": [
+					{ "text": "Mars", "correct": false },
+					{ "text": "Jupiter", "correct": true },
+					{ "text": "Saturn", "correct": false }
+				]
+			},
+			{
+				"question": "What is the main function of the liver?",
+				"answers": [
+					{ "text": "Pumping Blood", "correct": false },
+					{ "text": "Digesting Food", "correct": false },
+					{ "text": "Detoxifying the body", "correct": true }
+				]
+			},
+			{
+				"question": "What is the currency of Canada?",
+				"answers": [
+					{ "text": "Euro", "correct": false },
+					{ "text": "Pound Sterling", "correct": false },
+					{ "text": "Canadian Dollar", "correct": true }
+				]
+			},
+			{
+				"question": "Which is the largest bird in the world?",
+				"answers": [
+					{ "text": "Ostrich", "correct": true },
+					{ "text": "Eagle", "correct": false },
+					{ "text": "Albatross", "correct": false }
+				]
+			},
+			{
+				"question": "What is the largest lake in the world by surface area?",
+				"answers": [
+					{ "text": "Lake Superior", "correct": true },
+					{ "text": "Caspian Sea", "correct": false },
+					{ "text": "Lake Baikal", "correct": false }
+				]
+			},
+			{
+				"question": "Who is known as the 'Father of Modern Psychology'?",
+				"answers": [
+					{ "text": "Sigmund Freud", "correct": true },
+					{ "text": "Carl Jung", "correct": false },
+					{ "text": "Ivan Pavlov", "correct": false }
+				]
+			},
+			{
+				"question": "What gas do plants release during photosynthesis?",
+				"answers": [
+					{ "text": "Oxygen", "correct": true },
+					{ "text": "Carbon Dioxide", "correct": false },
+					{ "text": "Nitrogen", "correct": false }
+				]
+			},
+			{
+				"question": "Who is the author of 'The Diary of a Young Girl'?",
+				"answers": [
+					{ "text": "Harper Lee", "correct": false },
+					{ "text": "Anne Frank", "correct": true },
+					{ "text": "J.K. Rowling", "correct": false }
+				]
+			},
+			{
+				"question": "What is the chemical symbol for sodium?",
+				"answers": [
+					{ "text": "Na", "correct": true },
+					{ "text": "So", "correct": false },
+					{ "text": "Sn", "correct": false }
+				]
+			},
+			{
+				"question": "What is the process of a solid turning into a liquid called?",
+				"answers": [
+					{ "text": "Melting", "correct": true },
+					{ "text": "Freezing", "correct": false },
+					{ "text": "Condensation", "correct": false }
+				]
+			},
+			{
+				"question": "Who is credited with discovering penicillin?",
+				"answers": [
+					{ "text": "Alexander Fleming", "correct": true },
+					{ "text": "Louis Pasteur", "correct": false },
+					{ "text": "Marie Curie", "correct": false }
+				]
+			},
+			{
+				"question": "What is the main function of the kidneys?",
+				"answers": [
+					{ "text": "Digesting Food", "correct": false },
+					{ "text": "Pumping Blood", "correct": false },
+					{ "text": "Filtering Waste from Blood", "correct": true }
+				]
+			},
+			{
+				"question": "What is the chemical symbol for helium?",
+				"answers": [
+					{ "text": "He", "correct": true },
+					{ "text": "H", "correct": false },
+					{ "text": "Hu", "correct": false }
+				]
+			},
+			{
+				"question": "Who is the current President of the United States?",
+				"answers": [
+					{ "text": "Barack Obama", "correct": false },
+					{ "text": "Donald Trump", "correct": false },
+					{ "text": "Joe Biden", "correct": true }
+				]
+			},
+			{
+				"question": "What is the chemical symbol for silver?",
+				"answers": [
+					{ "text": "Si", "correct": false },
+					{ "text": "Ag", "correct": true },
+					{ "text": "Au", "correct": false }
+				]
+			},
+			{
+				"question": "What is the largest city in the United States by population?",
+				"answers": [
+					{ "text": "Los Angeles", "correct": false },
+					{ "text": "Chicago", "correct": false },
+					{ "text": "New York City", "correct": true }
+				]
+			},
+			{
+				"question": "Who wrote 'Pride and Prejudice'?",
+				"answers": [
+					{ "text": "Emily Bronte", "correct": false },
+					{ "text": "Jane Austen", "correct": true },
+					{ "text": "Charlotte Bronte", "correct": false }
+				]
+			},
+			{
+				"question": "What is the smallest planet in our solar system?",
+				"answers": [
+					{ "text": "Mars", "correct": false },
+					{ "text": "Mercury", "correct": true },
+					{ "text": "Venus", "correct": false }
+				]
+			},
+			{
+				"question": "What is the capital city of Brazil?",
+				"answers": [
+					{ "text": "Rio de Janeiro", "correct": false },
+					{ "text": "São Paulo", "correct": false },
+					{ "text": "Brasília", "correct": true }
+				]
+			},
+			{
+				"question": "Who wrote 'The Great Gatsby'?",
+				"answers": [
+					{ "text": "F. Scott Fitzgerald", "correct": true },
+					{ "text": "Ernest Hemingway", "correct": false },
+					{ "text": "J.D. Salinger", "correct": false }
+				]
+			},
+			{
+				"question": "What is the chemical symbol for carbon?",
+				"answers": [
+					{ "text": "C", "correct": true },
+					{ "text": "Co", "correct": false },
+					{ "text": "Cr", "correct": false }
+				]
+			},
+			{
+				"question": "Which is the largest mammal in the world?",
+				"answers": [
+					{ "text": "Elephant", "correct": false },
+					{ "text": "Blue Whale", "correct": true },
+					{ "text": "Giraffe", "correct": false }
+				]
+			},
+			{
+				"question": "What is the largest bone in the human body?",
+				"answers": [
+					{ "text": "Femur", "correct": true },
+					{ "text": "Tibia", "correct": false },
+					{ "text": "Radius", "correct": false }
+				]
+			},
+			{
+				"question": "Who is known as the 'Father of Geometry'?",
+				"answers": [
+					{ "text": "Euclid", "correct": true },
+					{ "text": "Pythagoras", "correct": false },
+					{ "text": "Archimedes", "correct": false }
+				]
+			},
+			{
+				"question": "What gas do plants release during respiration?",
+				"answers": [
+					{ "text": "Oxygen", "correct": false },
+					{ "text": "Carbon Dioxide", "correct": true },
+					{ "text": "Nitrogen", "correct": false }
+				]
+			},
+			{
+				"question": "Who wrote '1984'?",
+				"answers": [
+					{ "text": "Aldous Huxley", "correct": false },
+					{ "text": "George Orwell", "correct": true },
+					{ "text": "Ray Bradbury", "correct": false }
+				]
+			},
+			{
+				"question": "What is the chemical symbol for potassium?",
+				"answers": [
+					{ "text": "K", "correct": true },
+					{ "text": "Po", "correct": false },
+					{ "text": "P", "correct": false }
+				]
+			},
+			{
+				"question": "What is the main function of the pancreas?",
+				"answers": [
+					{ "text": "Producing Insulin", "correct": true },
+					{ "text": "Producing Digestive Enzymes", "correct": false },
+					{ "text": "Filtering Blood", "correct": false }
+				]
+			},
+			{
+				"question": "What is the chemical symbol for calcium?",
+				"answers": [
+					{ "text": "Cu", "correct": false },
+					{ "text": "Ca", "correct": true },
+					{ "text": "Co", "correct": false }
+				]
+			},
+			{
+				"question": "Who painted the 'Last Supper'?",
+				"answers": [
+					{ "text": "Leonardo da Vinci", "correct": true },
+					{ "text": "Vincent van Gogh", "correct": false },
+					{ "text": "Pablo Picasso", "correct": false }
+				]
+			},
+			{
+				"question": "What is the main component of Earth's atmosphere?",
+				"answers": [
+					{ "text": "Oxygen", "correct": false },
+					{ "text": "Nitrogen", "correct": true },
+					{ "text": "Carbon Dioxide", "correct": false }
+				]
+			},
+			{
+				"question": "Who discovered the theory of relativity?",
+				"answers": [
+					{ "text": "Isaac Newton", "correct": false },
+					{ "text": "Albert Einstein", "correct": true },
+					{ "text": "Galileo Galilei", "correct": false }
+				]
+			},
+			{
+				"question": "What is the main function of the gallbladder?",
+				"answers": [
+					{ "text": "Producing Bile", "correct": true },
+					{ "text": "Filtering Blood", "correct": false },
+					{ "text": "Producing Insulin", "correct": false }
+				]
+			},
+			{
+				"question": "What is the chemical symbol for nitrogen?",
+				"answers": [
+					{ "text": "Ni", "correct": false },
+					{ "text": "N", "correct": true },
+					{ "text": "Na", "correct": false }
+				]
+			},
+			{
+				"question": "What is the largest species of bear?",
+				"answers": [
+					{ "text": "Polar Bear", "correct": true },
+					{ "text": "Grizzly Bear", "correct": false },
+					{ "text": "Kodiak Bear", "correct": false }
+				]
+			},
+			{
+				"question": "What is the chemical symbol for hydrogen?",
+				"answers": [
+					{ "text": "H", "correct": true },
+					{ "text": "He", "correct": false },
+					{ "text": "Ho", "correct": false }
+				]
+			},
+			{
+				"question": "Who discovered the theory of evolution?",
+				"answers": [
+					{ "text": "Isaac Newton", "correct": false },
+					{ "text": "Charles Darwin", "correct": true },
+					{ "text": "Gregor Mendel", "correct": false }
+				]
+			},
+			{
+				"question": "What is the capital city of Australia?",
+				"answers": [
+					{ "text": "Melbourne", "correct": false },
+					{ "text": "Sydney", "correct": false },
+					{ "text": "Canberra", "correct": true }
+				]
+			},
+			{
+				"question": "Who wrote 'Hamlet'?",
+				"answers": [
+					{ "text": "William Shakespeare", "correct": true },
+					{ "text": "Charles Dickens", "correct": false },
+					{ "text": "Jane Austen", "correct": false }
+				]
+			},
+			{
+				"question": "What is the chemical symbol for sodium?",
+				"answers": [
+					{ "text": "S", "correct": false },
+					{ "text": "So", "correct": false },
+					{ "text": "Na", "correct": true }
+				]
+			},
+			{
+				"question": "What is the largest organ in the human body?",
+				"answers": [
+					{ "text": "Skin", "correct": true },
+					{ "text": "Heart", "correct": false },
+					{ "text": "Liver", "correct": false }
+				]
+			},
+			{
+				"question": "What is the main function of the spleen?",
+				"answers": [
+					{ "text": "Digesting Food", "correct": false },
+					{ "text": "Producing Insulin", "correct": false },
+					{ "text": "Filtering Blood", "correct": true }
+				]
+			},
+			{
+				"question": "Who invented the first practical telephone?",
+				"answers": [
+					{ "text": "Alexander Graham Bell", "correct": true },
+					{ "text": "Thomas Edison", "correct": false },
+					{ "text": "Nikola Tesla", "correct": false }
+				]
+			},
+			{
+				"question": "What is the chemical symbol for carbon dioxide?",
+				"answers": [
+					{ "text": "C", "correct": false },
+					{ "text": "Co", "correct": false },
+					{ "text": "CO2", "correct": true }
+				]
+			},
+			{
+				"question": "Who painted the 'Sistine Chapel Ceiling'?",
+				"answers": [
+					{ "text": "Leonardo da Vinci", "correct": false },
+					{ "text": "Michelangelo", "correct": true },
+					{ "text": "Raphael", "correct": false }
+				]
+			},
+			{
+				"question": "What is the largest animal ever known to have existed on Earth?",
+				"answers": [
+					{ "text": "Blue Whale", "correct": true },
+					{ "text": "Megalodon", "correct": false },
+					{ "text": "Diplodocus", "correct": false }
+				]
+			},
+			{
+				"question": "Who wrote 'Moby-Dick'?",
+				"answers": [
+					{ "text": "Herman Melville", "correct": true },
+					{ "text": "Jules Verne", "correct": false },
+					{ "text": "Mark Twain", "correct": false }
+				]
+			},
+			{
+				"question": "What is the capital city of Canada?",
+				"answers": [
+					{ "text": "Toronto", "correct": false },
+					{ "text": "Ottawa", "correct": true },
+					{ "text": "Vancouver", "correct": false }
+				]
+			},
+			{
+				"question": "Who wrote 'The Catcher in the Rye'?",
+				"answers": [
+					{ "text": "J.D. Salinger", "correct": true },
+					{ "text": "F. Scott Fitzgerald", "correct": false },
+					{ "text": "Ernest Hemingway", "correct": false }
+				]
+			},
+			{
+				"question": "What is the chemical symbol for gold?",
+				"answers": [
+					{ "text": "Go", "correct": false },
+					{ "text": "Au", "correct": true },
+					{ "text": "Ag", "correct": false }
+				]
+			},
+			{
+				"question": "Who discovered electricity?",
+				"answers": [
+					{ "text": "Thomas Edison", "correct": false },
+					{ "text": "Benjamin Franklin", "correct": true },
+					{ "text": "Nikola Tesla", "correct": false }
+				]
+			},
+			{
+				"question": "What is the chemical symbol for potassium?",
+				"answers": [
+					{ "text": "P", "correct": false },
+					{ "text": "K", "correct": true },
+					{ "text": "Po", "correct": false }
+				]
+			},
+			{
+				"question": "Who wrote 'The Hobbit'?",
+				"answers": [
+					{ "text": "J.R.R. Tolkien", "correct": true },
+					{ "text": "C.S. Lewis", "correct": false },
+					{ "text": "J.K. Rowling", "correct": false }
+				]
+			},
+			{
+				"question": "What is the main function of the thyroid gland?",
+				"answers": [
+					{ "text": "Regulating Body Temperature", "correct": false },
+					{ "text": "Producing Insulin", "correct": false },
+					{ "text": "Regulating Metabolism", "correct": true }
+				]
+			},
+			{
+				"question": "Who wrote 'The Odyssey'?",
+				"answers": [
+					{ "text": "Homer", "correct": true },
+					{ "text": "Virgil", "correct": false },
+					{ "text": "Plato", "correct": false }
+				]
+			},
+			{
+				"question": "What is the chemical symbol for silver?",
+				"answers": [
+					{ "text": "S", "correct": false },
+					{ "text": "Ag", "correct": true },
+					{ "text": "Si", "correct": false }
+				]
+			},
+			{
+				"question": "Who painted the 'Mona Lisa'?",
+				"answers": [
+					{ "text": "Leonardo da Vinci", "correct": true },
+					{ "text": "Vincent van Gogh", "correct": false },
+					{ "text": "Pablo Picasso", "correct": false }
+				]
+			},
+			{
+				"question": "What is the main function of the cerebellum?",
+				"answers": [
+					{ "text": "Controlling Movement", "correct": true },
+					{ "text": "Processing Thoughts", "correct": false },
+					{ "text": "Regulating Body Temperature", "correct": false }
+				]
+			},
+			{
+				"question": "Who is known as the 'Father of Medicine'?",
+				"answers": [
+					{ "text": "Hippocrates", "correct": true },
+					{ "text": "Aristotle", "correct": false },
+					{ "text": "Socrates", "correct": false }
+				]
+			},
+			{
+				"question": "What is the chemical symbol for helium?",
+				"answers": [
+					{ "text": "H", "correct": true },
+					{ "text": "He", "correct": false },
+					{ "text": "Hu", "correct": false }
+				]
+			},
+			{
+				"question": "Who was the first woman to win a Nobel Prize?",
+				"answers": [
+					{ "text": "Marie Curie", "correct": true },
+					{ "text": "Rosalind Franklin", "correct": false },
+					{ "text": "Dorothy Hodgkin", "correct": false }
+				]
+			},
+			{
+				"question": "What is the largest animal on land?",
+				"answers": [
+					{ "text": "Elephant", "correct": true },
+					{ "text": "Giraffe", "correct": false },
+					{ "text": "Hippopotamus", "correct": false }
+				]
+			},
+			{
+				"question": "Who wrote 'The Scarlet Letter'?",
+				"answers": [
+					{ "text": "Nathaniel Hawthorne", "correct": true },
+					{ "text": "Emily Dickinson", "correct": false },
+					{ "text": "Henry David Thoreau", "correct": false }
+				]
+			},
+			{
+				"question": "What is the capital city of Russia?",
+				"answers": [
+					{ "text": "St. Petersburg", "correct": false },
+					{ "text": "Moscow", "correct": true },
+					{ "text": "Kiev", "correct": false }
+				]
+			},
+			{
+				"question": "Who discovered radioactivity?",
+				"answers": [
+					{ "text": "Marie Curie", "correct": true },
+					{ "text": "Albert Einstein", "correct": false },
+					{ "text": "Niels Bohr", "correct": false }
+				]
+			},
+			{
+				"question": "What is the chemical symbol for lead?",
+				"answers": [
+					{ "text": "Pb", "correct": true },
+					{ "text": "L", "correct": false },
+					{ "text": "P", "correct": false }
+				]
+			},
+			{
+				"question": "Who painted the 'Girl with a Pearl Earring'?",
+				"answers": [
+					{ "text": "Johannes Vermeer", "correct": true },
+					{ "text": "Pablo Picasso", "correct": false },
+					{ "text": "Vincent van Gogh", "correct": false }
+				]
+			},
+			{
+				"question": "What is the main function of the adrenal glands?",
+				"answers": [
+					{ "text": "Producing Insulin", "correct": false },
+					{ "text": "Producing Adrenaline", "correct": true },
+					{ "text": "Filtering Blood", "correct": false }
+				]
+			},
+			{
+				"question": "Who is known as the 'Father of Geometry'?",
+				"answers": [
+					{ "text": "Euclid", "correct": true },
+					{ "text": "Pythagoras", "correct": false },
+					{ "text": "Archimedes", "correct": false }
+				]
+			},
+			{
+				"question": "What is the chemical symbol for nitrogen?",
+				"answers": [
+					{ "text": "Ni", "correct": false },
+					{ "text": "N", "correct": true },
+					{ "text": "Na", "correct": false }
+				]
+			},
+			{
+				"question": "Who invented the light bulb?",
+				"answers": [
+					{ "text": "Thomas Edison", "correct": true },
+					{ "text": "Benjamin Franklin", "correct": false },
+					{ "text": "Nikola Tesla", "correct": false }
+				]
+			},
+			{
+				"question": "What is the chemical symbol for phosphorus?",
+				"answers": [
+					{ "text": "Po", "correct": false },
+					{ "text": "P", "correct": true },
+					{ "text": "Ph", "correct": false }
+				]
+			},
+			{
+    "question": "What is the capital city of France?",
+    "answers": [
+      {"text": "Berlin", "correct": false},
+      {"text": "Paris", "correct": true},
+      {"text": "Rome", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the chemical symbol for water?",
+    "answers": [
+      {"text": "W", "correct": false},
+      {"text": "Wa", "correct": false},
+      {"text": "H2O", "correct": true}
+    ]
+  },
+  {
+    "question": "Who wrote 'Charlie and the Chocolate Factory'?",
+    "answers": [
+      {"text": "Roald Dahl", "correct": true},
+      {"text": "J.K. Rowling", "correct": false},
+      {"text": "Dr. Seuss", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the largest ocean in the world?",
+    "answers": [
+      {"text": "Atlantic Ocean", "correct": false},
+      {"text": "Indian Ocean", "correct": false},
+      {"text": "Pacific Ocean", "correct": true}
+    ]
+  },
+  {
+    "question": "What is the main function of the heart?",
+    "answers": [
+      {"text": "Pumping Blood", "correct": true},
+      {"text": "Digesting Food", "correct": false},
+      {"text": "Filtering Water", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the currency of Japan?",
+    "answers": [
+      {"text": "Yuan", "correct": false},
+      {"text": "Yen", "correct": true},
+      {"text": "Won", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the tallest mountain in Africa?",
+    "answers": [
+      {"text": "Mount Kilimanjaro", "correct": true},
+      {"text": "Mount Everest", "correct": false},
+      {"text": "Mount Fuji", "correct": false}
+    ]
+  },
+  {
+    "question": "Who painted the 'Mona Lisa'?",
+    "answers": [
+      {"text": "Leonardo da Vinci", "correct": true},
+      {"text": "Vincent van Gogh", "correct": false},
+      {"text": "Pablo Picasso", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the chemical symbol for oxygen?",
+    "answers": [
+      {"text": "O", "correct": true},
+      {"text": "O2", "correct": false},
+      {"text": "H2O", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the largest planet in our solar system?",
+    "answers": [
+      {"text": "Mars", "correct": false},
+      {"text": "Jupiter", "correct": true},
+      {"text": "Saturn", "correct": false}
+    ]
+  },
+  {
+    "question": "Who wrote 'Green Eggs and Ham'?",
+    "answers": [
+      {"text": "Dr. Seuss", "correct": true},
+      {"text": "Roald Dahl", "correct": false},
+      {"text": "J.K. Rowling", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the chemical symbol for iron?",
+    "answers": [
+      {"text": "Fe", "correct": true},
+      {"text": "Ir", "correct": false},
+      {"text": "Au", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the largest mammal in the world?",
+    "answers": [
+      {"text": "Elephant", "correct": false},
+      {"text": "Blue Whale", "correct": true},
+      {"text": "Giraffe", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the main function of the brain?",
+    "answers": [
+      {"text": "Breathing", "correct": false},
+      {"text": "Thinking", "correct": true},
+      {"text": "Pumping Blood", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the currency of the United States?",
+    "answers": [
+      {"text": "Dollar", "correct": true},
+      {"text": "Euro", "correct": false},
+      {"text": "Yen", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the chemical symbol for gold?",
+    "answers": [
+      {"text": "Go", "correct": false},
+      {"text": "Au", "correct": true},
+      {"text": "Ag", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the smallest planet in our solar system?",
+    "answers": [
+      {"text": "Mars", "correct": false},
+      {"text": "Mercury", "correct": true},
+      {"text": "Venus", "correct": false}
+    ]
+  },
+  {
+    "question": "Who wrote 'The Cat in the Hat'?",
+    "answers": [
+      {"text": "Roald Dahl", "correct": false},
+      {"text": "Dr. Seuss", "correct": true},
+      {"text": "Beatrix Potter", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the chemical symbol for carbon?",
+    "answers": [
+      {"text": "C", "correct": true},
+      {"text": "Co", "correct": false},
+      {"text": "Cr", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the largest bird in the world?",
+    "answers": [
+      {"text": "Ostrich", "correct": true},
+      {"text": "Eagle", "correct": false},
+      {"text": "Albatross", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the main function of the lungs?",
+    "answers": [
+      {"text": "Digesting Food", "correct": false},
+      {"text": "Breathing", "correct": true},
+      {"text": "Pumping Blood", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the chemical symbol for helium?",
+    "answers": [
+      {"text": "H", "correct": true},
+      {"text": "He", "correct": false},
+      {"text": "Hu", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the largest lake in Africa?",
+    "answers": [
+      {"text": "Lake Victoria", "correct": true},
+      {"text": "Lake Tanganyika", "correct": false},
+      {"text": "Lake Malawi", "correct": false}
+    ]
+  },
+  {
+    "question": "Who painted the 'Starry Night'?",
+    "answers": [
+      {"text": "Vincent van Gogh", "correct": true},
+      {"text": "Leonardo da Vinci", "correct": false},
+      {"text": "Pablo Picasso", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the main function of the stomach?",
+    "answers": [
+      {"text": "Digesting Food", "correct": true},
+      {"text": "Filtering Blood", "correct": false},
+      {"text": "Producing Insulin", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the chemical symbol for sodium?",
+    "answers": [
+      {"text": "Na", "correct": true},
+      {"text": "So", "correct": false},
+      {"text": "Sn", "correct": false}
+    ]
+  },
+  {
+    "question": "Who wrote 'The Giving Tree'?",
+    "answers": [
+      {"text": "Dr. Seuss", "correct": false},
+      {"text": "Shel Silverstein", "correct": true},
+      {"text": "Beatrix Potter", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the largest desert in the world?",
+    "answers": [
+      {"text": "Sahara Desert", "correct": true},
+      {"text": "Arabian Desert", "correct": false},
+      {"text": "Gobi Desert", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the main function of the liver?",
+    "answers": [
+      {"text": "Digesting Food", "correct": false},
+      {"text": "Detoxifying the body", "correct": true},
+      {"text": "Filtering Blood", "correct": false}
+    ]
+  },
+  {
+    "question": "Who is the current President of the United States?",
+    "answers": [
+      {"text": "Barack Obama", "correct": false},
+      {"text": "Donald Trump", "correct": false},
+      {"text": "Joe Biden", "correct": true}
+    ]
+  },
+  {
+    "question": "What is the chemical symbol for silver?",
+    "answers": [
+      {"text": "Si", "correct": false},
+      {"text": "Ag", "correct": true},
+      {"text": "Au", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the largest city in the United States by population?",
+    "answers": [
+      {"text": "Los Angeles", "correct": false},
+      {"text": "Chicago", "correct": false},
+      {"text": "New York City", "correct": true}
+    ]
+  },
+  {
+    "question": "Who wrote 'Pride and Prejudice'?",
+    "answers": [
+      {"text": "Emily Bronte", "correct": false},
+      {"text": "Jane Austen", "correct": true},
+      {"text": "Charlotte Bronte", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the smallest planet in our solar system?",
+    "answers": [
+      {"text": "Mars", "correct": false},
+      {"text": "Mercury", "correct": true},
+      {"text": "Venus", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the capital city of Brazil?",
+    "answers": [
+      {"text": "Rio de Janeiro", "correct": false},
+      {"text": "São Paulo", "correct": false},
+      {"text": "Brasília", "correct": true}
+    ]
+  },
+  {
+    "question": "Who wrote 'The Great Gatsby'?",
+    "answers": [
+      {"text": "F. Scott Fitzgerald", "correct": true},
+      {"text": "Ernest Hemingway", "correct": false},
+      {"text": "J.D. Salinger", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the chemical symbol for carbon?",
+    "answers": [
+      {"text": "C", "correct": true},
+      {"text": "Co", "correct": false},
+      {"text": "Cr", "correct": false}
+    ]
+  },
+  {
+    "question": "Which is the largest mammal in the world?",
+    "answers": [
+      {"text": "Elephant", "correct": false},
+      {"text": "Blue Whale", "correct": true},
+      {"text": "Giraffe", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the largest bone in the human body?",
+    "answers": [
+      {"text": "Femur", "correct": true},
+      {"text": "Tibia", "correct": false},
+      {"text": "Radius", "correct": false}
+    ]
+  },
+  {
+    "question": "Who is known as the 'Father of Geometry'?",
+    "answers": [
+      {"text": "Euclid", "correct": true},
+      {"text": "Pythagoras", "correct": false},
+      {"text": "Archimedes", "correct": false}
+    ]
+  },
+  {
+    "question": "What gas do plants release during respiration?",
+    "answers": [
+      {"text": "Oxygen", "correct": false},
+      {"text": "Carbon Dioxide", "correct": true},
+      {"text": "Nitrogen", "correct": false}
+    ]
+  },
+  {
+    "question": "Who wrote '1984'?",
+    "answers": [
+      {"text": "Aldous Huxley", "correct": false},
+      {"text": "George Orwell", "correct": true},
+      {"text": "Ray Bradbury", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the chemical symbol for potassium?",
+    "answers": [
+      {"text": "K", "correct": true},
+      {"text": "Po", "correct": false},
+      {"text": "P", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the main function of the pancreas?",
+    "answers": [
+      {"text": "Producing Insulin", "correct": true},
+      {"text": "Producing Digestive Enzymes", "correct": false},
+      {"text": "Filtering Blood", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the chemical symbol for calcium?",
+    "answers": [
+      {"text": "Cu", "correct": false},
+      {"text": "Ca", "correct": true},
+      {"text": "Co", "correct": false}
+    ]
+  },
+  {
+    "question": "Who painted the 'Last Supper'?",
+    "answers": [
+      {"text": "Leonardo da Vinci", "correct": true},
+      {"text": "Vincent van Gogh", "correct": false},
+      {"text": "Pablo Picasso", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the main component of Earth's atmosphere?",
+    "answers": [
+      {"text": "Oxygen", "correct": false},
+      {"text": "Nitrogen", "correct": true},
+      {"text": "Carbon Dioxide", "correct": false}
+    ]
+  },
+  {
+    "question": "Who discovered the theory of relativity?",
+    "answers": [
+      {"text": "Isaac Newton", "correct": false},
+      {"text": "Albert Einstein", "correct": true},
+      {"text": "Galileo Galilei", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the main function of the gallbladder?",
+    "answers": [
+      {"text": "Producing Bile", "correct": true},
+      {"text": "Filtering Blood", "correct": false},
+      {"text": "Producing Insulin", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the chemical symbol for nitrogen?",
+    "answers": [
+      {"text": "Ni", "correct": false},
+      {"text": "N", "correct": true},
+      {"text": "Na", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the largest species of bear?",
+    "answers": [
+      {"text": "Polar Bear", "correct": true},
+      {"text": "Grizzly Bear", "correct": false},
+      {"text": "Kodiak Bear", "correct": false}
+    ]
+  },
+  {
+    "question": "What is the main function of the cerebrum?",
+    "answers": [
+      {"text": "Controlling Movement", "correct": false},
+      {"text": "Processing Thoughts", "correct": true},
+      {"text": "Regulating Body Temperature", "correct": false}
+    ]
+  }
+		];
+	</script>
+</body>
+
+</html>
