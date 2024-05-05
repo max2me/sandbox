@@ -238,6 +238,8 @@
 			$('#front').removeClass('hidden');
 			$('#back').addClass('hidden');
 
+			$('.word.selected').removeClass('selected');
+
 			// Load words
 			chosen = questions[Math.floor(Math.random() * questions.length)];
 
