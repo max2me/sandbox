@@ -243,6 +243,8 @@
 
 			options = chosen.answers;
 			shuffle(options);
+			shuffle(options);
+			shuffle(options);
 
 			$('#definition').html('&quot;' + chosen.question + '&quot;');
 
@@ -323,952 +325,1277 @@
 	</script>
 	<script>
 		var questions = [
-			{
-				"question": "What is the capital city of France?",
-				"answers": [
-					{ "text": "Paris", "correct": true },
-					{ "text": "London", "correct": false },
-					{ "text": "Berlin", "correct": false }
-				],
-				"explanation": "Paris is the capital city of France, known for iconic landmarks like the Eiffel Tower and the Louvre Museum."
-			},
-			{
-				"question": "Which planet is known as the Red Planet?",
-				"answers": [
-					{ "text": "Mars", "correct": true },
-					{ "text": "Venus", "correct": false },
-					{ "text": "Jupiter", "correct": false }
-				],
-				"explanation": "Mars is called the Red Planet because of its reddish appearance, caused by iron oxide, or rust, on its surface."
-			},
-			{
-				"question": "What is the tallest mountain in the world?",
-				"answers": [
-					{ "text": "Mount Everest", "correct": true },
-					{ "text": "K2", "correct": false },
-					{ "text": "Kangchenjunga", "correct": false }
-				],
-				"explanation": "Mount Everest, located in the Himalayas, is the tallest mountain in the world, standing at 29,032 feet (8,848 meters) above sea level."
-			},
-			{
-				"question": "What is the main ingredient in guacamole?",
-				"answers": [
-					{ "text": "Avocado", "correct": true },
-					{ "text": "Tomato", "correct": false },
-					{ "text": "Onion", "correct": false }
-				],
-				"explanation": "Avocado is the main ingredient in guacamole, a popular Mexican dip or spread."
-			},
-			{
-				"question": "What is the capital city of Japan?",
-				"answers": [
-					{ "text": "Tokyo", "correct": true },
-					{ "text": "Beijing", "correct": false },
-					{ "text": "Seoul", "correct": false }
-				],
-				"explanation": "Tokyo is the capital city of Japan, one of the most populous cities in the world."
-			},
-			{
-				"question": "Which gas do plants absorb during photosynthesis?",
-				"answers": [
-					{ "text": "Carbon dioxide", "correct": true },
-					{ "text": "Oxygen", "correct": false },
-					{ "text": "Nitrogen", "correct": false }
-				],
-				"explanation": "Plants absorb carbon dioxide during photosynthesis, converting it into oxygen and glucose."
-			},
-			{
-				"question": "What is the hardest natural substance on Earth?",
-				"answers": [
-					{ "text": "Diamond", "correct": true },
-					{ "text": "Quartz", "correct": false },
-					{ "text": "Graphite", "correct": false }
-				],
-				"explanation": "Diamond is the hardest natural substance on Earth, composed of carbon atoms arranged in a crystal lattice structure."
-			},
-			{
-				"question": "What is the largest organ in the human body?",
-				"answers": [
-					{ "text": "Skin", "correct": true },
-					{ "text": "Liver", "correct": false },
-					{ "text": "Heart", "correct": false }
-				],
-				"explanation": "The skin is the largest organ in the human body, providing protection, sensation, and regulation of body temperature."
-			},
-			{
-				"question": "Who wrote 'Romeo and Juliet'?",
-				"answers": [
-					{ "text": "William Shakespeare", "correct": true },
-					{ "text": "Charles Dickens", "correct": false },
-					{ "text": "Jane Austen", "correct": false }
-				],
-				"explanation": "William Shakespeare wrote 'Romeo and Juliet', one of his most famous plays, depicting the tragic love story of the titular characters."
-			},
-			{
-				"question": "Which continent is the largest by land area?",
-				"answers": [
-					{ "text": "Asia", "correct": true },
-					{ "text": "Africa", "correct": false },
-					{ "text": "North America", "correct": false }
-				],
-				"explanation": "Asia is the largest continent by land area, covering approximately 30% of Earth's land area."
-			},
-			{
-				"question": "What is the chemical symbol for water?",
-				"answers": [
-					{ "text": "H2O", "correct": true },
-					{ "text": "CO2", "correct": false },
-					{ "text": "NaCl", "correct": false }
-				],
-				"explanation": "The chemical symbol for water is H2O, indicating that each water molecule consists of two hydrogen atoms bonded to one oxygen atom."
-			},
-			{
-				"question": "Which animal is known as the 'King of the Jungle'?",
-				"answers": [
-					{ "text": "Lion", "correct": true },
-					{ "text": "Tiger", "correct": false },
-					{ "text": "Leopard", "correct": false }
-				],
-				"explanation": "The lion is often referred to as the 'King of the Jungle' due to its strength, power, and dominance in its natural habitat."
-			},
-			{
-				"question": "What is the closest planet to the Sun?",
-				"answers": [
-					{ "text": "Mercury", "correct": true },
-					{ "text": "Venus", "correct": false },
-					{ "text": "Earth", "correct": false }
-				],
-				"explanation": "Mercury is the closest planet to the Sun in our solar system, with an average distance of about 36 million miles (58 million kilometers) from the Sun."
-			},
-			{
-				"question": "What is the process by which plants make their own food?",
-				"answers": [
-					{ "text": "Photosynthesis", "correct": true },
-					{ "text": "Respiration", "correct": false },
-					{ "text": "Pollination", "correct": false }
-				],
-				"explanation": "Photosynthesis is the process by which plants make their own food using sunlight, carbon dioxide, and water, producing oxygen as a byproduct."
-			},
-			{
-				"question": "Who painted the Mona Lisa?",
-				"answers": [
-					{ "text": "Leonardo da Vinci", "correct": true },
-					{ "text": "Pablo Picasso", "correct": false },
-					{ "text": "Vincent van Gogh", "correct": false }
-				],
-				"explanation": "Leonardo da Vinci painted the Mona Lisa, one of the most famous and iconic paintings in the world, during the Renaissance period."
-			},
-			{
-				"question": "What is the longest river in the world?",
-				"answers": [
-					{ "text": "Nile", "correct": true },
-					{ "text": "Amazon", "correct": false },
-					{ "text": "Mississippi", "correct": false }
-				],
-				"explanation": "The Nile River in Africa is considered the longest river in the world, stretching over 4,100 miles (6,650 kilometers) in length."
-			},
-			{
-				"question": "Which country is known as the Land of the Rising Sun?",
-				"answers": [
-					{ "text": "Japan", "correct": true },
-					{ "text": "China", "correct": false },
-					{ "text": "Korea", "correct": false }
-				],
-				"explanation": "Japan is often referred to as the Land of the Rising Sun due to its name's literal meaning and its position east of the Asian mainland."
-			},
-			{
-				"question": "What is the largest ocean in the world?",
-				"answers": [
-					{ "text": "Pacific Ocean", "correct": true },
-					{ "text": "Atlantic Ocean", "correct": false },
-					{ "text": "Indian Ocean", "correct": false }
-				],
-				"explanation": "The Pacific Ocean is the largest ocean in the world, covering approximately one-third of the Earth's surface."
-			},
-			{
-				"question": "Which planet is known as the 'Morning Star' or 'Evening Star'?",
-				"answers": [
-					{ "text": "Venus", "correct": true },
-					{ "text": "Mars", "correct": false },
-					{ "text": "Jupiter", "correct": false }
-				],
-				"explanation": "Venus is often referred to as the 'Morning Star' when it appears in the east before sunrise and the 'Evening Star' when it appears in the west after sunset."
-			},
-			{
-				"question": "What is the largest mammal in the world?",
-				"answers": [
-					{ "text": "Blue Whale", "correct": true },
-					{ "text": "African Elephant", "correct": false },
-					{ "text": "Giraffe", "correct": false }
-				],
-				"explanation": "The Blue Whale is the largest mammal in the world, reaching lengths of up to 100 feet (30 meters) and weighing as much as 200 tons."
-			},
-			{
-				"question": "Which continent is home to the Amazon Rainforest?",
-				"answers": [
-					{ "text": "South America", "correct": true },
-					{ "text": "Africa", "correct": false },
-					{ "text": "Asia", "correct": false }
-				],
-				"explanation": "The Amazon Rainforest, the largest tropical rainforest in the world, is primarily located in South America, covering parts of Brazil, Peru, Colombia, and other countries."
-			},
-			{
-				"question": "What is the largest desert in the world?",
-				"answers": [
-					{ "text": "Antarctica", "correct": true },
-					{ "text": "Sahara", "correct": false },
-					{ "text": "Arabian", "correct": false }
-				],
-				"explanation": "Antarctica is the largest desert in the world, even though it is covered in ice and snow rather than sand like other deserts."
-			},
-			{
-				"question": "What is the process of water turning into vapor called?",
-				"answers": [
-					{ "text": "Evaporation", "correct": true },
-					{ "text": "Condensation", "correct": false },
-					{ "text": "Precipitation", "correct": false }
-				],
-				"explanation": "Evaporation is the process by which water turns into vapor or gas, typically due to heating from the sun."
-			},
-			{
-				"question": "Who invented the light bulb?",
-				"answers": [
-					{ "text": "Thomas Edison", "correct": true },
-					{ "text": "Nikola Tesla", "correct": false },
-					{ "text": "Alexander Graham Bell", "correct": false }
-				],
-				"explanation": "Thomas Edison is credited with inventing the first commercially practical incandescent light bulb, which revolutionized indoor lighting."
-			},
-			{
-				"question": "What is the largest type of big cat in the world?",
-				"answers": [
-					{ "text": "Siberian Tiger", "correct": true },
-					{ "text": "Lion", "correct": false },
-					{ "text": "Jaguar", "correct": false }
-				],
-				"explanation": "The Siberian Tiger, also known as the Amur Tiger, is the largest type of big cat in the world, capable of reaching lengths of up to 11 feet (3.3 meters) and weighing over 900 pounds (400 kilograms)."
-			},
-			{
-				"question": "Which country is famous for the Great Wall?",
-				"answers": [
-					{ "text": "China", "correct": true },
-					{ "text": "India", "correct": false },
-					{ "text": "Russia", "correct": false }
-				],
-				"explanation": "China is famous for the Great Wall, a series of fortifications built to protect against invasions from various nomadic groups and military incursions."
-			},
-			{
-				"question": "What is the largest planet in our solar system?",
-				"answers": [
-					{ "text": "Jupiter", "correct": true },
-					{ "text": "Saturn", "correct": false },
-					{ "text": "Neptune", "correct": false }
-				],
-				"explanation": "Jupiter is the largest planet in our solar system, with a diameter of approximately 86,881 miles (139,822 kilometers)."
-			},
-			{
-				"question": "What is the chemical symbol for gold?",
-				"answers": [
-					{ "text": "Au", "correct": true },
-					{ "text": "Ag", "correct": false },
-					{ "text": "Pb", "correct": false }
-				],
-				"explanation": "The chemical symbol for gold is Au, derived from the Latin word 'aurum', which means 'shining dawn' or 'glow of sunrise'."
-			},
-			{
-				"question": "Which gas do humans need to breathe in order to survive?",
-				"answers": [
-					{ "text": "Oxygen", "correct": true },
-					{ "text": "Carbon dioxide", "correct": false },
-					{ "text": "Nitrogen", "correct": false }
-				],
-				"explanation": "Oxygen is the gas that humans need to breathe in order to survive, as it is essential for cellular respiration, the process by which cells generate energy."
-			},
-			{
-				"question": "Who was the first person to step on the moon?",
-				"answers": [
-					{ "text": "Neil Armstrong", "correct": true },
-					{ "text": "Buzz Aldrin", "correct": false },
-					{ "text": "Yuri Gagarin", "correct": false }
-				],
-				"explanation": "Neil Armstrong was the first person to step on the moon on July 20, 1969, during the Apollo 11 mission, famously uttering the words 'That's one small step for man, one giant leap for mankind.'"
-			},
-			{
-				"question": "What is the largest type of bear in the world?",
-				"answers": [
-					{ "text": "Polar Bear", "correct": true },
-					{ "text": "Grizzly Bear", "correct": false },
-					{ "text": "Kodiak Bear", "correct": false }
-				],
-				"explanation": "The Polar Bear is the largest type of bear in the world, well-adapted to its Arctic habitat with its thick fur and layers of fat for insulation."
-			},
-			{
-				"question": "Which country is known as the 'Land of Fire and Ice'?",
-				"answers": [
-					{ "text": "Iceland", "correct": true },
-					{ "text": "Greenland", "correct": false },
-					{ "text": "New Zealand", "correct": false }
-				],
-				"explanation": "Iceland is often referred to as the 'Land of Fire and Ice' due to its combination of active volcanoes and glaciers."
-			},
-			{
-				"question": "What is the chemical symbol for carbon?",
-				"answers": [
-					{ "text": "C", "correct": true },
-					{ "text": "Co", "correct": false },
-					{ "text": "Cr", "correct": false }
-				],
-				"explanation": "The chemical symbol for carbon is C, derived from the Latin word 'carbo', meaning 'charcoal'. Carbon is a fundamental element found in all living organisms and many non-living substances."
-			},
-			{
-				"question": "Who discovered penicillin?",
-				"answers": [
-					{ "text": "Alexander Fleming", "correct": true },
-					{ "text": "Louis Pasteur", "correct": false },
-					{ "text": "Marie Curie", "correct": false }
-				],
-				"explanation": "Alexander Fleming discovered penicillin, the first antibiotic drug, in 1928, revolutionizing medicine and saving countless lives by treating bacterial infections."
-			},
-			{
-				"question": "What is the fastest land animal?",
-				"answers": [
-					{ "text": "Cheetah", "correct": true },
-					{ "text": "Lion", "correct": false },
-					{ "text": "Gazelle", "correct": false }
-				],
-				"explanation": "The cheetah is the fastest land animal, capable of reaching speeds up to 75 miles per hour (120 kilometers per hour) in short bursts."
-			},
-			{
-				"question": "Which planet is known as the 'Blue Planet'?",
-				"answers": [
-					{ "text": "Earth", "correct": true },
-					{ "text": "Neptune", "correct": false },
-					{ "text": "Uranus", "correct": false }
-				],
-				"explanation": "Earth is often referred to as the 'Blue Planet' because of its abundant water, which gives it a blue appearance when seen from space."
-			},
-			{
-				"question": "What is the largest bird in the world?",
-				"answers": [
-					{ "text": "Ostrich", "correct": true },
-					{ "text": "Emu", "correct": false },
-					{ "text": "Albatross", "correct": false }
-				],
-				"explanation": "The ostrich is the largest bird in the world, capable of reaching heights of up to 9 feet (2.7 meters) and weighing up to 320 pounds (145 kilograms)."
-			},
-			{
-				"question": "Which country is known as the 'Land of the Midnight Sun'?",
-				"answers": [
-					{ "text": "Norway", "correct": true },
-					{ "text": "Sweden", "correct": false },
-					{ "text": "Finland", "correct": false }
-				],
-				"explanation": "Norway is known as the 'Land of the Midnight Sun' because during the summer months, parts of the country experience continuous daylight due to its high latitude."
-			},
-			{
-				"question": "What is the largest species of shark?",
-				"answers": [
-					{ "text": "Whale Shark", "correct": true },
-					{ "text": "Great White Shark", "correct": false },
-					{ "text": "Hammerhead Shark", "correct": false }
-				],
-				"explanation": "The whale shark is the largest species of shark, reaching lengths of up to 40 feet (12 meters) and weighing as much as 20 tons."
-			},
-			{
-				"question": "What is the chemical symbol for silver?",
-				"answers": [
-					{ "text": "Ag", "correct": true },
-					{ "text": "Au", "correct": false },
-					{ "text": "Si", "correct": false }
-				],
-				"explanation": "The chemical symbol for silver is Ag, derived from the Latin word 'argentum'. Silver has been used for centuries in coins, jewelry, and various industrial applications."
-			},
-			{
-				"question": "Which is the largest rainforest in the world?",
-				"answers": [
-					{ "text": "Amazon Rainforest", "correct": true },
-					{ "text": "Congo Rainforest", "correct": false },
-					{ "text": "Borneo Rainforest", "correct": false }
-				],
-				"explanation": "The Amazon Rainforest is the largest rainforest in the world, covering an area of approximately 2.1 million square miles (5.5 million square kilometers) across South America."
-			},
-			{
-				"question": "Who is known as the 'Father of Modern Physics'?",
-				"answers": [
-					{ "text": "Albert Einstein", "correct": true },
-					{ "text": "Isaac Newton", "correct": false },
-					{ "text": "Galileo Galilei", "correct": false }
-				],
-				"explanation": "Albert Einstein is often referred to as the 'Father of Modern Physics' for his groundbreaking contributions to theoretical physics, particularly his theory of relativity."
-			},
-			{
-				"question": "What is the smallest planet in our solar system?",
-				"answers": [
-					{ "text": "Mercury", "correct": true },
-					{ "text": "Pluto", "correct": false },
-					{ "text": "Mars", "correct": false }
-				],
-				"explanation": "Mercury is the smallest planet in our solar system, with a diameter of approximately 3,032 miles (4,879 kilometers)."
-			},
-			{
-				"question": "What is the chemical symbol for sodium?",
-				"answers": [
-					{ "text": "Na", "correct": true },
-					{ "text": "No", "correct": false },
-					{ "text": "Sn", "correct": false }
-				],
-				"explanation": "The chemical symbol for sodium is Na, derived from the Latin word 'natrium'. Sodium is a highly reactive metal commonly found in salts and various compounds."
-			},
-			{
-				"question": "Which is the largest type of penguin?",
-				"answers": [
-					{ "text": "Emperor Penguin", "correct": true },
-					{ "text": "King Penguin", "correct": false },
-					{ "text": "Gentoo Penguin", "correct": false }
-				],
-				"explanation": "The Emperor Penguin is the largest type of penguin, native to Antarctica and known for its distinctive black and white plumage."
-			},
-			{
-				"question": "Who wrote 'To Kill a Mockingbird'?",
-				"answers": [
-					{ "text": "Harper Lee", "correct": true },
-					{ "text": "Mark Twain", "correct": false },
-					{ "text": "John Steinbeck", "correct": false }
-				],
-				"explanation": "'To Kill a Mockingbird' was written by Harper Lee, published in 1960. It addresses the issues of racial injustice and moral growth in the American South."
-			},
-			{
-				"question": "What is the process by which rocks are broken down into smaller pieces?",
-				"answers": [
-					{ "text": "Weathering", "correct": true },
-					{ "text": "Erosion", "correct": false },
-					{ "text": "Deposition", "correct": false }
-				],
-				"explanation": "Weathering is the process by which rocks are broken down into smaller pieces through exposure to environmental factors such as wind, water, and temperature changes."
-			},
-			{
-				"question": "Which is the largest moon in the solar system?",
-				"answers": [
-					{ "text": "Ganymede", "correct": true },
-					{ "text": "Titan", "correct": false },
-					{ "text": "Callisto", "correct": false }
-				],
-				"explanation": "Ganymede, one of Jupiter's moons, is the largest moon in the solar system, even larger than the planet Mercury."
-			},
-			{
-				"question": "Who is credited with discovering America?",
-				"answers": [
-					{ "text": "Christopher Columbus", "correct": true },
-					{ "text": "Amerigo Vespucci", "correct": false },
-					{ "text": "Leif Erikson", "correct": false }
-				],
-				"explanation": "Christopher Columbus is credited with discovering America in 1492 when he landed in the Bahamas, although there were indigenous peoples already living there."
-			},
-			{
-				"question": "What is the chemical symbol for helium?",
-				"answers": [
-					{ "text": "He", "correct": true },
-					{ "text": "H", "correct": false },
-					{ "text": "Hi", "correct": false }
-				],
-				"explanation": "The chemical symbol for helium is He, derived from the Greek word 'helios', meaning 'sun'. Helium is the second most abundant element in the universe."
-			},
-			{
-				"question": "What is the capital city of Australia?",
-				"answers": [
-					{ "text": "Canberra", "correct": true },
-					{ "text": "Sydney", "correct": false },
-					{ "text": "Melbourne", "correct": false }
-				],
-				"explanation": "Canberra is the capital city of Australia, chosen for its strategic location between the two largest cities, Sydney and Melbourne."
-			},
-			{
-				"question": "Which gas do humans exhale when they breathe out?",
-				"answers": [
-					{ "text": "Carbon dioxide", "correct": true },
-					{ "text": "Oxygen", "correct": false },
-					{ "text": "Nitrogen", "correct": false }
-				],
-				"explanation": "Humans exhale carbon dioxide when they breathe out, a byproduct of cellular respiration."
-			},
-			{
-				"question": "Who painted the 'Starry Night'?",
-				"answers": [
-					{ "text": "Vincent van Gogh", "correct": true },
-					{ "text": "Pablo Picasso", "correct": false },
-					{ "text": "Claude Monet", "correct": false }
-				],
-				"explanation": "Vincent van Gogh painted the 'Starry Night', one of his most famous works, depicting the night sky over the village of Saint-Rémy-de-Provence."
-			},
-			{
-				"question": "What is the tallest animal in the world?",
-				"answers": [
-					{ "text": "Giraffe", "correct": true },
-					{ "text": "Elephant", "correct": false },
-					{ "text": "Kangaroo", "correct": false }
-				],
-				"explanation": "The giraffe is the tallest animal in the world, with its long neck and legs allowing it to reach high branches for food."
-			},
-			{
-				"question": "Which continent is known as the 'Dark Continent'?",
-				"answers": [
-					{ "text": "Africa", "correct": true },
-					{ "text": "Antarctica", "correct": false },
-					{ "text": "Asia", "correct": false }
-				],
-				"explanation": "Africa is sometimes referred to as the 'Dark Continent', a term historically used to describe its unexplored and mysterious nature to Europeans."
-			},
-			{
-				"question": "What is the largest species of bear in the world?",
-				"answers": [
-					{ "text": "Polar Bear", "correct": true },
-					{ "text": "Grizzly Bear", "correct": false },
-					{ "text": "Kodiak Bear", "correct": false }
-				],
-				"explanation": "The Polar Bear is the largest species of bear in the world, well-adapted to its Arctic habitat with its thick fur and layers of fat for insulation."
-			},
-			{
-				"question": "Which planet is known as the 'Red Planet'?",
-				"answers": [
-					{ "text": "Mars", "correct": true },
-					{ "text": "Venus", "correct": false },
-					{ "text": "Jupiter", "correct": false }
-				],
-				"explanation": "Mars is called the 'Red Planet' due to its reddish appearance caused by iron oxide on its surface."
-			},
-			{
-				"question": "What is the smallest bird in the world?",
-				"answers": [
-					{ "text": "Bee Hummingbird", "correct": true },
-					{ "text": "Sparrow", "correct": false },
-					{ "text": "Blue Tit", "correct": false }
-				],
-				"explanation": "The Bee Hummingbird is the smallest bird in the world, measuring only about 2 inches (5 centimeters) in length."
-			},
-			{
-				"question": "What is the chemical symbol for iron?",
-				"answers": [
-					{ "text": "Fe", "correct": true },
-					{ "text": "Ir", "correct": false },
-					{ "text": "In", "correct": false }
-				],
-				"explanation": "The chemical symbol for iron is Fe, derived from the Latin word 'ferrum'. Iron is one of the most abundant elements on Earth and is essential for many biological processes."
-			},
-			{
-				"question": "Who composed the 'Symphony No. 9'?",
-				"answers": [
-					{ "text": "Ludwig van Beethoven", "correct": true },
-					{ "text": "Wolfgang Amadeus Mozart", "correct": false },
-					{ "text": "Johann Sebastian Bach", "correct": false }
-				],
-				"explanation": "Ludwig van Beethoven composed the 'Symphony No. 9 in D minor, Op. 125', also known as the 'Choral Symphony'. It is one of his most famous and celebrated works."
-			},
-			{
-				"question": "What is the chemical symbol for potassium?",
-				"answers": [
-					{ "text": "K", "correct": true },
-					{ "text": "P", "correct": false },
-					{ "text": "Pt", "correct": false }
-				],
-				"explanation": "The chemical symbol for potassium is K, derived from the Latin word 'kalium'. Potassium is an essential mineral for human health and is involved in various physiological processes."
-			},
-			{
-				"question": "Which animal is known as the 'Ship of the Desert'?",
-				"answers": [
-					{ "text": "Camel", "correct": true },
-					{ "text": "Elephant", "correct": false },
-					{ "text": "Giraffe", "correct": false }
-				],
-				"explanation": "The camel is known as the 'Ship of the Desert' due to its ability to travel long distances across arid desert regions while carrying heavy loads."
-			},
-			{
-				"question": "Who wrote 'The Adventures of Tom Sawyer'?",
-				"answers": [
-					{ "text": "Mark Twain", "correct": true },
-					{ "text": "Charles Dickens", "correct": false },
-					{ "text": "J.K. Rowling", "correct": false }
-				],
-				"explanation": "'The Adventures of Tom Sawyer' was written by Mark Twain, originally published in 1876. It is a classic American novel about the adventures of a young boy growing up along the Mississippi River."
-			},
-			{
-				"question": "What is the largest reptile in the world?",
-				"answers": [
-					{ "text": "Saltwater Crocodile", "correct": true },
-					{ "text": "Komodo Dragon", "correct": false },
-					{ "text": "Green Anaconda", "correct": false }
-				],
-				"explanation": "The Saltwater Crocodile is the largest reptile in the world, capable of reaching lengths of up to 23 feet (7 meters) and weighing over 2,000 pounds (900 kilograms)."
-			},
-			{
-				"question": "Which country is known as the 'Land of the Rising Sun'?",
-				"answers": [
-					{ "text": "Japan", "correct": true },
-					{ "text": "China", "correct": false },
-					{ "text": "Korea", "correct": false }
-				],
-				"explanation": "Japan is often referred to as the 'Land of the Rising Sun' due to its name's literal meaning and its position east of the Asian mainland."
-			},
-			{
-				"question": "What is the chemical symbol for copper?",
-				"answers": [
-					{ "text": "Cu", "correct": true },
-					{ "text": "Co", "correct": false },
-					{ "text": "Cp", "correct": false }
-				],
-				"explanation": "The chemical symbol for copper is Cu, derived from the Latin word 'cuprum'. Copper is a versatile metal used in various applications, from electrical wiring to architectural structures."
-			},
-			{
-				"question": "Which is the largest planet in our solar system?",
-				"answers": [
-					{ "text": "Jupiter", "correct": true },
-					{ "text": "Saturn", "correct": false },
-					{ "text": "Neptune", "correct": false }
-				],
-				"explanation": "Jupiter is the largest planet in our solar system, with a diameter of approximately 86,881 miles (139,822 kilometers)."
-			},
-			{
-				"question": "Who is known as the 'Father of Geometry'?",
-				"answers": [
-					{ "text": "Euclid", "correct": true },
-					{ "text": "Archimedes", "correct": false },
-					{ "text": "Pythagoras", "correct": false }
-				],
-				"explanation": "Euclid is known as the 'Father of Geometry' for his contributions to the development of geometry as a mathematical discipline in ancient Greece."
-			},
-			{
-				"question": "What is the chemical symbol for lead?",
-				"answers": [
-					{ "text": "Pb", "correct": true },
-					{ "text": "Le", "correct": false },
-					{ "text": "Pl", "correct": false }
-				],
-				"explanation": "The chemical symbol for lead is Pb, derived from the Latin word 'plumbum'. Lead is a heavy metal used in various industrial applications, although its toxicity has led to reduced usage in recent years."
-			},
-			{
-				"question": "What is the largest organ in the human body?",
-				"answers": [
-					{ "text": "Skin", "correct": true },
-					{ "text": "Liver", "correct": false },
-					{ "text": "Heart", "correct": false }
-				],
-				"explanation": "The skin is the largest organ in the human body, providing protection, sensation, and regulation of body temperature."
-			},
-			{
-				"question": "Who invented the telephone?",
-				"answers": [
-					{ "text": "Alexander Graham Bell", "correct": true },
-					{ "text": "Thomas Edison", "correct": false },
-					{ "text": "Nikola Tesla", "correct": false }
-				],
-				"explanation": "Alexander Graham Bell is credited with inventing the telephone, revolutionizing communication with his invention in 1876."
-			},
-			{
-				"question": "What is the chemical symbol for nitrogen?",
-				"answers": [
-					{ "text": "N", "correct": true },
-					{ "text": "Ni", "correct": false },
-					{ "text": "Ne", "correct": false }
-				],
-				"explanation": "The chemical symbol for nitrogen is N. Nitrogen is the most abundant gas in Earth's atmosphere and is essential for life, as it is a key component of amino acids and nucleic acids."
-			},
-			{
-				"question": "Who wrote 'Pride and Prejudice'?",
-				"answers": [
-					{ "text": "Jane Austen", "correct": true },
-					{ "text": "Charlotte Brontë", "correct": false },
-					{ "text": "Emily Dickinson", "correct": false }
-				],
-				"explanation": "'Pride and Prejudice' was written by Jane Austen and first published in 1813. It is one of the most beloved and enduring works of English literature, exploring themes of love, marriage, and social class."
-			},
-			{
-				"question": "What is the chemical symbol for silver?",
-				"answers": [
-					{ "text": "Ag", "correct": true },
-					{ "text": "Au", "correct": false },
-					{ "text": "Si", "correct": false }
-				],
-				"explanation": "The chemical symbol for silver is Ag, derived from the Latin word 'argentum'. Silver has been used for centuries in coins, jewelry, and various industrial applications."
-			},
-			{
-				"question": "What is the process by which plants make their own food?",
-				"answers": [
-					{ "text": "Photosynthesis", "correct": true },
-					{ "text": "Respiration", "correct": false },
-					{ "text": "Pollination", "correct": false }
-				],
-				"explanation": "Photosynthesis is the process by which plants make their own food using sunlight, carbon dioxide, and water, producing oxygen as a byproduct."
-			},
-			{
-				"question": "Who discovered gravity?",
-				"answers": [
-					{ "text": "Isaac Newton", "correct": true },
-					{ "text": "Galileo Galilei", "correct": false },
-					{ "text": "Albert Einstein", "correct": false }
-				],
-				"explanation": "Isaac Newton is credited with discovering gravity, famously described by his law of universal gravitation. Newton's work laid the foundation for classical mechanics."
-			},
-			{
-				"question": "What is the largest planet in our solar system?",
-				"answers": [
-					{ "text": "Jupiter", "correct": true },
-					{ "text": "Saturn", "correct": false },
-					{ "text": "Neptune", "correct": false }
-				],
-				"explanation": "Jupiter is the largest planet in our solar system, with a diameter of approximately 86,881 miles (139,822 kilometers)."
-			},
-			{
-				"question": "Who wrote 'War and Peace'?",
-				"answers": [
-					{ "text": "Leo Tolstoy", "correct": true },
-					{ "text": "Fyodor Dostoevsky", "correct": false },
-					{ "text": "Anton Chekhov", "correct": false }
-				],
-				"explanation": "'War and Peace' was written by Leo Tolstoy and published between 1865 and 1869. It is one of the longest and most celebrated works of literature, exploring themes of war, love, and the human condition."
-			},
-			{
-				"question": "What is the process of water turning into vapor called?",
-				"answers": [
-					{ "text": "Evaporation", "correct": true },
-					{ "text": "Condensation", "correct": false },
-					{ "text": "Precipitation", "correct": false }
-				],
-				"explanation": "Evaporation is the process by which water turns into vapor or gas, typically due to heating from the sun."
-			},
-			{
-				"question": "Who invented the light bulb?",
-				"answers": [
-					{ "text": "Thomas Edison", "correct": true },
-					{ "text": "Nikola Tesla", "correct": false },
-					{ "text": "Alexander Graham Bell", "correct": false }
-				],
-				"explanation": "Thomas Edison is credited with inventing the first commercially practical incandescent light bulb, which revolutionized indoor lighting."
-			},
-			{
-				"question": "What is the largest type of big cat in the world?",
-				"answers": [
-					{ "text": "Siberian Tiger", "correct": true },
-					{ "text": "Lion", "correct": false },
-					{ "text": "Jaguar", "correct": false }
-				],
-				"explanation": "The Siberian Tiger, also known as the Amur Tiger, is the largest type of big cat in the world, capable of reaching lengths of up to 11 feet (3.3 meters) and weighing over 900 pounds (400 kilograms)."
-			},
-			{
-				"question": "Which country is famous for the Great Wall?",
-				"answers": [
-					{ "text": "China", "correct": true },
-					{ "text": "India", "correct": false },
-					{ "text": "Russia", "correct": false }
-				],
-				"explanation": "China is famous for the Great Wall, a series of fortifications built to protect against invasions from various nomadic groups and military incursions."
-			},
-			{
-				"question": "What is the chemical symbol for gold?",
-				"answers": [
-					{ "text": "Au", "correct": true },
-					{ "text": "Ag", "correct": false },
-					{ "text": "Pb", "correct": false }
-				],
-				"explanation": "The chemical symbol for gold is Au, derived from the Latin word 'aurum', which means 'shining dawn' or 'glow of sunrise'."
-			},
-			{
-				"question": "Which gas do humans need to breathe in order to survive?",
-				"answers": [
-					{ "text": "Oxygen", "correct": true },
-					{ "text": "Carbon dioxide", "correct": false },
-					{ "text": "Nitrogen", "correct": false }
-				],
-				"explanation": "Oxygen is the gas that humans need to breathe in order to survive, as it is essential for cellular respiration, the process by which cells generate energy."
-			},
-			{
-				"question": "Who was the first person to step on the moon?",
-				"answers": [
-					{ "text": "Neil Armstrong", "correct": true },
-					{ "text": "Buzz Aldrin", "correct": false },
-					{ "text": "Yuri Gagarin", "correct": false }
-				],
-				"explanation": "Neil Armstrong was the first person to step on the moon on July 20, 1969, during the Apollo 11 mission, famously uttering the words 'That's one small step for man, one giant leap for mankind.'"
-			},
-			{
-				"question": "What is the largest type of bear in the world?",
-				"answers": [
-					{ "text": "Polar Bear", "correct": true },
-					{ "text": "Grizzly Bear", "correct": false },
-					{ "text": "Kodiak Bear", "correct": false }
-				],
-				"explanation": "The Polar Bear is the largest type of bear in the world, well-adapted to its Arctic habitat with its thick fur and layers of fat for insulation."
-			},
-			{
-				"question": "Which country is known as the 'Land of Fire and Ice'?",
-				"answers": [
-					{ "text": "Iceland", "correct": true },
-					{ "text": "Greenland", "correct": false },
-					{ "text": "New Zealand", "correct": false }
-				],
-				"explanation": "Iceland is often referred to as the 'Land of Fire and Ice' due to its combination of active volcanoes and glaciers."
-			},
-			{
-				"question": "What is the chemical symbol for carbon?",
-				"answers": [
-					{ "text": "C", "correct": true },
-					{ "text": "Co", "correct": false },
-					{ "text": "Cr", "correct": false }
-				],
-				"explanation": "The chemical symbol for carbon is C, derived from the Latin word 'carbo', meaning 'charcoal'. Carbon is a fundamental element found in all living organisms and many non-living substances."
-			},
-			{
-				"question": "Who discovered penicillin?",
-				"answers": [
-					{ "text": "Alexander Fleming", "correct": true },
-					{ "text": "Louis Pasteur", "correct": false },
-					{ "text": "Marie Curie", "correct": false }
-				],
-				"explanation": "Alexander Fleming discovered penicillin, the first antibiotic drug, in 1928, revolutionizing medicine and saving countless lives by treating bacterial infections."
-			},
-			{
-				"question": "What is the fastest land animal?",
-				"answers": [
-					{ "text": "Cheetah", "correct": true },
-					{ "text": "Lion", "correct": false },
-					{ "text": "Gazelle", "correct": false }
-				],
-				"explanation": "The cheetah is the fastest land animal, capable of reaching speeds up to 75 miles per hour (120 kilometers per hour) in short bursts."
-			},
-			{
-				"question": "Which planet is known as the 'Blue Planet'?",
-				"answers": [
-					{ "text": "Earth", "correct": true },
-					{ "text": "Neptune", "correct": false },
-					{ "text": "Uranus", "correct": false }
-				],
-				"explanation": "Earth is often referred to as the 'Blue Planet' because of its abundant water, which gives it a blue appearance when seen from space."
-			},
-			{
-				"question": "What is the largest bird in the world?",
-				"answers": [
-					{ "text": "Ostrich", "correct": true },
-					{ "text": "Emu", "correct": false },
-					{ "text": "Albatross", "correct": false }
-				],
-				"explanation": "The ostrich is the largest bird in the world, capable of reaching heights of up to 9 feet (2.7 meters) and weighing up to 320 pounds (145 kilograms)."
-			},
-			{
-				"question": "Which country is known as the 'Land of the Midnight Sun'?",
-				"answers": [
-					{ "text": "Norway", "correct": true },
-					{ "text": "Sweden", "correct": false },
-					{ "text": "Finland", "correct": false }
-				],
-				"explanation": "Norway is known as the 'Land of the Midnight Sun' because during the summer months, parts of the country experience continuous daylight due to its high latitude."
-			},
-			{
-				"question": "What is the largest species of shark?",
-				"answers": [
-					{ "text": "Whale Shark", "correct": true },
-					{ "text": "Great White Shark", "correct": false },
-					{ "text": "Hammerhead Shark", "correct": false }
-				],
-				"explanation": "The whale shark is the largest species of shark, reaching lengths of up to 40 feet (12 meters) and weighing as much as 20 tons."
-			},
-			{
-				"question": "What is the chemical symbol for sodium?",
-				"answers": [
-					{ "text": "Na", "correct": true },
-					{ "text": "No", "correct": false },
-					{ "text": "Sn", "correct": false }
-				],
-				"explanation": "The chemical symbol for sodium is Na, derived from the Latin word 'natrium'. Sodium is a highly reactive metal commonly found in salts and various compounds."
-			},
-			{
-				"question": "Which is the largest rainforest in the world?",
-				"answers": [
-					{ "text": "Amazon Rainforest", "correct": true },
-					{ "text": "Congo Rainforest", "correct": false },
-					{ "text": "Borneo Rainforest", "correct": false }
-				],
-				"explanation": "The Amazon Rainforest is the largest rainforest in the world, covering an area of approximately 2.1 million square miles (5.5 million square kilometers) across South America."
-			},
-			{
-				"question": "Who is known as the 'Father of Modern Physics'?",
-				"answers": [
-					{ "text": "Albert Einstein", "correct": true },
-					{ "text": "Isaac Newton", "correct": false },
-					{ "text": "Galileo Galilei", "correct": false }
-				],
-				"explanation": "Albert Einstein is often referred to as the 'Father of Modern Physics' for his groundbreaking contributions to theoretical physics, particularly his theory of relativity."
-			},
-			{
-				"question": "What is the smallest planet in our solar system?",
-				"answers": [
-					{ "text": "Mercury", "correct": true },
-					{ "text": "Pluto", "correct": false },
-					{ "text": "Mars", "correct": false }
-				],
-				"explanation": "Mercury is the smallest planet in our solar system, with a diameter of approximately 3,032 miles (4,879 kilometers)."
-			},
-			{
-				"question": "What is the chemical symbol for sodium?",
-				"answers": [
-					{ "text": "Na", "correct": true },
-					{ "text": "No", "correct": false },
-					{ "text": "Sn", "correct": false }
-				],
-				"explanation": "The chemical symbol for sodium is Na, derived from the Latin word 'natrium'. Sodium is a highly reactive metal commonly found in salts and various compounds."
-			},
-			{
-				"question": "Which is the largest type of penguin?",
-				"answers": [
-					{ "text": "Emperor Penguin", "correct": true },
-					{ "text": "King Penguin", "correct": false },
-					{ "text": "Gentoo Penguin", "correct": false }
-				],
-				"explanation": "The Emperor Penguin is the largest type of penguin, native to Antarctica and known for its distinctive black and white plumage."
-			},
-			{
-				"question": "Who wrote 'To Kill a Mockingbird'?",
-				"answers": [
-					{ "text": "Harper Lee", "correct": true },
-					{ "text": "Mark Twain", "correct": false },
-					{ "text": "John Steinbeck", "correct": false }
-				],
-				"explanation": "'To Kill a Mockingbird' was written by Harper Lee, published in 1960. It addresses the issues of racial injustice and moral growth in the American South."
-			},
-			{
-				"question": "What is the process by which rocks are broken down into smaller pieces?",
-				"answers": [
-					{ "text": "Weathering", "correct": true },
-					{ "text": "Erosion", "correct": false },
-					{ "text": "Deposition", "correct": false }
-				],
-				"explanation": "Weathering is the process by which rocks are broken down into smaller pieces through exposure to environmental factors such as wind, water, and temperature changes."
-			},
-			{
-				"question": "Which is the largest moon in the solar system?",
-				"answers": [
-					{ "text": "Ganymede", "correct": true },
-					{ "text": "Titan", "correct": false },
-					{ "text": "Callisto", "correct": false }
-				],
-				"explanation": "Ganymede, one of Jupiter's moons, is the largest moon in the solar system, even larger than the planet Mercury."
-			},
-			{
-				"question": "Who is credited with discovering America?",
-				"answers": [
-					{ "text": "Christopher Columbus", "correct": true },
-					{ "text": "Amerigo Vespucci", "correct": false },
-					{ "text": "Leif Erikson", "correct": false }
-				],
-				"explanation": "Christopher Columbus is credited with discovering America in 1492 when he landed in the Bahamas, although there were indigenous peoples already living there."
-			},
-			{
-				"question": "What is the chemical symbol for helium?",
-				"answers": [
-					{ "text": "He", "correct": true },
-					{ "text": "H", "correct": false },
-					{ "text": "Hi", "correct": false }
-				],
-				"explanation": "The chemical symbol for helium is He, derived from the Greek word 'helios', meaning 'sun'. Helium is the second most abundant element in the universe."
-			}
+		{
+		"question": "At what temperature does water boil?",
+		"answers": [
+			{ "text": "100°C", "correct": true },
+			{ "text": "90°C", "correct": false },
+			{ "text": "110°C", "correct": false }
+		],
+		"explanation": "Water boils at 100°C (212°F) at standard atmospheric pressure."
+	},
+	{
+		"question": "During which war did the Battle of Gettysburg take place?",
+		"answers": [
+			{ "text": "Civil War", "correct": true },
+			{ "text": "World War I", "correct": false },
+			{ "text": "Revolutionary War", "correct": false }
+		],
+		"explanation": "The Battle of Gettysburg was fought during the American Civil War in July 1863."
+	},
+	{
+		"question": "From what tree do we get acorns?",
+		"answers": [
+			{ "text": "Oak", "correct": true },
+			{ "text": "Maple", "correct": false },
+			{ "text": "Elm", "correct": false }
+		],
+		"explanation": "Acorns, the fruit of oak trees, serve as an important food source for wildlife."
+	},
+	{
+		"question": "How many planets are in our solar system?",
+		"answers": [
+			{ "text": "Eight", "correct": true },
+			{ "text": "Nine", "correct": false },
+			{ "text": "Seven", "correct": false }
+		],
+		"explanation": "There are eight planets in our solar system since Pluto was reclassified as a dwarf planet in 2006."
+	},
+	{
+		"question": "In what city can you visit the Louvre Museum?",
+		"answers": [
+			{ "text": "Paris", "correct": true },
+			{ "text": "London", "correct": false },
+			{ "text": "Rome", "correct": false }
+		],
+		"explanation": "The Louvre Museum, famous for housing the Mona Lisa, is located in Paris, France."
+	},
+	{
+		"question": "In what city is the U.S. Declaration of Independence located?",
+		"answers": [
+			{ "text": "Washington D.C.", "correct": true },
+			{ "text": "Philadelphia", "correct": false },
+			{ "text": "New York", "correct": false }
+		],
+		"explanation": "The original United States Declaration of Independence is housed at the National Archives in Washington D.C."
+	},
+	{
+		"question": "In what city was the United Nations Charter signed in 1945?",
+		"answers": [
+			{ "text": "San Francisco", "correct": true },
+			{ "text": "New York", "correct": false },
+			{ "text": "Geneva", "correct": false }
+		],
+		"explanation": "The Charter of the United Nations was signed in San Francisco on June 26, 1945."
+	},
+	{
+		"question": "In what country would you find the ruins of the ancient city of Troy?",
+		"answers": [
+			{ "text": "Turkey", "correct": true },
+			{ "text": "Greece", "correct": false },
+			{ "text": "Italy", "correct": false }
+		],
+		"explanation": "The historical city of Troy, made famous by Homer's 'The Iliad,' is located in modern-day Turkey."
+	},
+	{
+		"question": "In which ocean did the Titanic sink?",
+		"answers": [
+			{ "text": "Atlantic", "correct": true },
+			{ "text": "Pacific", "correct": false },
+			{ "text": "Indian", "correct": false }
+		],
+		"explanation": "The RMS Titanic sank in the North Atlantic Ocean on April 15, 1912."
+	},
+	{
+		"question": "In which war did the Axis and Allied powers face off?",
+		"answers": [
+			{ "text": "World War II", "correct": true },
+			{ "text": "World War I", "correct": false },
+			{ "text": "Cold War", "correct": false }
+		],
+		"explanation": "The Axis and Allied powers were the opposing groups during World War II."
+	},
+	{
+		"question": "What ancient civilization built the pyramids?",
+		"answers": [
+			{ "text": "Egyptians", "correct": true },
+			{ "text": "Romans", "correct": false },
+			{ "text": "Greeks", "correct": false }
+		],
+		"explanation": "The ancient Egyptians built the famous pyramids as tombs for their pharaohs."
+	},
+	{
+		"question": "What ancient civilization is known for creating the concept of democracy?",
+		"answers": [
+			{ "text": "Greeks", "correct": true },
+			{ "text": "Romans", "correct": false },
+			{ "text": "Mayans", "correct": false }
+		],
+		"explanation": "Ancient Greeks from the city-state of Athens are credited with developing the concept of democracy."
+	},
+	{
+		"question": "What ancient civilization is known for its epic tale, 'The Iliad'?",
+		"answers": [
+			{ "text": "Greeks", "correct": true },
+			{ "text": "Vikings", "correct": false },
+			{ "text": "Egyptians", "correct": false }
+		],
+		"explanation": "'The Iliad' is an epic poem attributed to the ancient Greek poet Homer, detailing parts of the Trojan War."
+	},
+	{
+		"question": "What ancient empire was ruled by Julius Caesar?",
+		"answers": [
+			{ "text": "Roman", "correct": true },
+			{ "text": "Persian", "correct": false },
+			{ "text": "Mongol", "correct": false }
+		],
+		"explanation": "Julius Caesar was a pivotal figure in transforming the Roman Republic into the Roman Empire."
+	},
+	{
+		"question": "What are people who study weather called?",
+		"answers": [
+			{ "text": "Meteorologists", "correct": true },
+			{ "text": "Astronomers", "correct": false },
+			{ "text": "Geologists", "correct": false }
+		],
+		"explanation": "Meteorologists are scientists who study the atmosphere and weather patterns."
+	},
+	{
+		"question": "What are the first ten amendments to the U.S. Constitution called?",
+		"answers": [
+			{ "text": "Bill of Rights", "correct": true },
+			{ "text": "Declaration of Rights", "correct": false },
+			{ "text": "Freedom Articles", "correct": false }
+		],
+		"explanation": "The first ten amendments, known collectively as the Bill of Rights, were ratified in 1791 and protect citizens' fundamental rights."
+	},
+	{
+		"question": "What are the three branches of the United States government?",
+		"answers": [
+			{ "text": "Legislative, Executive, Judicial", "correct": true },
+			{ "text": "Federal, State, Local", "correct": false },
+			{ "text": "Senate, House, President", "correct": false }
+		],
+		"explanation": "The U.S. government is divided into three branches: Legislative (Congress), Executive (President), and Judicial (Supreme Court) to ensure a balance of power."
+	},
+	{
+		"question": "What battle turned the tide of the American Civil War in favor of the North?",
+		"answers": [
+			{ "text": "Gettysburg", "correct": true },
+			{ "text": "Antietam", "correct": false },
+			{ "text": "Shiloh", "correct": false }
+		],
+		"explanation": "The Battle of Gettysburg in 1863 is often considered the turning point that shifted momentum to the North in the American Civil War."
+	},
+	{
+		"question": "What biological kingdom do mushrooms belong to?",
+		"answers": [
+			{ "text": "Fungi", "correct": true },
+			{ "text": "Plantae", "correct": false },
+			{ "text": "Animalia", "correct": false }
+		],
+		"explanation": "Mushrooms belong to the kingdom Fungi, which is distinct from plants and animals."
+	},
+	{
+		"question": "What branch of biology deals with the classification of organisms?",
+		"answers": [
+			{ "text": "Taxonomy", "correct": true },
+			{ "text": "Botany", "correct": false },
+			{ "text": "Zoology", "correct": false }
+		],
+		"explanation": "Taxonomy is the science of naming, defining, and classifying groups of biological organisms."
+	},
+	{
+		"question": "What device did Alexander Graham Bell invent?",
+		"answers": [
+			{ "text": "Telephone", "correct": true },
+			{ "text": "Radio", "correct": false },
+			{ "text": "Lightbulb", "correct": false }
+		],
+		"explanation": "Alexander Graham Bell is credited with inventing the first practical telephone."
+	},
+	{
+		"question": "What disease was once known as the 'Black Death'?",
+		"answers": [
+			{ "text": "Bubonic Plague", "correct": true },
+			{ "text": "Smallpox", "correct": false },
+			{ "text": "Cholera", "correct": false }
+		],
+		"explanation": "The 'Black Death' refers to the bubonic plague epidemic that devastated Europe in the 14th century."
+	},
+	{
+		"question": "What do the 50 stars on the US flag represent?",
+		"answers": [
+			{ "text": "50 States", "correct": true },
+			{ "text": "50 Cities", "correct": false },
+			{ "text": "50 Presidents", "correct": false }
+		],
+		"explanation": "Each star represents one of the 50 states in the United States."
+	},
+	{
+		"question": "What do the colors red, white, and blue represent on the U.S. flag?",
+		"answers": [
+			{ "text": "Valor, Purity, Justice", "correct": true },
+			{ "text": "Peace, War, Neutrality", "correct": false },
+			{ "text": "Past, Present, Future", "correct": false }
+		],
+		"explanation": "Red symbolizes valor and bravery, white symbolizes purity and innocence, and blue represents vigilance, perseverance, and justice."
+	},
+	{
+		"question": "What do we call a naturally preserved remains of an animal or plant?",
+		"answers": [
+			{ "text": "Fossil", "correct": true },
+			{ "text": "Artifact", "correct": false },
+			{ "text": "Relic", "correct": false }
+        ],
+		"explanation": "A fossil is the preserved remains or traces of animals, plants, and other organisms from the remote past."
+	},
+	{
+		"question": "What do we call a newly hatched butterfly?",
+		"answers": [
+			{ "text": "Caterpillar", "correct": true },
+			{ "text": "Nymph", "correct": false },
+			{ "text": "Larva", "correct": false }
+        ],
+		"explanation": "A newly hatched butterfly is termed a caterpillar, which is the larval stage of butterflies."
+	},
+	{
+		"question": "What do we call the composition and structure of Earth's atmosphere?",
+		"answers": [
+			{ "text": "Atmosphere", "correct": true },
+			{ "text": "Biosphere", "correct": false },
+			{ "text": "Lithosphere", "correct": false }
+    	],
+		"explanation": "The term 'atmosphere' defines the layer of gases surrounding Earth, held in place by gravity."
+	},
+	{
+		"question": "What do you call a scientist who studies rocks?",
+		"answers": [
+			{ "text": "Geologist", "correct": true },
+			{ "text": "Biologist", "correct": false },
+			{ "text": "Astronomer", "correct": false }
+		],
+		"explanation": "A geologist studies solid features of the Earth (rocks, mountains), as well as processes and history."
+	},
+	{
+		"question": "What does DNA stand for?",
+		"answers": [
+			{ "text": "Deoxyribonucleic Acid", "correct": true },
+			{ "text": "Data Network Access", "correct": false },
+			{ "text": "Digital Network Algorithm", "correct": false }
+		],
+		"explanation": "DNA stands for Deoxyribonucleic Acid, the molecule that carries genetic instructions in all living things."
+	},
+	{
+		"question": "What European country is known for its windmills and tulips?",
+		"answers": [
+			{ "text": "Netherlands", "correct": true },
+			{ "text": "Belgium", "correct": false },
+			{ "text": "Germany", "correct": false }
+		],
+		"explanation": "The Netherlands is famously known for its picturesque landscapes featuring windmills and tulip fields."
+	},
+	{
+		"question": "What event began on July 4, 1776?",
+		"answers": [
+			{ "text": "American Independence", "correct": true },
+			{ "text": "French Revolution", "correct": false },
+			{ "text": "Boston Tea Party", "correct": false }
+		],
+		"explanation": "July 4, 1776, marks the formal declaration of American independence from Britain."
+	},
+	{
+		"question": "What famous line did Neil Armstrong say when he first walked on the moon?",
+		"answers": [
+			{ "text": "One small step", "correct": true },
+			{ "text": "To infinity", "correct": false },
+			{ "text": "Beyond the stars", "correct": false }
+		],
+		"explanation": "Neil Armstrong famously stated \"That's one small step for man, one giant leap for mankind\" during the moon landing."
+	},
+	{
+		"question": "What famous ship sank on its maiden voyage in 1912?",
+		"answers": [
+			{ "text": "Titanic", "correct": true },
+			{ "text": "Lusitania", "correct": false },
+			{ "text": "Mayflower", "correct": false }
+		],
+		"explanation": "The RMS Titanic sank on its maiden voyage from Southampton to New York City in April 1912."
+	},
+	{
+		"question": "What gas do humans need to breathe in order to live?",
+		"answers": [
+			{ "text": "Oxygen", "correct": true },
+			{ "text": "Carbon dioxide", "correct": false },
+			{ "text": "Nitrogen", "correct": false }
+		],
+		"explanation": "Oxygen is essential for human respiration, a critical process for energy production in the body."
+	},
+	{
+		"question": "What instrument measures atmospheric pressure?",
+		"answers": [
+			{ "text": "Barometer", "correct": true },
+			{ "text": "Thermometer", "correct": false },
+			{ "text": "Hygrometer", "correct": false }
+		],
+		"explanation": "A barometer is used to measure atmospheric pressure, important for weather forecasting and science."
+	},
+	{
+		"question": "What is H2O more commonly known as?",
+		"answers": [
+			{ "text": "Water", "correct": true },
+			{ "text": "Salt", "correct": false },
+			{ "text": "Sugar", "correct": false }
+		],
+		"explanation": "H2O is the chemical formula for water, consisting of two hydrogen atoms and one oxygen atom."
+	},
+	{
+    "question": "What is often called the 'ship of the desert'?",
+    "answers": [
+      { "text": "Camel", "correct": true },
+      { "text": "Horse", "correct": false },
+      { "text": "Elephant", "correct": false }
+    ],
+    "explanation": "Camels are referred to as the 'ship of the desert' due to their ability to travel long distances across deserts with little water."
+  },
+  {
+    "question": "What is the basic unit of life?",
+    "answers": [
+      { "text": "Cell", "correct": true },
+      { "text": "Atom", "correct": false },
+      { "text": "Molecule", "correct": false }
+    ],
+    "explanation": "The cell is the basic unit of life, fundamental to all living organisms."
+  },
+  {
+    "question": "What is the body system consisting of bones and cartilage?",
+    "answers": [
+      { "text": "Skeletal", "correct": true },
+      { "text": "Muscular", "correct": false },
+      { "text": "Nervous", "correct": false }
+    ],
+    "explanation": "The skeletal system comprises all of the bones and cartilage in an organism, providing structural support."
+  },
+  {
+    "question": "What is the boiling point of water?",
+    "answers": [
+      { "text": "100°C", "correct": true },
+      { "text": "90°C", "correct": false },
+      { "text": "212°F", "correct": false }
+    ],
+    "explanation": "The boiling point of water is 100 degrees Celsius at standard atmospheric pressure."
+  },
+  {
+    "question": "What is the capital of France?",
+    "answers": [
+      { "text": "Paris", "correct": true },
+      { "text": "Lyon", "correct": false },
+      { "text": "Marseille", "correct": false }
+    ],
+    "explanation": "Paris is the capital and most populous city of France."
+  },
+  {
+    "question": "What is the capital of Japan?",
+    "answers": [
+      { "text": "Tokyo", "correct": true },
+      { "text": "Osaka", "correct": false },
+      { "text": "Kyoto", "correct": false }
+    ],
+    "explanation": "Tokyo is the capital city of Japan, known for its blend of modern and traditional architecture."
+  },
+  {
+    "question": "What is the chemical formula for table salt?",
+    "answers": [
+      { "text": "NaCl", "correct": true },
+      { "text": "KCl", "correct": false },
+      { "text": "CaCl2", "correct": false }
+    ],
+    "explanation": "NaCl is the chemical formula for sodium chloride, commonly known as table salt."
+  },
+  {
+    "question": "What is the dominant religion in Indonesia?",
+    "answers": [
+      { "text": "Islam", "correct": true },
+      { "text": "Hinduism", "correct": false },
+      { "text": "Buddhism", "correct": false }
+    ],
+    "explanation": "Islam is the predominant religion in Indonesia, with approximately 87% of Indonesians identifying as Muslim."
+  },
+  {
+    "question": "What is the freezing point of water?",
+    "answers": [
+      { "text": "0°C", "correct": true },
+      { "text": "32°F", "correct": false },
+      { "text": "-10°C", "correct": false }
+    ],
+    "explanation": "The freezing point of water is 0 degrees Celsius or 32 degrees Fahrenheit."
+  },
+  {
+    "question": "What is the hardest natural substance on Earth?",
+    "answers": [
+      { "text": "Diamond", "correct": true },
+      { "text": "Gold", "correct": false },
+      { "text": "Quartz", "correct": false }
+    ],
+    "explanation": "Diamond is the hardest natural substance found on Earth, known for its unbeatable hardness and lustrous appearance."
+  },
+  {
+    "question": "What is the largest freshwater lake in the world?",
+    "answers": [
+      { "text": "Baikal", "correct": false },
+      { "text": "Superior", "correct": true },
+      { "text": "Victoria", "correct": false }
+    ],
+    "explanation": "Lake Superior is the largest freshwater lake in the world by surface area."
+  },
+  {
+    "question": "What is the largest mammal in the world?",
+    "answers": [
+      { "text": "Blue Whale", "correct": true },
+      { "text": "Elephant", "correct": false },
+      { "text": "Giraffe", "correct": false }
+    ],
+    "explanation": "The blue whale is the largest mammal on Earth, reaching lengths of up to 100 feet and weights of about 200 tons."
+  },
+  {
+    "question": "What is the largest organ in the human body?",
+    "answers": [
+      { "text": "Skin", "correct": true },
+      { "text": "Liver", "correct": false },
+      { "text": "Heart", "correct": false }
+    ],
+    "explanation": "The skin is the largest organ of the human body, serving as a protective barrier."
+  },
+  {
+    "question": "What is the largest planet in our solar system?",
+    "answers": [
+      { "text": "Jupiter", "correct": true },
+      { "text": "Saturn", "correct": false },
+      { "text": "Neptune", "correct": false }
+    ],
+    "explanation": "Jupiter is the largest planet in our solar system, noted for its massive size and giant red spot."
+  },
+  {
+    "question": "What is the largest type of deer in the world?",
+    "answers": [
+      { "text": "Moose", "correct": true },
+      { "text": "Elk", "correct": false },
+      { "text": "Red Deer", "correct": false }
+    ],
+    "explanation": "The moose is the largest species of deer in the world, known for its massive body size and antlers."
+  },
+  {
+        "question": "What is the longest river in the world?",
+        "answers": [
+            { "text": "Nile", "correct": true },
+            { "text": "Amazon", "correct": false },
+            { "text": "Yangtze", "correct": false }
+        ],
+        "explanation": "The Nile River in Africa is considered the longest river in the world, stretching about 6,650 km (4,130 miles)."
+    },
+    {
+        "question": "What is the longest war in U.S. history?",
+        "answers": [
+            { "text": "Afghanistan", "correct": true },
+            { "text": "Vietnam", "correct": false },
+            { "text": "WWII", "correct": false }
+        ],
+        "explanation": "The war in Afghanistan, lasting from 2001 to 2021, is the longest war in U.S. history."
+    },
+    {
+        "question": "What is the main ingredient in glass?",
+        "answers": [
+            { "text": "Sand", "correct": true },
+            { "text": "Clay", "correct": false },
+            { "text": "Water", "correct": false }
+        ],
+        "explanation": "Sand, specifically silica, is the primary component used to make glass."
+    },
+    {
+        "question": "What is the main language spoken in Brazil?",
+        "answers": [
+            { "text": "Portuguese", "correct": true },
+            { "text": "Spanish", "correct": false },
+            { "text": "French", "correct": false }
+        ],
+        "explanation": "Portuguese is the official language of Brazil, differing linguistically from the Portuguese spoken in Portugal."
+    },
+    {
+        "question": "What is the main religion of India?",
+        "answers": [
+            { "text": "Hinduism", "correct": true },
+            { "text": "Islam", "correct": false },
+            { "text": "Buddhism", "correct": false }
+        ],
+        "explanation": "Hinduism is the dominant religion in India, practiced by about 80% of the population."
+    },
+    {
+        "question": "What is the most abundant gas in the Earth's atmosphere?",
+        "answers": [
+            { "text": "Nitrogen", "correct": true },
+            { "text": "Oxygen", "correct": false },
+            { "text": "Carbon dioxide", "correct": false }
+        ],
+        "explanation": "Nitrogen makes up about 78% of the Earth's atmosphere."
+    },
+    {
+        "question": "What is the most widely practiced religion in the world?",
+        "answers": [
+            { "text": "Christianity", "correct": true },
+            { "text": "Islam", "correct": false },
+            { "text": "Buddhism", "correct": false }
+        ],
+        "explanation": "Christianity is currently the world's largest religion with over 2 billion followers."
+    },
+    {
+        "question": "What is the name given to the first ten amendments of the U.S. Constitution?",
+        "answers": [
+            { "text": "Bill of Rights", "correct": true },
+            { "text": "Declaration", "correct": false },
+            { "text": "Constitutional Acts", "correct": false }
+        ],
+        "explanation": "The first ten amendments, known collectively as the Bill of Rights, were ratified in 1791."
+    },
+    {
+        "question": "What is the name of the book that details the laws of motion and universal gravitation?",
+        "answers": [
+            { "text": "Principia Mathematica", "correct": true },
+            { "text": "Principles of Mathematics", "correct": false },
+            { "text": "Book of Motions", "correct": false }
+        ],
+        "explanation": "Sir Isaac Newton's 'Philosophiæ Naturalis Principia Mathematica' describes the laws of motion and universal gravitation."
+    },
+    {
+        "question": "What is the name of the layer of Earth we live on?",
+        "answers": [
+            { "text": "Crust", "correct": true },
+            { "text": "Mantle", "correct": false },
+            { "text": "Core", "correct": false }
+        ],
+        "explanation": "The Earth's crust is the outermost layer; it's what we live on."
+    },
+    {
+        "question": "What is the name of the phobia that involves an irrational fear of spiders?",
+        "answers": [
+            { "text": "Arachnophobia", "correct": true },
+            { "text": "Agoraphobia", "correct": false },
+            { "text": "Claustrophobia", "correct": false }
+        ],
+        "explanation": "Arachnophobia is a specific phobia involving an intense fear of spiders."
+    },
+    {
+        "question": "What is the primary source of energy for the Earth?",
+        "answers": [
+            { "text": "Sun", "correct": true },
+            { "text": "Wind", "correct": false },
+            { "text": "Water", "correct": false }
+        ],
+        "explanation": "The Sun is the primary source of energy, powering processes like photosynthesis and weather systems on Earth."
+    },
+    {
+        "question": "What is the process by which caterpillars become butterflies?",
+        "answers": [
+            { "text": "Metamorphosis", "correct": true },
+            { "text": "Transmutation", "correct": false },
+            { "text": "Mutation", "correct": false }
+        ],
+        "explanation": "Metamorphosis is the biological process through which caterpillars transform into butterflies."
+    },
+    {
+        "question": "What is the process by which plants make their food called?",
+        "answers": [
+            { "text": "Photosynthesis", "correct": true },
+            { "text": "Respiration", "correct": false },
+            { "text": "Transpiration", "correct": false }
+        ],
+        "explanation": "Photosynthesis is the process by which green plants and some other organisms use sunlight to synthesize nutrients from carbon dioxide and water."
+    },
+    {
+        "question": "What is the scientific study of plants called?",
+        "answers": [
+            { "text": "Botany", "correct": true },
+            { "text": "Zoology", "correct": false },
+            { "text": "Ecology", "correct": false }
+        ],
+        "explanation": "Botany is the branch of biology that deals with the scientific study of plant life."
+    },
+    {
+        "question": "What is the smallest bone in the human body?",
+        "answers": [
+            { "text": "Stapes", "correct": true },
+            { "text": "Femur", "correct": false },
+            { "text": "Radius", "correct": false }
+        ],
+        "explanation": "The stapes, in the middle ear, is the smallest bone in the human body."
+    },
+	{
+        "question": "What is the source of solar energy?",
+        "answers": [
+            { "text": "Nuclear fusion", "correct": true },
+            { "text": "Wind", "correct": false },
+            { "text": "Coal", "correct": false }
+        ],
+        "explanation": "Solar energy comes from nuclear fusion that occurs in the sun."
+    },
+    {
+        "question": "What is the symbol for gold on the periodic table?",
+        "answers": [
+            { "text": "Au", "correct": true },
+            { "text": "Ag", "correct": false },
+            { "text": "Fe", "correct": false }
+        ],
+        "explanation": "Au is the symbol for gold on the periodic table, derived from the Latin 'aurum'."
+    },
+    {
+        "question": "What is the term for a group of stars that forms a pattern?",
+        "answers": [
+            { "text": "Constellation", "correct": true },
+            { "text": "Galaxy", "correct": false },
+            { "text": "Cluster", "correct": false }
+        ],
+        "explanation": "A constellation is a group of stars forming a recognizable pattern often named after mythical beings."
+    },
+    {
+        "question": "What Italian city is famous for its leaning tower?",
+        "answers": [
+            { "text": "Pisa", "correct": true },
+            { "text": "Rome", "correct": false },
+            { "text": "Venice", "correct": false }
+        ],
+        "explanation": "The Leaning Tower of Pisa is a widely recognized Italian landmark, located in Pisa."
+    },
+    {
+        "question": "What kind of trees lose their leaves in autumn?",
+        "answers": [
+            { "text": "Deciduous", "correct": true },
+            { "text": "Coniferous", "correct": false },
+            { "text": "Palm", "correct": false }
+        ],
+        "explanation": "Deciduous trees shed their leaves annually in autumn."
+    },
+    {
+        "question": "What language did the ancient Romans speak?",
+        "answers": [
+            { "text": "Latin", "correct": true },
+            { "text": "Greek", "correct": false },
+            { "text": "Italian", "correct": false }
+        ],
+        "explanation": "Latin was the language of the Ancient Romans."
+    },
+    {
+        "question": "What marine animal is known as the \"king of the sea\"?",
+        "answers": [
+            { "text": "Shark", "correct": true },
+            { "text": "Dolphin", "correct": false },
+            { "text": "Whale", "correct": false }
+        ],
+        "explanation": "The shark, often viewed as a top predator, is sometimes referred to as the 'king of the sea'."
+    },
+    {
+        "question": "What metal is primarily used to make steel?",
+        "answers": [
+            { "text": "Iron", "correct": true },
+            { "text": "Copper", "correct": false },
+            { "text": "Aluminum", "correct": false }
+        ],
+        "explanation": "Steel is primarily made of iron, often alloyed with carbon and other elements."
+    },
+    {
+        "question": "What ocean is on the East Coast of the United States?",
+        "answers": [
+            { "text": "Atlantic", "correct": true },
+            { "text": "Pacific", "correct": false },
+            { "text": "Indian", "correct": false }
+        ],
+        "explanation": "The Atlantic Ocean is on the East Coast of the United States."
+    },
+    {
+        "question": "What organ is responsible for pumping blood throughout the body?",
+        "answers": [
+            { "text": "Heart", "correct": true },
+            { "text": "Liver", "correct": false },
+            { "text": "Lung", "correct": false }
+        ],
+        "explanation": "The heart is the organ responsible for pumping blood throughout the body."
+    },
+    {
+        "question": "What part of the cell contains the genetic material?",
+        "answers": [
+            { "text": "Nucleus", "correct": true },
+            { "text": "Mitochondria", "correct": false },
+            { "text": "Ribosome", "correct": false }
+        ],
+        "explanation": "The nucleus contains the cell's genetic material, in the form of DNA."
+    },
+    {
+        "question": "What people ruled much of present-day Mexico before the Spanish conquest?",
+        "answers": [
+            { "text": "Aztecs", "correct": true },
+            { "text": "Mayans", "correct": false },
+            { "text": "Incas", "correct": false }
+        ],
+        "explanation": "The Aztecs were the dominant civilization in central Mexico before the Spanish conquest."
+    },
+    {
+        "question": "What period are the Middle Ages also known as?",
+        "answers": [
+            { "text": "Medieval Times", "correct": true },
+            { "text": "Renaissance", "correct": false },
+            { "text": "Classical Age", "correct": false }
+        ],
+        "explanation": "The Middle Ages are also referred to as the Medieval Times, spanning roughly from the 5th to the late 15th century."
+    },
+    {
+        "question": "What phenomenon causes day and night?",
+        "answers": [
+            { "text": "Earth’s rotation", "correct": true },
+            { "text": "Earth’s orbit", "correct": false },
+            { "text": "Sun's movement", "correct": false }
+        ],
+        "explanation": "Day and night are caused by the rotation of the Earth on its axis."
+    },
+    {
+        "question": "What physicist is known for his theory of relativity?",
+        "answers": [
+            { "text": "Einstein", "correct": true },
+            { "text": "Newton", "correct": false },
+            { "text": "Bohr", "correct": false }
+        ],
+        "explanation": "Albert Einstein is famous for his theory of relativity, which includes both the special and general relativity theories."
+    },
+    {
+        "question": "What planet is closest to the sun?",
+        "answers": [
+            { "text": "Mercury", "correct": true },
+            { "text": "Venus", "correct": false },
+            { "text": "Mars", "correct": false }
+        ],
+        "explanation": "Mercury is the closest planet to the sun."
+    },
+	{
+		"question": "What process makes alcohol from sugar yeast called?",
+		"answers": [
+			{ "text": "Fermentation", "correct": true },
+			{ "text": "Oxidation", "correct": false },
+			{ "text": "Photosynthesis", "correct": false }
+		],
+		"explanation": "Fermentation is the biochemical process where sugars are converted into alcohol and carbon dioxide by yeast."
+	},
+	{
+		"question": "What river flows through Paris?",
+		"answers": [
+			{ "text": "Seine", "correct": true },
+			{ "text": "Thames", "correct": false },
+			{ "text": "Rhine", "correct": false }
+		],
+		"explanation": "The Seine River is known for flowing through Paris, and is integral to the city's history and culture."
+	},
+	{
+		"question": "What river runs through Baghdad?",
+		"answers": [
+			{ "text": "Tigris", "correct": true },
+			{ "text": "Indus", "correct": false },
+			{ "text": "Euphrates", "correct": false }
+		],
+		"explanation": "The Tigris River runs directly through Baghdad, playing a crucial role in the city's trade and geography."
+	},
+	{
+		"question": "What shape is the President's Office in the White House known as?",
+		"answers": [
+			{ "text": "Oval", "correct": true },
+			{ "text": "Square", "correct": false },
+			{ "text": "Round", "correct": false }
+		],
+		"explanation": "The President’s Office in the White House is famously known as the Oval Office."
+	},
+	{
+		"question": "What South American country has the city of Machu Picchu?",
+		"answers": [
+			{ "text": "Peru", "correct": true },
+			{ "text": "Bolivia", "correct": false },
+			{ "text": "Ecuador", "correct": false }
+		],
+		"explanation": "Machu Picchu is an ancient Incan citadel located in the mountains of Peru."
+	},
+	{
+		"question": "What theory proposes that continents move across Earth's surface over time?",
+		"answers": [
+			{ "text": "Plate tectonics", "correct": true },
+			{ "text": "Geocentrism", "correct": false },
+			{ "text": "Heliocentrism", "correct": false }
+		],
+		"explanation": "The theory of plate tectonics describes how the Earth's surface is made up of plates that move over time, causing continents to shift."
+	},
+	{
+		"question": "What type of animal is a Komodo dragon?",
+		"answers": [
+			{ "text": "Lizard", "correct": true },
+			{ "text": "Bird", "correct": false },
+			{ "text": "Mammal", "correct": false }
+		],
+		"explanation": "The Komodo dragon is one of the largest and most well-known species of lizard."
+	},
+	{
+		"question": "What type of government does the United Kingdom have?",
+		"answers": [
+			{ "text": "Constitutional monarchy", "correct": true },
+			{ "text": "Democratic republic", "correct": false },
+			{ "text": "Absolute monarchy", "correct": false }
+		],
+		"explanation": "The United Kingdom functions as a constitutional monarchy with a parliamentary system."
+	},
+	{
+		"question": "What U.S. President is associated with the New Deal?",
+		"answers": [
+			{ "text": "Franklin D. Roosevelt", "correct": true },
+			{ "text": "Theodore Roosevelt", "correct": false },
+			{ "text": "Woodrow Wilson", "correct": false }
+		],
+		"explanation": "Franklin D. Roosevelt implemented the New Deal during the Great Depression to revive the U.S. economy."
+	},
+	{
+		"question": "What U.S. state has the most volcanoes?",
+		"answers": [
+			{ "text": "Alaska", "correct": true },
+			{ "text": "Hawaii", "correct": false },
+			{ "text": "Washington", "correct": false }
+		],
+		"explanation": "Alaska holds the record for having the most volcanoes in the United States, with over 130 active and extinct."
+	},
+	{
+		"question": "What U.S. state is known as the 'Sunshine State'?",
+		"answers": [
+			{ "text": "Florida", "correct": true },
+			{ "text": "California", "correct": false },
+			{ "text": "Arizona", "correct": false }
+		],
+		"explanation": "Florida is nicknamed the 'Sunshine State' due to its generally warm climate and plentiful sunny days."
+	},
+	{
+		"question": "What was the first spacecraft to land a man on the moon?",
+		"answers": [
+			{ "text": "Apollo 11", "correct": true },
+			{ "text": "Challenger", "correct": false },
+			{ "text": "Gemini 4", "correct": false }
+		],
+		"explanation": "Apollo 11 was the historic NASA mission that landed the first humans, Neil Armstrong and Buzz Aldrin, on the moon in 1969."
+	},
+	{
+		"question": "What was the main commodity transported along the Silk Road?",
+		"answers": [
+			{ "text": "Silk", "correct": true },
+			{ "text": "Gold", "correct": false },
+			{ "text": "Spices", "correct": false }
+		],
+		"explanation": "Although many goods were traded along the Silk Road, it is named for the silk that was primarily transported along this route."
+	},
+	{
+		"question": "What were the medieval soldiers who wore armor and fought on horseback called?",
+		"answers": [
+			{ "text": "Knights", "correct": true },
+			{ "text": "Samurai", "correct": false },
+			{ "text": "Spartans", "correct": false }
+		],
+		"explanation": "Knights were heavily armored soldiers who fought on horseback during the medieval period in Europe."
+	},
+	{
+		"question": "Where is the Great Wall located?",
+		"answers": [
+			{ "text": "China", "correct": true },
+			{ "text": "India", "correct": false },
+			{ "text": "Germany", "correct": false }
+		],
+		"explanation": "The Great Wall is an ancient series of walls and fortifications located in northern China, originally built for protection against various nomadic groups."
+	},
+	{
+        "question": "Where would you find the Empire State Building?",
+        "answers": [
+            { "text": "New York", "correct": true },
+            { "text": "Los Angeles", "correct": false },
+            { "text": "Chicago", "correct": false }
+        ],
+        "explanation": "The Empire State Building is a 102-story skyscraper located in Midtown Manhattan, New York City."
+    },
+    {
+        "question": "Where would you find the Great Barrier Reef?",
+        "answers": [
+            { "text": "Australia", "correct": true },
+            { "text": "India", "correct": false },
+            { "text": "Brazil", "correct": false }
+        ],
+        "explanation": "The Great Barrier Reef, the world's largest coral reef system, is located off the coast of Queensland, Australia."
+    },
+    {
+        "question": "Where would you find the Sea of Tranquility?",
+        "answers": [
+            { "text": "The Moon", "correct": true },
+            { "text": "Earth", "correct": false },
+            { "text": "Mars", "correct": false }
+        ],
+        "explanation": "The Sea of Tranquility is a lunar mare that sits within the Tranquillitatis basin on the Moon."
+    },
+    {
+        "question": "Where would you find your patella?",
+        "answers": [
+            { "text": "Knee", "correct": true },
+            { "text": "Elbow", "correct": false },
+            { "text": "Ankle", "correct": false }
+        ],
+        "explanation": "The patella, also known as the kneecap, is a small bone located in front of the knee joint."
+    },
+    {
+        "question": "Which chemical element has the symbol O?",
+        "answers": [
+            { "text": "Oxygen", "correct": true },
+            { "text": "Osmium", "correct": false },
+            { "text": "Oxygenium", "correct": false }
+        ],
+        "explanation": "O is the chemical symbol for oxygen, an element essential for human life and the most abundant element in the Earth's crust."
+    },
+    {
+        "question": "Which continent is also a country?",
+        "answers": [
+            { "text": "Australia", "correct": true },
+            { "text": "Antarctica", "correct": false },
+            { "text": "Europe", "correct": false }
+        ],
+        "explanation": "Australia is the only continent that is also a country, occupying the entire continental landmass."
+    },
+    {
+        "question": "Which country is the largest by area in the world?",
+        "answers": [
+            { "text": "Russia", "correct": true },
+            { "text": "Canada", "correct": false },
+            { "text": "China", "correct": false }
+        ],
+        "explanation": "Russia is the largest country in the world by area, covering over 17 million square kilometers."
+    },
+    {
+        "question": "Which historical event is known as the 'Fall of the Bastille'?",
+        "answers": [
+            { "text": "French Revolution", "correct": true },
+            { "text": "American Revolution", "correct": false },
+            { "text": "Russian Revolution", "correct": false }
+        ],
+        "explanation": "The 'Fall of the Bastille' occurred on July 14, 1789, and is a key event in the French Revolution."
+    },
+    {
+        "question": "Which historical figure is known for saying 'I think, therefore I am'?",
+        "answers": [
+            { "text": "Descartes", "correct": true },
+            { "text": "Plato", "correct": false },
+            { "text": "Einstein", "correct": false }
+        ],
+        "explanation": "René Descartes, a French philosopher, made the famous statement 'I think, therefore I am' in his work 'Discourse on Method.'"
+    },
+    {
+        "question": "Which planet is known for its rings?",
+        "answers": [
+            { "text": "Saturn", "correct": true },
+            { "text": "Jupiter", "correct": false },
+            { "text": "Mars", "correct": false }
+        ],
+        "explanation": "Saturn is most well-known for its prominent ring system, which is the most extensive and visually stunning in the Solar System."
+    },
+    {
+        "question": "Which two countries share the longest international border?",
+        "answers": [
+            { "text": "USA-Canada", "correct": true },
+            { "text": "Russia-China", "correct": false },
+            { "text": "Argentina-Chile", "correct": false }
+        ],
+        "explanation": "The USA and Canada share the longest international border in the world, stretching 8,891 kilometers (5,525 miles)."
+    },
+    {
+        "question": "Which U.S. state is famous for Hollywood?",
+        "answers": [
+            { "text": "California", "correct": true },
+            { "text": "Florida", "correct": false },
+            { "text": "New York", "correct": false }
+        ],
+        "explanation": "Hollywood, known for its movie industry, is located in Los Angeles, California."
+    },
+    {
+        "question": "Which U.S. state was the first to ratify the Constitution?",
+        "answers": [
+            { "text": "Delaware", "correct": true },
+            { "text": "Virginia", "correct": false },
+            { "text": "Pennsylvania", "correct": false }
+        ],
+        "explanation": "Delaware was the first state to ratify the U.S. Constitution on December 7, 1787."
+    },
+    {
+        "question": "Who composed the 'Magic Flute'?",
+        "answers": [
+            { "text": "Mozart", "correct": true },
+            { "text": "Beethoven", "correct": false },
+            { "text": "Bach", "correct": false }
+        ],
+        "explanation": "The 'Magic Flute' is an opera by Wolfgang Amadeus Mozart, first performed in 1791."
+    },
+    {
+        "question": "Who discovered America before Columbus?",
+        "answers": [
+            { "text": "Vikings", "correct": true },
+            { "text": "Romans", "correct": false },
+            { "text": "Greeks", "correct": false }
+        ],
+        "explanation": "The Vikings, led by Leif Erikson around the year 1000, are believed to have reached North America before Christopher Columbus."
+    },
+	{
+		"question": "Who discovered penicillin?",
+		"answers": [
+			{ "text": "Alexander Fleming", "correct": true },
+			{ "text": "Marie Curie", "correct": false },
+			{ "text": "Isaac Newton", "correct": false }
+		],
+		"explanation": "Alexander Fleming discovered penicillin in 1928, marking the beginning of modern antibiotics."
+	},
+	{
+		"question": "Who discovered the circulation of blood?",
+		"answers": [
+			{ "text": "William Harvey", "correct": true },
+			{ "text": "Charles Darwin", "correct": false },
+			{ "text": "Albert Einstein", "correct": false }
+		],
+		"explanation": "William Harvey, in 1628, accurately described the circulatory system of blood being pumped around the body by the heart."
+	},
+	{
+		"question": "Who first discovered America for the modern western world?",
+		"answers": [
+			{ "text": "Christopher Columbus", "correct": true },
+			{ "text": "Amerigo Vespucci", "correct": false },
+			{ "text": "Marco Polo", "correct": false }
+		],
+		"explanation": "Christopher Columbus is often credited with discovering America in 1492, though other civilizations had reached it earlier."
+	},
+	{
+		"question": "Who first flew the airplane?",
+		"answers": [
+			{ "text": "Wright Brothers", "correct": true },
+			{ "text": "Henry Ford", "correct": false },
+			{ "text": "Leonardo Da Vinci", "correct": false }
+		],
+		"explanation": "The Wright Brothers, Orville and Wilbur, successfully flew the first powered, controlled airplane flights in 1903."
+	},
+	{
+		"question": "Who first proposed the theory of evolution?",
+		"answers": [
+			{ "text": "Charles Darwin", "correct": true },
+			{ "text": "Isaac Newton", "correct": false },
+			{ "text": "Albert Einstein", "correct": false }
+		],
+		"explanation": "Charles Darwin proposed the theory of natural selection, a foundational concept in the theory of evolution, in 1859."
+	},
+	{
+		"question": "Who invented the light bulb?",
+		"answers": [
+			{ "text": "Thomas Edison", "correct": true },
+			{ "text": "Benjamin Franklin", "correct": false },
+			{ "text": "Nikola Tesla", "correct": false }
+		],
+		"explanation": "Though several inventors contributed to its development, Thomas Edison is credited with creating the first commercially practical incandescent light in 1879."
+	},
+	{
+		"question": "Who invented the telescope?",
+		"answers": [
+			{ "text": "Hans Lippershey", "correct": true },
+			{ "text": "Galileo Galilei", "correct": false },
+			{ "text": "Johannes Kepler", "correct": false }
+		],
+		"explanation": "Dutch eyeglass maker Hans Lippershey is often credited with the invention of the telescope in 1608."
+	},
+	{
+		"question": "Who is credited with painting the roof of the Sistine Chapel?",
+		"answers": [
+			{ "text": "Michelangelo", "correct": true },
+			{ "text": "Leonardo da Vinci", "correct": false },
+			{ "text": "Raphael", "correct": false }
+		],
+		"explanation": "Michelangelo painted the ceiling of the Sistine Chapel between 1508 and 1512, one of the most renowned artworks of the High Renaissance."
+	},
+	{
+		"question": "Who is known as the \"Father of History\"?",
+		"answers": [
+			{ "text": "Herodotus", "correct": true },
+			{ "text": "Plato", "correct": false },
+			{ "text": "Socrates", "correct": false }
+		],
+		"explanation": "Herodotus is dubbed the \"Father of History\" because he wrote 'Histories,' the first major narrative history in the Western world."
+	},
+	{
+		"question": "Who is the artist behind the sculpture of David?",
+		"answers": [
+			{ "text": "Michelangelo", "correct": true },
+			{ "text": "Donatello", "correct": false },
+			{ "text": "Bernini", "correct": false }
+		],
+		"explanation": "Michelangelo sculpted the iconic Renaissance statue of David between 1501 and 1504 in Florence, Italy."
+	},
+	{
+		"question": "Who is the creator of the Harry Potter series?",
+		"answers": [
+			{ "text": "J.K. Rowling", "correct": true },
+			{ "text": "Stephen King", "correct": false },
+			{ "text": "R.L. Stine", "correct": false }
+		],
+		"explanation": "J.K Rowling is the author behind the highly successful Harry Potter series, which debuted in 1997 with 'Harry Potter and the Philosopher’s Stone'."
+	},
+	{
+		"question": "Who painted the Mona Lisa?",
+		"answers": [
+			{ "text": "Leonardo da Vinci", "correct": true },
+			{ "text": "Michelangelo", "correct": false },
+			{ "text": "Raphael", "correct": false }
+		],
+		"explanation": "Leonardo da Vinci painted the Mona Lisa, one of the most famous and celebrated artworks, between 1503 and 1519."
+	},
+	{
+		"question": "Who was known as the “Father of Geometry”?",
+		"answers": [
+			{ "text": "Euclid", "correct": true },
+			{ "text": "Pythagoras", "correct": false },
+			{ "text": "Aristotle", "correct": false }
+		],
+		"explanation": "Euclid, a Greek mathematician, is often called the 'Father of Geometry' for his comprehensive compilations of geometric knowledge in 'Elements'."
+	},
+	{
+		"question": "Who was the ancient Greek god of the sea?",
+		"answers": [
+			{ "text": "Poseidon", "correct": true },
+			{ "text": "Zeus", "correct": false },
+			{ "text": "Hades", "correct": false }
+		],
+		"explanation": "Poseidon was one of the Twelve Olympians in ancient Greek religion, known as the god of the sea, storms, and horses."
+	},
+	{
+        "question": "Who was the first female Prime Minister of Britain?",
+        "answers": [
+            { "text": "Margaret Thatcher", "correct": true },
+            { "text": "Elizabeth II", "correct": false },
+            { "text": "Theresa May", "correct": false }
+        ],
+        "explanation": "Margaret Thatcher, known as the 'Iron Lady,' was the first female Prime Minister of Britain, serving from 1979 to 1990."
+    },
+    {
+        "question": "Who was the first President of the United States?",
+        "answers": [
+            { "text": "George Washington", "correct": true },
+            { "text": "Thomas Jefferson", "correct": false },
+            { "text": "John Adams", "correct": false }
+        ],
+        "explanation": "George Washington was the first President of the United States, serving from 1789 to 1797."
+    },
+    {
+        "question": "Who was the first president to live in the White House?",
+        "answers": [
+            { "text": "John Adams", "correct": true },
+            { "text": "George Washington", "correct": false },
+            { "text": "Thomas Jefferson", "correct": false }
+        ],
+        "explanation": "John Adams was the first president to reside in the White House, moving in in November 1800."
+    },
+    {
+        "question": "Who was the first Roman emperor?",
+        "answers": [
+            { "text": "Augustus", "correct": true },
+            { "text": "Nero", "correct": false },
+            { "text": "Julius Caesar", "correct": false }
+        ],
+        "explanation": "Augustus, born Octavian, was the first Roman emperor, ruling from 27 BC until his death in AD 14."
+    },
+    {
+        "question": "Who was the first woman to fly solo across the Atlantic Ocean?",
+        "answers": [
+            { "text": "Amelia Earhart", "correct": true },
+            { "text": "Harriet Quimby", "correct": false },
+            { "text": "Bessie Coleman", "correct": false }
+        ],
+        "explanation": "Amelia Earhart became the first woman to fly solo across the Atlantic Ocean in 1932."
+    },
+    {
+        "question": "Who was the king of the gods in Greek mythology?",
+        "answers": [
+            { "text": "Zeus", "correct": true },
+            { "text": "Poseidon", "correct": false },
+            { "text": "Hades", "correct": false }
+        ],
+        "explanation": "Zeus is the king of the gods in Greek mythology, known for his control over the sky and thunder."
+    },
+    {
+        "question": "Who was the main author of the U.S. Constitution?",
+        "answers": [
+            { "text": "James Madison", "correct": true },
+            { "text": "George Washington", "correct": false },
+            { "text": "Alexander Hamilton", "correct": false }
+        ],
+        "explanation": "James Madison is often referred to as the 'Father of the Constitution' for his pivotal role in its drafting and ratification."
+    },
+    {
+        "question": "Who was the Norse god of thunder?",
+        "answers": [
+            { "text": "Thor", "correct": true },
+            { "text": "Odin", "correct": false },
+            { "text": "Loki", "correct": false }
+        ],
+        "explanation": "Thor is the Norse god of thunder, wielding a hammer known as Mjölnir."
+    },
+    {
+        "question": "Who was the President of the United States during the Civil War?",
+        "answers": [
+            { "text": "Abraham Lincoln", "correct": true },
+            { "text": "Andrew Johnson", "correct": false },
+            { "text": "Ulysses S. Grant", "correct": false }
+        ],
+        "explanation": "Abraham Lincoln was the U.S. President during the Civil War, from 1861 until his assassination in 1865."
+    },
+    {
+        "question": "Who was the U.S. President during the majority of World War II?",
+        "answers": [
+            { "text": "Franklin D. Roosevelt", "correct": true },
+            { "text": "Harry S. Truman", "correct": false },
+            { "text": "Dwight Eisenhower", "correct": false }
+        ],
+        "explanation": "Franklin D. Roosevelt was the U.S. President during most of World War II; he died in office in 1945, shortly before the war ended."
+    },
+    {
+        "question": "Who wrote 'Hamlet'?",
+        "answers": [
+            { "text": "William Shakespeare", "correct": true },
+            { "text": "Christopher Marlowe", "correct": false },
+            { "text": "Ben Jonson", "correct": false }
+        ],
+        "explanation": "'Hamlet' is one of William Shakespeare's most famous tragedies, written around 1600."
+    },
+    {
+        "question": "Who wrote the Declaration of Independence?",
+        "answers": [
+            { "text": "Thomas Jefferson", "correct": true },
+            { "text": "Benjamin Franklin", "correct": false },
+            { "text": "John Adams", "correct": false }
+        ],
+        "explanation": "Thomas Jefferson penned the initial draft of the Declaration of Independence in 1776."
+    },
+    {
+        "question": "Who wrote the play 'Romeo and Juliet'?",
+        "answers": [
+            { "text": "William Shakespeare", "correct": true },
+            { "text": "John Fletcher", "correct": false },
+            { "text": "Thomas Kyd", "correct": false }
+        ],
+        "explanation": "William Shakespeare wrote 'Romeo and Juliet,' a famous tragedy believed to be written in the early 1590s."
+    },
+    {
+        "question": "Whose theory is the General Theory of Relativity?",
+        "answers": [
+            { "text": "Albert Einstein", "correct": true },
+            { "text": "Isaac Newton", "correct": false },
+            { "text": "Niels Bohr", "correct": false }
+        ],
+        "explanation": "Albert Einstein developed the General Theory of Relativity, published in 1915, providing a unified description of gravity as a property of space and time."
+    }
 		]
+
 			;
 	</script>
 </body>
