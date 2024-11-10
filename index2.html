@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Sensor v14</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        html,
+        body {
+            background-color: #000;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        body.on {
+            background-color: rgb(3, 113, 100);
+            transition: 0.2s ease-in-out;
+        }
+
+        body {
+            transition: 0.2s ease-out-in;
+        }
+
+        #result {
+            font-size: 140px;
+            line-height: 1;
+            color: #FFF;
+            position: absolute;
+            text-decoration: none;
+            font-weight: 800;
+            font-style: italic;
+            top: 40vh;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .stars {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 0px;
+            position: absolute;
+            top: calc(50vh + 120px);
+            text-align: center;
+            width: 100%;
+            display: block;
+            transform: translate(0%, -50%);
+            line-height: 140px;
+        }
+
+        .star {
+            opacity: 0;
+            transition: opacity 0.2s ease-in, font-size 0.5s cubic-bezier(.81, 0, .32, 1.5);
+            vertical-align: middle;
+        }
+
+        .star.show {
+            opacity: 1;
+            font-size: 100px;
+        }
+
+        #record, #current-stretch, #new-record-message {
+            font-size: 24px;
+            color: #FFF;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #record {
+            top: 20px;
+        }
+
+        #current-stretch {
+            top: 50px;
+        }
+
+        #new-record-message {
+            top: 80px;
+            color: #FFD700;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="record">Record: 10s</div>
+    <div id="current-stretch">Current: 0s</div>
+    <div id="new-record-message"></div>
+    <a id="result" href="#" role="button">Start</a>
+    <div class="stars">
+        <span class="star star-1">⭐️</span>
+        <span class="star star-2">⭐️</span>
+        <span class="star star-3">⭐️</span>
+        <span class="star star-4">⭐️</span>
+        <span class="star star-5">⭐️</span>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nosleep/0.12.0/NoSleep.js"></script>
+    <script>
+        var seconds = 0.0;
+        var int = null;
+        var beta = [];
+        var b = -100;
+        var milliseconds = 50;
+        var target = 750;
+        var confettiLaunched = false;
+        var noSleep = new NoSleep();
+        var longestStretch = 10; // Set default record to 10 seconds
+        var currentStretch = 0;
+        var newRecordMessageTimeout = null;
+        var confettiShot = false;
+
+        const newRecordMessages = [
+            "New record, keep going!",
+            "Fantastic work!",
+            "Keep balancing!",
+            "You are unstoppable!",
+            "Keep it UP!!!"
+        ];
+
+        if (window.location.hash != '#') {
+            var h = parseInt(window.location.hash.replace('#', ''));
+            if (h > 0) {
+                target = h;
+            }
+        }
+
+        function handleOrientation(event) {
+            if (event.beta != null) {
+                b = event.beta.toFixed(2);
+            }
+        }
+
+        function updateStar(n) {
+            var triggerStar = seconds / target >= (n * 20 / 100);
+            if (triggerStar) {
+                document.querySelector('.star-' + n).classList.add('show');
+            }            
+        }
+
+        function showNewRecordMessage() {
+            var message = document.getElementById('new-record-message');
+            var randomMessage = newRecordMessages[Math.floor(Math.random() * newRecordMessages.length)];
+            message.textContent = randomMessage;
+            message.style.opacity = '1';
+            if (newRecordMessageTimeout) {
+                clearTimeout(newRecordMessageTimeout);
+            }
+            newRecordMessageTimeout = setTimeout(() => {
+                message.style.opacity = '0';
+            }, 4000);
+        }
+
+        function hideNewRecordMessage() {
+            var message = document.getElementById('new-record-message');
+            message.style.opacity = '0';
+            if (newRecordMessageTimeout) {
+                clearTimeout(newRecordMessageTimeout);
+            }
+        }
+
+        function onTick() {
+            beta.push(b);
+
+            var recentResults = beta.slice(-10);
+            if (recentResults.length === 0) {
+                return;
+            }
+
+            var goodResults = recentResults.filter(r => Math.abs(r) < 12);
+            var isOkay = (goodResults.length / recentResults.length) >= 0.6;
+
+            // Update count and current stretch
+            if (isOkay) {
+                seconds += milliseconds / 1000;
+                currentStretch += milliseconds / 1000;
+                
+                // Check if current stretch is a new record
+                if (currentStretch > longestStretch) {
+                    longestStretch = currentStretch;
+                    document.getElementById('record').innerHTML = `Record: ${longestStretch.toFixed(1)}s`;
+                    
+                    // Launch confetti for new record only once
+                    if (!confettiShot) {
+                        confetti({
+                            particleCount: 100,
+                            spread: 70,
+                            origin: { y: 0.6 }
+                        });
+                        showNewRecordMessage();
+                        confettiShot = true;
+                    }
+                }
+            } else {
+                currentStretch = 0;
+                confettiShot = false; // Reset confetti flag when balance is lost
+            }
+           
+            if (seconds >= target && !confettiLaunched) {
+                confetti({
+                    particleCount: 150,
+                    spread: 120,
+                    ticks: 300
+                });
+                confettiLaunched = true;
+                clearInterval(int);
+                updateStar(5);
+                document.getElementById('result').innerHTML = 'Done!';
+            } else {
+                // Update display
+                updateDisplay(isOkay);
+            }
+        }
+
+        function updateDisplay(isOkay) {
+            if (isOkay) {
+                document.body.className = 'on';
+            } else {
+                document.body.className = '';
+            }
+
+            updateStar(1);
+            updateStar(2);
+            updateStar(3);
+            updateStar(4);
+            updateStar(5);
+
+            document.getElementById('result').innerHTML = seconds.toFixed(0);
+            document.getElementById('current-stretch').innerHTML = `Current: ${currentStretch.toFixed(1)}s`;
+            document.getElementById('record').innerHTML = `Record: ${longestStretch.toFixed(1)}s`;
+        }
+
+        let isRunning = false;
+        let demo_button = document.getElementById("result");
+        demo_button.onclick = function (e) {
+            e.preventDefault();
+
+            // Request permission for iOS 13+ devices
+            if (DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === "function") {
+                DeviceMotionEvent.requestPermission();
+            }
+
+            if (isRunning) {
+                window.removeEventListener("deviceorientation", handleOrientation);
+                isRunning = false;
+                clearInterval(int);
+                noSleep.disable();
+                hideNewRecordMessage();
+            } else {
+                window.addEventListener("deviceorientation", handleOrientation);
+                isRunning = true;
+                int = setInterval(onTick, milliseconds);
+                updateDisplay(false);
+                noSleep.enable();
+            }
+        };
+
+        // Initialize the record display
+        document.getElementById('record').innerHTML = `Record: ${longestStretch.toFixed(1)}s`;
+    </script>
+</body>
+
+</html>
